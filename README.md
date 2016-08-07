@@ -54,6 +54,10 @@ URL: **https://bokabook.herokuapp.com**
 * [ ] Borrower can receive notification and remind email 3 days before due date.
 * [ ] Lender can receive notification on due date.
 
+## Survey:
+![alt text](https://goo.gl/forms/jSie8SQmXb7rW6EI2 "Questionnaire")
+![alt text](https://docs.google.com/spreadsheets/d/1LCeMlwW2oHtPqoryIa14aRm9EkobzW2U9z_Mx0BfQPQ/edit?usp=sharing "Result")
+
 ## Database schema
 ![alt text](https://github.com/ "Data")
 
