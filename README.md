@@ -48,9 +48,11 @@ URL: **https://bokabook.herokuapp.com**
 * [ ] User can create a bookshelf.
 * [ ] User can edit a bookshelf info.
 * [ ] User can see trendy books.
-* [ ] User can follow a person.
+* [ ] User can follow/unfollow a person.
 * [ ] User can login with facebook.
 * [ ] User can receive email when receiving booking request.
+* [ ] Borrower and lender can have a converstion for each booking request.
+* [ ] Lender can require a deposit for each booking request.
 * [ ] Borrower can receive notification and remind email 3 days before due date.
 * [ ] Lender can receive notification on due date.
 
@@ -61,6 +63,12 @@ URL: **https://bokabook.herokuapp.com**
 
 ## Database schema:
 ![alt text](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Data")
+
+## Logo:
+![logo](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Logo")
+
+## Color guide:
+<a href="http://www.colourlovers.com/palette/1930/cheer_up_emo_kid" target="_blank"><img src="http://www.colourlovers.com/images/badges/p/1/1930_cheer_up_emo_kid.png" style="width: 240px; height: 120px; border: 0 none;" alt="cheer_up_emo_kid" /></a><br /><span style="font-size: 10px; color: #5e5e5e;"><a href="http://www.colourlovers.com/color" target="_blank" style="font-size: 10px; color: #5e5e5e;">Color</a> by <a href="http://www.colourlovers.com/" target="_blank" style="font-size: 10px; color: #5e5e5e;">COLOURlovers</a></span>
 
 ## Some wireframes
 <img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/1_home.png" width="200">
