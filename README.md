@@ -56,6 +56,7 @@ URL: **https://bokabook.herokuapp.com**
 
 ## Survey:
 [Questionnaire](https://goo.gl/forms/jSie8SQmXb7rW6EI2)
+
 [Result](https://docs.google.com/spreadsheets/d/1LCeMlwW2oHtPqoryIa14aRm9EkobzW2U9z_Mx0BfQPQ/edit?usp=sharing)
 
 ## Database schema:
