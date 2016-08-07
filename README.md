@@ -65,7 +65,7 @@ URL: **https://bokabook.herokuapp.com**
 ![alt text](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Data")
 
 ## Logo:
-![logo](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Logo")
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_logo.png" width="200">
 
 ## Color guide:
 <a href="http://www.colourlovers.com/palette/1930/cheer_up_emo_kid" target="_blank"><img src="http://www.colourlovers.com/images/badges/p/1/1930_cheer_up_emo_kid.png" style="width: 240px; height: 120px; border: 0 none;" alt="cheer_up_emo_kid" /></a><br /><span style="font-size: 10px; color: #5e5e5e;"><a href="http://www.colourlovers.com/color" target="_blank" style="font-size: 10px; color: #5e5e5e;">Color</a> by <a href="http://www.colourlovers.com/" target="_blank" style="font-size: 10px; color: #5e5e5e;">COLOURlovers</a></span>
