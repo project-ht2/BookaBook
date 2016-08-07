@@ -62,14 +62,14 @@ URL: **https://bokabook.herokuapp.com**
 ![alt text](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Data")
 
 ## Some wireframes
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/1_home.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/2_my_profile.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/3_others_profile.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/4_book_details.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/5_booking_request.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/6_borrower_transaction_view.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/7_lender_transaction_view.png" width="200">
-<img src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/8_create_account.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/1_home.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/2_my_profile.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/3_others_profile.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/4_book_details.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/5_booking_request.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/6_borrower_transaction_view.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/7_lender_transaction_view.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/8_create_account.png" width="200">
 
 ## Notes
 
