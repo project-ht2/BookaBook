@@ -55,17 +55,16 @@ URL: **https://bokabook.herokuapp.com**
 * [ ] Lender can receive notification on due date.
 
 ## Survey:
-![alt text](https://goo.gl/forms/jSie8SQmXb7rW6EI2 "Questionnaire")
-![alt text](https://docs.google.com/spreadsheets/d/1LCeMlwW2oHtPqoryIa14aRm9EkobzW2U9z_Mx0BfQPQ/edit?usp=sharing "Result")
+[Questionnaire](https://goo.gl/forms/jSie8SQmXb7rW6EI2)
+[Result](https://docs.google.com/spreadsheets/d/1LCeMlwW2oHtPqoryIa14aRm9EkobzW2U9z_Mx0BfQPQ/edit?usp=sharing)
 
 ## Database schema
-![alt text](https://github.com/ "Data")
+![alt text](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Data")
 
 ## Some wireframes
 ###The wireframes pdf has been included in the repo
-![alt text](http:// "Data")
-![alt text](http:// "Data")
-![alt text](http:// "Data")
+![Home](https://raw.githubusercontent.com/project-ht2/BookaBook/master/1_home.png =250x)
+![My profile](https://raw.githubusercontent.com/project-ht2/BookaBook/master/2_my_profile.png =250x)
 
 ## Notes
 
