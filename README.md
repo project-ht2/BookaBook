@@ -1,6 +1,6 @@
 # Bôkabook 
 
-**Bôkabook** is a Ruby on Rails website that connects members to a community of readers. Use BookaBook to find a book to borrow or share your books with readers.
+**Bôkabook** is a Ruby on Rails website that connects members to a community of readers. Use Bôkabook to find a book to borrow or share your books with readers.
 
 Group-1: **hoangtan223**, **suns3t**, **valentine** 
 
