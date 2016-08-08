@@ -1,47 +1,101 @@
-# BOOKABOOK
+# Bôkabook 
 
-**BOOKABOOK** is a Ruby on Rails website that help people easily manage their bookshelf and book for people's book
+**Bôkabook** is a Ruby on Rails website that connects members to a community of readers. Use Bôkabook to find a book to borrow or share your books with readers.
 
-Group HT2
+Group-1: **hoangtan223**, **suns3t**, **valentine** 
 
-URL:
+URL: **https://bokabook.herokuapp.com**
 
 ## User Stories
 
 ### Required:
-* [ ] As a user I want to register a new account
-* [ ] As a user I want to log in to the application
-* [ ] As a user I want to edit my profile
-* [ ] As a user at homepage I want to a search box and book information
-	* [ ] As a user I want to search for a book
-	* [ ] As a user I want to search for a person
-	* [ ] As a user I can see trending book
-- Bookshelf management 
-* [ ] As a user I want to create shelf
-* [ ] As a user I want to edit shelf info
-* [ ] As a user I want to add book to shelf
-	* [ ] User can search for book in system and add to shelf
-	* [ ] User can create new book info 
-* [ ] As a user I can view a book details
-* [ ] As a user I can review a book
-- Booking
-* [ ] As a user I can make a booking request if book available
-* [ ] As a user I can add a book to waiting list if that book is not available
-* [ ] As a user I can receive email when book in waiting list available
-* [ ] As a user I can accept booking request from other user
-* [ ] As a borrower I can receive notification and remind email before due date 3 days
-* [ ] As a lender I can get a nofitication when a due date come
-- User
-* [ ] As a user I can see other user's profile
-* [ ] As a user I can see transaction result history of other user
-* [ ] As a user I can review other user who make a transaction with me
-* [ ] As a user I can see review about other user.
 
-### Optional:
+#### Authentication
+* [ ] User can register a new account.
+* [ ] User can login to the application.
+* [ ] User can logout from the application.
 
-## Database schema
+#### User profile
+* [ ] After login, user can view his/her profile.
+* [ ] After login, only user can edit his/her profile.
+
+#### Search
+* [ ] User can search for a person.
+* [ ] User can search for a book in system book list.
+
+#### Book management
+* [ ] User can create a new book to system book list.
+* [ ] User add book-items (listed in system book list) to his/her default bookshelf.
+* [ ] User can view a book details.
+* [ ] User can rate a book.
+* [ ] User can review a book.
+
+#### Book a book
+* [ ] User can see a list of book lending offers.
+* [ ] User can make a booking request if the book is available.
+* [ ] User can add a book to "want to read" list if it is not available.
+* [ ] User can receive notifications of booking requests.
+* [ ] User can accept booking request from other.
+* [ ] Lender can review borrower (on "book care" and "time accuracy" as) reputation reference.
+
+#### User
+* [ ] User can view other's profile.
+* [ ] User can view other's transaction history.
+* [ ] User can see reviews about other users.
+
+### Optinal:
+
+* [ ] User can create a bookshelf.
+* [ ] User can edit a bookshelf info.
+* [ ] User can see trendy books.
+* [ ] User can follow/unfollow a person.
+* [ ] User can login with facebook.
+* [ ] User can receive email when receiving booking request.
+* [ ] Borrower and lender can have a converstion for each booking request.
+* [ ] Lender can require a deposit for each booking request.
+* [ ] Borrower can receive notification and remind email 3 days before due date.
+* [ ] Lender can receive notification on due date.
+
+## Survey:
+[Questionnaire](https://goo.gl/forms/jSie8SQmXb7rW6EI2)
+
+[Result](https://docs.google.com/spreadsheets/d/1LCeMlwW2oHtPqoryIa14aRm9EkobzW2U9z_Mx0BfQPQ/edit?usp=sharing)
+
+## Database schema:
+![alt text](https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_erd.png "Data")
+
+## Logo:
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/bokabook_logo.png" width="200">
+
+## Color guide:
+<a href="http://www.colourlovers.com/palette/1930/cheer_up_emo_kid" target="_blank"><img src="http://www.colourlovers.com/images/badges/p/1/1930_cheer_up_emo_kid.png" style="width: 240px; height: 120px; border: 0 none;" alt="cheer_up_emo_kid" /></a><br /><span style="font-size: 10px; color: #5e5e5e;"><a href="http://www.colourlovers.com/color" target="_blank" style="font-size: 10px; color: #5e5e5e;">Color</a> by <a href="http://www.colourlovers.com/" target="_blank" style="font-size: 10px; color: #5e5e5e;">COLOURlovers</a></span>
 
 ## Some wireframes
-###The wireframes pdf has been included in the repo
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/1_home.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/2_my_profile.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/3_others_profile.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/4_book_details.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/5_booking_request.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/6_borrower_transaction_view.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/7_lender_transaction_view.png" width="200">
+<img align="top" src="https://raw.githubusercontent.com/project-ht2/BookaBook/master/8_create_account.png" width="200">
 
-## Some patterns
+## Notes
+
+Describe any challenges encountered while building the app.
+
+## License
+
+    Copyright [2016] [HT2 GROUP - HOANG, TAN & TIEN]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
