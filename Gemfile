@@ -29,8 +29,11 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-# authentication
+# Use Devise to authentication
 gem 'devise'
+gem 'omniauth-facebook'
+
+# Use Bootstrap to pretty up the app
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 
 group :development, :test do

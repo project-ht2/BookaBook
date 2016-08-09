@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default">
+  <a class="navbar-brand" href="#">Bokabook</a>
+  
+  <form class="form-inline pull-xs-right">
+    <% if user_signed_in? %>
+        Chào <strong><%= current_user.email %></strong>. <%= link_to "Thoát", destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+    <% else %>
+      <%= link_to "Tao tài khoản", new_user_registration_path, class: "btn btn-default" %> hoặc 
+      <%= link_to "Dùng Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary" %>
+    <% end %>
+  </form>
+</nav>
