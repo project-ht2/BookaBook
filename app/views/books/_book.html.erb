@@ -1,0 +1,15 @@
+<div class="col-md-4 col-xs-6">
+    <div class="media">
+      <a class="media-left" href="#">
+        <img class="media-object" src="<%= book.image_url_or_default %>" alt="<%= book.title %>" width="128" height="193">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"><%= book.title %></h4>
+        <%= book.author.name %>
+      </div>
+      <div class="media-footer">
+          <%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary" %>
+          <%= link_to "Xoá", book_path(book.id), class: "btn btn-danger", method: :delete  %>
+      </div>
+    </div>
+</div>
