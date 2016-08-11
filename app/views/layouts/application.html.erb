@@ -8,11 +8,13 @@
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="container">
+<body>
 	<% if flash.any? %>
 	<%= flash_messages %>
 	<% end %>
 	<%= render 'layouts/navbar.html.erb' %>
-	<%= yield %>
+	<div class="container">
+		<%= yield %>
+	</div>
 </body>
 </html>
