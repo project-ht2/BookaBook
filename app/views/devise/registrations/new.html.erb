@@ -1,49 +1,46 @@
 <%= devise_error_messages! %>
-<div class="col-md-6 offset-md-3">
-  <div class="pricing">
-		<ul>
-			<li class="unit price-primary active ">
-				<div class="price-title">
-					<h3>Chào mừng tới Bôkabook</h3>
-					<p>Tạo tài khoản</p>
-				</div>
-				<div class="price-body">
+<div class="row">
+  <h1></h1>
+  <div class="col-sm-6 col-md-7">
+    <div class="container">
+      <h2><strong>Create an account:</strong></h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem aut ipsam consequuntur consequatur quam quo tempora itaque eius! Non vel, eos consequatur eligendi a repudiandae pariatur temporibus quis laboriosam
+      </p>
+    </div>  
+  </div>
+
+  <div class="col-md-5">
+    <div class="pricing">
+  		<ul>
+  			<li class="unit price-primary active ">
+  				<div class="price-title">
+  					<strong>TẠO TÀI KHOẢN</strong>
+  				</div>
+  				
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <div class="form-group row">
-              <%= f.label :email, class: "col-md-5 col-form-label" %>
-              <div class="col-md-7">
+            <div class="price-body">
+              <p>
+                <%= f.label :email, :style => "text-align: Left" %>
                 <%= f.email_field :email, autofocus: true, class: "form-control", require: true %>  
-              </div>
-            </div>
-          
-            <div class="form-group row">
-              <%= f.label :password, class: "col-md-5 col-form-label" %>
-              <div class="col-md-6">
-                <%= f.password_field :password,  autocomplete: "off", class: "form-control", require: true %>  
-              </div>
-              <% if @minimum_password_length %>
-              <small class="col-md-4 col-form-label">
-                (<%= @minimum_password_length %> characters minimum)
-              </small>
-              <% end %>
-            </div>
-          
-            <div class="form-group row">
-              <%= f.label :password_confirmation, class: "col-md-5 col-form-label"%>
-              <div class="col-md-6">
+                <%= f.label :password, :style => "text-align: Left" %>
+                <%= f.password_field :password,  autocomplete: "off", class: "form-control", require: true %>
+                <% if @minimum_password_length %>
+                  <small>(<%= @minimum_password_length %> characters minimum)</small>
+                <% end %>
+              </p>
+              <P>
+                <%= f.label :password_confirmation, :style => "text-align: Left" %>
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", require: true %>  
-              </div>
+              </p>
+            <!--</div>-->
+            <!--<div class="price-foot">-->
+              <%= f.submit "Đăng ký", class: "btn btn-primary" %><br/>
+  					  <%= render "devise/shared/links" %>
             </div>
-          
-          
-          
-				</div>
-				<div class="price-foot">
-				  <%= f.submit "Đăng ký", class: "btn btn-primary" %><br/>
-					<%= render "devise/shared/links" %>
-				</div>
-				<% end %>
-			</li>
-		</ul>
-	</div>
-</div>
+          <% end %>
+  			</li>
+  		</ul>
+  	</div>
+  </div>
+</div>  
