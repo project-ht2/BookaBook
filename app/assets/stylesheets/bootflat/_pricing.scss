@@ -73,7 +73,8 @@ $pricing-radius:                  4px !default;
 			padding: 20px 20px 10px;
 			@include radius($type: border-top-left-radius, $value: $pricing-radius);
 			@include radius($type: border-top-right-radius, $value: $pricing-radius);
-			color: #FFF;
+			// color: #FFF;
+			color: $mighty-light;
 
 			& h3,
 		    & h3 > p {

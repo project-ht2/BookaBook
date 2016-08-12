@@ -1,2 +1,16 @@
 @import "bootstrap";
 @import "bootflat";
+
+/*landing page*/
+.sign-in-page {
+  background-image: image-url('background/authentication.jpg');
+  background-size: cover;
+  position: relative;
+  height: 620px;
+  padding-top: 80px;
+}
+
+.authen-quote {
+  padding-left: 50px;
+  padding-right: 50px;
+}

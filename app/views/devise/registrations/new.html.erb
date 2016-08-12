@@ -1,46 +1,43 @@
 <%= devise_error_messages! %>
-<div class="row">
-  <h1></h1>
-  <div class="col-sm-6 col-md-7">
-    <div class="container">
-      <h2><strong>Create an account:</strong></h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem aut ipsam consequuntur consequatur quam quo tempora itaque eius! Non vel, eos consequatur eligendi a repudiandae pariatur temporibus quis laboriosam
-      </p>
-    </div>  
-  </div>
-
-  <div class="col-md-5">
-    <div class="pricing">
-  		<ul>
-  			<li class="unit price-primary active ">
-  				<div class="price-title">
-  					<strong>TẠO TÀI KHOẢN</strong>
-  				</div>
-  				
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <div class="price-body">
-              <p>
-                <%= f.label :email, :style => "text-align: Left" %>
-                <%= f.email_field :email, autofocus: true, class: "form-control", require: true %>  
-                <%= f.label :password, :style => "text-align: Left" %>
-                <%= f.password_field :password,  autocomplete: "off", class: "form-control", require: true %>
-                <% if @minimum_password_length %>
-                  <small>(<%= @minimum_password_length %> characters minimum)</small>
-                <% end %>
-              </p>
-              <P>
-                <%= f.label :password_confirmation, :style => "text-align: Left" %>
-                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", require: true %>  
-              </p>
-            <!--</div>-->
-            <!--<div class="price-foot">-->
-              <%= f.submit "Đăng ký", class: "btn btn-primary" %><br/>
-  					  <%= render "devise/shared/links" %>
-            </div>
-          <% end %>
-  			</li>
-  		</ul>
-  	</div>
-  </div>
-</div>  
+<div class="jumbotron sign-in-page">
+  <div class="row">
+    <div class="col-sm-6 col-md-7">
+      <div class="container authen-quote">
+        <h1><strong>Create an account:</strong></h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem aut ipsam consequuntur consequatur quam quo tempora itaque eius! Non vel, eos consequatur eligendi a repudiandae pariatur temporibus quis laboriosam
+        </p>
+      </div>  
+    </div>
+    <div class="col-md-5">
+      <div class="pricing">
+    		<ul>
+    			<li class="unit price-primary active ">
+    				<div class="price-title">
+    					<strong>TẠO TÀI KHOẢN</strong>
+    				</div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <div class="price-body">
+                <p>
+                  <%= f.label :email %>
+                  <%= f.email_field :email, autofocus: true, class: "form-control", require: true %>  
+                  <%= f.label :password %>
+                  <%= f.password_field :password, autocomplete: "off", class: "form-control", require: true %>
+                  <% if @minimum_password_length %>
+                    <small>(<%= @minimum_password_length %> characters minimum)</small>
+                  <% end %>
+                </p>
+                <P>
+                  <%= f.label :password_confirmation, :style => "text-align: Left" %>
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", require: true %>  
+                </p>
+                <%= f.submit "Đăng ký", class: "btn btn-primary" %><br/>
+    					  <%= render "devise/shared/links" %>
+              </div>
+            <% end %>
+    			</li>
+    		</ul>
+    	</div>
+    </div>
+  </div>  
+</div>

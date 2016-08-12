@@ -3,7 +3,6 @@
 <head>
 	<title>BookaBook</title>
 	<%= csrf_meta_tags %>
-
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -13,8 +12,6 @@
 	<%= flash_messages %>
 	<% end %>
 	<%= render 'layouts/navbar.html.erb' %>
-	<div class="container">
-		<%= yield %>
-	</div>
+	<%= yield %>
 </body>
 </html>
