@@ -3,12 +3,11 @@
 <head>
 	<title>BookaBook</title>
 	<%= csrf_meta_tags %>
-
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="container">
+<body>
 	<% if flash.any? %>
 	<%= flash_messages %>
 	<% end %>
