@@ -31,7 +31,7 @@ $navbar-inverse-background-color:            $black !default;
       & .navbar-brand,
       & .navbar-link,
       & .btn-link {
-          color: darken($navbar-background-color, 15%);
+          color: lighten($navbar-background-color, 55%);
       }
       & .navbar-brand:hover,
       & .navbar-brand:focus,

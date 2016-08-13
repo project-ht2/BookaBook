@@ -1,50 +1,52 @@
 <h3>Tạo sách</h3>
 <% if @book.errors.any? %>
-<ul>
-  <% @book.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
+  <ul>
+    <% @book.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>
-<%= form_for @book  do |f| %>
-<div class="form-inline row ">
-    <label class="col-md-2 col-form-label text-xs-right">Tên sách</label>
-    <%= f.text_field :title, class: "form-control", require: true %>
+<div class="form-envelope-outside">
+  <div class="form-envelope-inside">
+    <%= form_for @book  do |f| %>
+      <div class="form-inline row ">
+        <label class="col-md-2 col-form-label text-xs-right">Tên sách</label>
+        <%= f.text_field :title, class: "form-control", require: true %>
+      </div>
+      <div class="form-inline row ">
+        <label class="col-md-2 col-form-label text-xs-right">
+            Tác giả  
+        </label>
+        <%= f.text_field :author_id, class: "form-control" %>
+      </div>
+      <div class="form-inline row ">
+        <label class="col-md-2 col-form-label text-xs-right">
+            Đường dẫn bìa sách   
+        </label>
+        <%= f.text_field :image_url, class: "form-control" %>
+      </div>
+      <div class="form-inline row ">
+        <label class="col-md-2 col-form-label text-xs-right">
+            Thể loại
+        </label>
+        <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @book.category_id), {}, {class: " form-control"}%>
+      </div>
+      <div class="form-inline row ">
+        <label class="col-md-2 col-form-label text-xs-right">
+            ISBN 
+        </label>
+        <%= f.number_field :isbn, class: "form-control" %>
+      </div>
+      <div class="form-inline row ">
+        <label class="col-md-2 col-form-label text-xs-right">
+            Mô tả 
+        </label>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+      <hr>
+      <div class="form-group row">
+        <%= f.submit "Thêm sách", class: "btn btn-primary col-md-2 offset-md-2" %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div class="form-inline row ">
-    <label class="col-md-2 col-form-label text-xs-right">
-        Tác giả  
-    </label>
-    <%= f.text_field :author_id, class: "form-control" %>
-</div>
-<div class="form-inline row ">
-    <label class="col-md-2 col-form-label text-xs-right">
-        Đường dẫn bìa sách   
-    </label>
-    <%= f.text_field :image_url, class: "form-control" %>
-</div>
-<div class="form-inline row ">
-    <label class="col-md-2 col-form-label text-xs-right">
-        Thể loại
-    </label>
-    <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name", @book.category_id), {}, {class: " form-control"}%>
-
-</div>
-<div class="form-inline row ">
-    <label class="col-md-2 col-form-label text-xs-right">
-        ISBN 
-    </label>
-    <%= f.number_field :isbn, class: "form-control" %>
-</div>
-<div class="form-inline row ">
-    <label class="col-md-2 col-form-label text-xs-right">
-        Mô tả 
-    </label>
-    <%= f.text_area :description, class: "form-control" %>
-</div>
-<hr>
-<div class="form-group row">
-    <%= f.submit "Thêm sách", class: "btn btn-primary col-md-2 offset-md-2" %>
-</div>
-  
-<% end %>

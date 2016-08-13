@@ -84,6 +84,7 @@ $pricing-radius:                  4px !default;
 
 		& .price-body {
 			padding: 20px 20px 10px;
+			// text-align: left;
 
 			& ul {
 				padding-top: 10px;
@@ -103,7 +104,8 @@ $pricing-radius:                  4px !default;
 			@include radius($type: border-bottom-left-radius, $value: $pricing-radius);
 			@include radius($type: border-bottom-right-radius, $value: $pricing-radius);
 
-			background-color: $pricing-foot-background-color;
+			// background-color: $pricing-foot-background-color;
+			background-color: lighten($pricing-primary, 30%);
 		}
 
 		& .price-primary {

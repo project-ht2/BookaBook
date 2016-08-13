@@ -18,7 +18,7 @@ class BooksController < ApplicationController
             flash[:success] = "Một sách mới đã được tạo."
             redirect_to books_path
         else
-            flash[:error] = "Oh, không tạo được sách"
+            flash[:error] = @book.errors.full_messages.to_sentence
             redirect_to :back 
         end 
     end 
