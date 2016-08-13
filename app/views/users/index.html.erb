@@ -1,0 +1,6 @@
+<h3>Your shelves</h3>
+<ul class="list-group">
+	<% current_user.shelves.each do |shelf| %>
+		<li class="list-group-item">shelf.name</li>
+	<% end %>
+</ul>
