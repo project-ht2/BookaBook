@@ -1,5 +1,5 @@
 <%= devise_error_messages! %>
-<div class="jumbotron sign-in-page">
+<div class="jumbotron jumbotron-fluid sign-in-page">
   <div class="row">
     <div class="col-sm-6 col-md-7">
       <div class="container authen-quote">
@@ -30,6 +30,8 @@
                     </div>
                   <% end -%>
                 </p>
+              </div>
+              <div class="price-foot">
       				  <%= f.submit "Đăng Nhập", class: "btn btn-primary" %><br/>
       					<%= render "devise/shared/links" %>
     				  </div>
