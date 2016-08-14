@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shelf: 
+  book: 
+  quantity: 1
+  available_count: 1
+
+two:
+  shelf: 
+  book: 
+  quantity: 1
+  available_count: 1
