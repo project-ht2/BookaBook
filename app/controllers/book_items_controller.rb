@@ -24,8 +24,7 @@ class BookItemsController < ApplicationController
   # POST /book_items
   # POST /book_items.json
   def create
-    @book_item = BookItem.new()
-    
+    byebug 
     @book_item.shelf_id = Shelf.find(params[:shelf_id]).id
     @book_item.book_id =
 
