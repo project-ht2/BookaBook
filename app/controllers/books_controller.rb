@@ -54,7 +54,8 @@ class BooksController < ApplicationController
     end 
     
     def search
-        @books = Book.find_by(title: params[:q])
+        @query = params[:q].downcase
+        @books = Book.where(['lower(title) LIKE ?', "%#{@query}%"])
     end
     
     private 
