@@ -1,19 +1,58 @@
 <div class="col-md-4">
     <div class="media book-block">
       <a class="media-left" href="#">
-        <%= image_tag(book.image_url_or_default, class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
+        <%= image_tag(book.image_url, class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
       </a>
       <div class="media-body">
-        <div class="book-info">
-          <h3 class="media-heading book-title"><%= book.title %></h3>
-          <p class="book-author"><%= book.author.name %></p>
-          <!--<hr>-->
-          <p class="book-description"><%= truncate(book.description, :length => 100, :separator => ' ') %></p>
-        </div>
+        <h4 class="media-heading"><%= book.title %></h4>
+        <%= book.author.name %>
+        <% if user_signed_in? %>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal_<%= book.id %>">
+            Lưu 
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="modal_<%= book.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">Thêm sách <strong><%= book.title %></strong> vào tủ sách của bạn</h4>
+                </div>
+                <%= form_for @book_item = BookItem.new(book_id: book.id) do |f| %>
+                <div class="modal-body">
+                  <div class="form-inline row ">
+                    <label class="col-md-3 col-form-label text-xs-right">
+                        Tủ sách 
+                    </label>
+                    <%= f.select :shelf_id, options_from_collection_for_select(current_user.shelves.all, "id", "name", @book_item.shelf_id), {}, {class: " form-control col-md-4"}%>
+                  </div>
+                  <div class="form-inline row ">
+                    <label class="col-md-3 col-form-label text-xs-right">
+                        Số lượng 
+                    </label>
+                    <%= f.number_field :quantity, class: "form-control col-md-4" %>
+                  </div>
+                </div>
+                    <%= f.hidden_field :id, value: @book_item.book_id%>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                  <%= f.submit "Thêm sách", class: "btn btn-primary" %>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="media-footer book-btn"><br>
+      <div class="media-footer"><br>
+      <% if user_signed_in? %>
           <%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary" %>
           <%= link_to "Xoá", book_path(book.id), class: "btn btn-danger", method: :delete  %>
+      <% end %>
       </div>
     </div>
 </div>

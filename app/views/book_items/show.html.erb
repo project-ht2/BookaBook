@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shelf:</strong>
+  <%= @book_item.shelf %>
+</p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @book_item.book %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @book_item.quantity %>
+</p>
+
+<p>
+  <strong>Available count:</strong>
+  <%= @book_item.available_count %>
+</p>
+
+<%= link_to 'Edit', edit_book_item_path(@book_item) %> |
+<%= link_to 'Back', book_items_path %>

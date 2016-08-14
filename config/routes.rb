@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :books
+  resources :book_items
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   # Route to search for book
@@ -8,7 +9,6 @@ Rails.application.routes.draw do
   
   get 'home/index'
   root 'home#index'
-  resources :shelves
   resources :users do 
   	resources :shelves
   end

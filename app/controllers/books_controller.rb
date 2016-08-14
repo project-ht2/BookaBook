@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-    before_action :authenticate_user!, only: [:new] 
+    before_action :authenticate_user!, only: [:new, :create] 
     
     def index
         @books = Book.all
@@ -56,6 +56,9 @@ class BooksController < ApplicationController
     def search
         @query = params[:q].downcase
         @books = Book.where(['lower(title) LIKE ?', "%#{@query}%"])
+        
+        client = Goodreads.new
+        @books_from_goodreads = client.search_books(@query)
     end
     
     private 
