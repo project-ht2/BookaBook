@@ -33,6 +33,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'omniauth-facebook'
 
+# Use Goodreads API wrapper for Rails
+gem 'goodreads'
+
 # Use Bootstrap to pretty up the app
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
