@@ -1,7 +1,7 @@
 <div class="col-md-4">
     <div class="media book-block">
       <a class="media-left" href="#">
-        <%= image_tag(book.image_url_or_default, class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
+        <%= image_tag(image_url_replacement(book.image_url), class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
       </a>
       <div class="media-body">
         <div class="book-info">
