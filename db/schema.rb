@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814090942) do
+ActiveRecord::Schema.define(version: 20160814110007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,12 @@ ActiveRecord::Schema.define(version: 20160814090942) do
     t.string   "title"
     t.integer  "author_id"
     t.integer  "category_id"
-    t.decimal  "isbn",        precision: 13
+    t.decimal  "isbn",         precision: 13
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "image_url"
+    t.integer  "goodreads_id"
     t.index ["author_id"], name: "index_books_on_author_id", using: :btree
     t.index ["category_id"], name: "index_books_on_category_id", using: :btree
   end
