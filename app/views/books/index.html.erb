@@ -1,8 +1,16 @@
-<div class="container">
-  <h3>Tất cả sách chúng tôi có</h3>
-  <div class="row">
-    <%= render @books %>
+<div class="jumbotron horizontal-wood-background">
+  <div class="container">
+    <h3>Tất cả sách</h3>
+    <div class="container-fluid books-list">
+      <% @books.in_groups_of(3) do |g| %>
+        <div class="row event-item">
+          <% g.compact.each do |b| %>
+            <%= render partial: 'book', locals: {book: b} %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+    <%= link_to 'Thêm Sách', new_book_path, class: "btn btn-default" %>
   </div>
-  <hr>
-  <%= link_to 'Thêm Sách', new_book_path, class: "btn btn-default" %>
 </div>

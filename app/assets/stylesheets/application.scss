@@ -5,17 +5,52 @@ $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
 $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 /*landing page*/
-.sign-in-page {
+.authentication-background {
   background-image: image-url('background/authentication.jpg');
   background-size: cover;
   position: relative;
-  height: 620px;
+  background-position:left bottom;
+  height: 680px;
+  // padding-top: 80px;
+}
+
+.authentication-quote {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
+}
+
+.authentication-box {
   padding-top: 80px;
 }
 
-.authen-quote {
-  padding-left: 50px;
-  padding-right: 50px;
+/*book page*/
+.horizontal-wood-background {
+  background-image: image-url('background/background-wood-horizontal.jpg');
+  background-repeat: repeat-y;
+  position: relative;
+  min-height: 620px;
+  padding-top: 1px;
+  padding-bottom: 10px;
+}
+
+/*book block*/
+.book-block {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.book-cover {
+  @include box-shadow($value: $book-cover-shadow);
+}
+
+.book-info {
+  margin-left: 10px;
+  min-height: 193px;
+  padding: 5px;
+  background-color: #ffffff;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
 /*form envelope*/
@@ -29,12 +64,5 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   padding: 15px;
 }
 
-/*book block*/
-.book-block {
-  padding-top: 10px;
-  padding-left: 10px;
-}
 
-.book-cover {
-  @include box-shadow($value: $book-cover-shadow);
-}
+
