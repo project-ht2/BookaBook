@@ -41,4 +41,8 @@ class User < ApplicationRecord
       end
     end
   end
+  
+  after_create do
+		# self.shelves.
+	end
 end
