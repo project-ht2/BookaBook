@@ -53,10 +53,13 @@ class BooksController < ApplicationController
         redirect_to books_path
     end 
     
+    def search
+        @books = Book.find_by(title: params[:q])
+    end
+    
     private 
         def book_params
             params.require(:book).permit(:title, :author_id, :description, :isbn, :category_id, :image_url)
-            
         end 
 
 end
