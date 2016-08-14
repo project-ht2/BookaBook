@@ -1,16 +1,17 @@
 <div class="col-md-4 col-xs-6">
     <div class="media book-block">
       <a class="media-left" href="#">
-        <%= image_tag(book.image_url_or_default, class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
+        <%= image_tag(book.image_url, class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
       </a>
       <div class="media-body">
         <h4 class="media-heading"><%= book.title %></h4>
         <%= book.author.name %>
       </div>
       <div class="media-footer"><br>
+      <% if user_signed_in? %>
           <%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary" %>
           <%= link_to "Xoá", book_path(book.id), class: "btn btn-danger", method: :delete  %>
-          
+      <% end %>
       </div>
     </div>
 </div>
