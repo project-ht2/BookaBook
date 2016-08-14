@@ -53,10 +53,14 @@ class BooksController < ApplicationController
         redirect_to books_path
     end 
     
+    def search
+        @query = params[:q].downcase
+        @books = Book.where(['lower(title) LIKE ?', "%#{@query}%"])
+    end
+    
     private 
         def book_params
             params.require(:book).permit(:title, :author_id, :description, :isbn, :category_id, :image_url)
-            
         end 
 
 end

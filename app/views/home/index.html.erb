@@ -1,2 +1,14 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <%= form_tag("book/search", method: "post", class: "input-group") do %>
+        <%= text_field_tag(:q, nil, placeholder: "Tim kiem sach...", class: "form-control") %>
+        <span class="input-group-btn">
+            <%= submit_tag("Tim kiem", class: "btn btn-info") %>    
+        </span>
+    <% end %>
+</div>
+</div>
+<hr/>
+<%= render @books %>
+
