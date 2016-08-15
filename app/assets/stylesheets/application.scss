@@ -12,7 +12,7 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   background-size: cover;
   position: relative;
   background-position: left bottom;
-  height: 680px;
+  height: 100vh;
   // padding-top: 80px;
 }
 
@@ -55,6 +55,14 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 .book-cover {
   @include box-shadow($value: $book-cover-shadow);
+  height: 193px;
+  width: 128px;
+}
+
+.big-book-cover {
+  @include box-shadow($value: $book-cover-shadow);
+  height: 475px;
+  width: 315px;
 }
 
 .book-info {
