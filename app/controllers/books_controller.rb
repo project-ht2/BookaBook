@@ -3,6 +3,8 @@ class BooksController < ApplicationController
     
     def index
         @books = Book.all
+        @col_wide = 'col-md-4'
+        @book_cover = 'book-cover'
     end
     
     def new
@@ -59,10 +61,16 @@ class BooksController < ApplicationController
 
         client = Goodreads.new
         @books_from_goodreads = client.search_books(@query)
+        
+        @col_wide = 'col-md-4'
+        @book_cover = 'book-cover'
     end
 
     def show
         @book = Book.find(params[:id])
+        
+        @col_wide = 'col-md-12'
+        @book_cover = 'big-book-cover'
     end
 
     private 

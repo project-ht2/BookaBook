@@ -6,4 +6,12 @@ module BooksHelper
         image_url
       end
   end
+  
+  def book_path_replacement(book)
+    if book.respond_to?(:small_image_url)
+      "#"
+    else
+      book_path(book)
+    end
+  end
 end
