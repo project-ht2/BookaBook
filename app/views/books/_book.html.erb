@@ -1,8 +1,10 @@
 <div class="col-md-4">
     <div class="media book-block">
-      <a class="media-left" href="#">
-        <%= image_tag(image_url_replacement(book.image_url), class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
-      </a>
+      <!--<a class="media-left" href="#">-->
+        <%= link_to book_path(book), class: "media-left" do %>
+          <%= image_tag(image_url_replacement(book.image_url), class: "media-object book-cover", alt: book.title, height: '193', width: '128') %>
+        <% end %>
+      <!--</a>-->
       <div class="media-body">
         <div class="book-info">
           <h4 class="media-heading"><%= book.title %></h4>
