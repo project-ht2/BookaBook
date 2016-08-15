@@ -10,7 +10,7 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   background-image: image-url('background/authentication.jpg');
   background-size: cover;
   position: relative;
-  background-position:left bottom;
+  background-position: left bottom;
   height: 680px;
   // padding-top: 80px;
 }
@@ -23,6 +23,17 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 .authentication-box {
   padding-top: 80px;
+}
+
+/*search box*/
+.search-box-background {
+  background-image: image-url('background/search.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  position: relative;
+  // min-height: 400px;
+  padding-top: 300px;
+  padding-bottom: 100px;
 }
 
 /*book page*/
