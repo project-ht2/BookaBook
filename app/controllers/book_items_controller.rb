@@ -24,32 +24,45 @@ class BookItemsController < ApplicationController
   # POST /book_items
   # POST /book_items.json
   def create
-    # Check if this book is in the system
-    @book = Book.find_by(id: book_item_params[:book_id])
-    if @book == nil 
-      # Meaning this book is not added to database and 
-      # book_item_params[:id] is Goodread id
-      @book = save_goodreads_book(book_item_params[:book_id])
-      book_item_params[:book_id] = @book.id
-    end
     # Check if this book_item already in this shelf
     shelf = Shelf.find(book_item_params[:shelf_id])
     @book_item = shelf.book_items.new(book_item_params)
     
     if shelf.save!
       flash[:success] = "Book item was successfully created."
-      redirect_to user_path
+      redirect_to user_path(current_user)
     else
       flash[:error] = "Cannot add book to Bookshelf"
-      redirect_to user_path
+      redirect_to user_path(current_user)
     end
   end
-
+  
+  # create book_items from Goodreads
+  def create_from_goodreads
+    
+    # byebug
+    # Save book to Book Model
+    @book = save_goodreads_book(book_item_params[:book_id])
+    
+    # Create book_items
+    shelf = Shelf.find(book_item_params[:shelf_id])
+    @book_item = shelf.book_items.new 
+    @book_item.book_id = @book.id 
+    @book_item.quantity = book_item_params[:quantity]
+    
+    if shelf.save!
+      flash[:success] = "Book item was successfully created."
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = "Cannot add book to Bookshelf"
+      redirect_to user_path(current_user)
+    end
+  end
   # DELETE /book_items/1
   # DELETE /book_items/1.json
   def destroy
     @book_item.destroy
-    redirect_to user_path
+    redirect_to user_path(current_user)
   end
 
   private
@@ -64,7 +77,7 @@ class BookItemsController < ApplicationController
     
     def save_goodreads_book(goodreads_id)
       book_gr = Goodreads.new.book(goodreads_id)
-      if book_gr.authors.author.count == 1
+      if book_gr.authors.count == 1
         author_name = book_gr.authors.author.name
       else
         author_name = book_gr.authors.author[0].name
@@ -72,7 +85,6 @@ class BookItemsController < ApplicationController
       
       # Assign data
       book = Book.create(
-        id: book_gr.id, 
         title: book_gr.title, 
         description: book_gr.description,
         isbn: book_gr.isbn13,

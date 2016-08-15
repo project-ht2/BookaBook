@@ -58,7 +58,7 @@ class BooksController < ApplicationController
         @query = params[:q].downcase
         @books = Book.where(['lower(title) LIKE ?', "%#{@query}%"])
         
-        # Search from Goodreads database
+        # Search from Goodreads database.
         client = Goodreads.new
         @books_from_goodreads = client.search_books(@query)
     end
