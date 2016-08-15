@@ -54,15 +54,17 @@ class BooksController < ApplicationController
     end 
     
     def search
-        # Search from our local database
         @query = params[:q].downcase
-        @books = Book.where(['lower(title) LIKE ?', "%#{@query}%"])
-        
-        # Search from Goodreads database.
+        @books = Book.where(["title ILIKE ?", "%#{@query}%"])
+
         client = Goodreads.new
         @books_from_goodreads = client.search_books(@query)
     end
-    
+
+    def show
+        @book = Book.find(params[:id])
+    end
+
     private 
         def book_params
             params.require(:book).permit(:title, :author_id, :description, :isbn, :category_id, :image_url)

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'book_item/create_from_goodreads' => 'book_items#create_from_goodreads'
   get 'home/index'
   root 'home#index'
+  resources :shelves
   resources :users do 
   	resources :shelves
   end

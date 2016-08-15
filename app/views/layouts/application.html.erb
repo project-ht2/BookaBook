@@ -8,13 +8,11 @@
 </head>
 
 <body>
-	<% if flash.any? %>
-	<%= flash_messages %>
-	<% end %>
-	<%= render 'layouts/navbar.html.erb' %>
-	<div class="container">
-		<%= yield %>	
-	</div>
-	
+	<%= render 'layouts/navbar' %>
+	<%= render '/application/toastr_flash' %>
+	<!--<% if flash.any? %>-->
+	<!--<%= flash_messages %>-->
+	<!--<% end %>-->
+	<%= yield %>	
 </body>
 </html>

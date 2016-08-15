@@ -40,4 +40,12 @@ class User < ApplicationRecord
       end
     end
   end
+  
+  after_create do
+		Shelf.create({
+		  name: 'Mặc định',
+		  description: 'Mặc định',
+		  user: self
+		})
+	end
 end

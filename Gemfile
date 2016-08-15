@@ -42,6 +42,9 @@ gem 'xml-simple', '~> 1.1', '>= 1.1.5'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 
+# Use toastr for flash
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
