@@ -1,21 +1,23 @@
-<h3 class="text-xs-center">Search resulfs for <strong><%= @query %></strong></h3>
-<hr/>
-<h4 class="text-xs-right">From our database</h4>
-<div class="row">
+<div class="container main-content">
+  <h3 class="text-xs-center">Search resulfs for <strong><%= @query %></strong></h3>
+  <hr/>
+  <h4 class="text-xs-right">From our database</h4>
+  <div class="row">
     <% if @books.count > 0 %>
-        <%= render @books %>
+      <%= render @books %>
     <% else %>
-        <p class="alert alert-info">Khong thay sach trong co so du lieu cua chung toi</p>
+      <p class="alert alert-info">Khong thay sach trong co so du lieu cua chung toi</p>
     <% end %>
-</div>
-<br/><hr/>
-<h4 class="text-xs-right">From Goodreads database</h4>
-<div class="row">
+  </div>
+  <br/><hr/>
+  <h4 class="text-xs-right">From Goodreads database</h4>
+  <div class="row">
     <% if @books_from_goodreads.total_results.to_i == 1 %>
-        <%= render partial: 'book_from_goodreads', locals: {book: @books_from_goodreads.results.work.best_book, source: "goodreads"} %>
+      <%= render partial: 'book_from_goodreads', locals: {book: @books_from_goodreads.results.work.best_book, source: "goodreads"} %>
     <% else %>
-        <% @books_from_goodreads.results.work.each do |book| %>
-            <%= render partial: 'book_from_goodreads', locals: {book: book.best_book, source: "goodreads" } %>
-        <% end %>
+      <% @books_from_goodreads.results.work.each do |book| %>
+        <%= render partial: 'book_from_goodreads', locals: {book: book.best_book, source: "goodreads" } %>
+      <% end %>
     <% end %>
-</div>
+  </div>
+</div>  

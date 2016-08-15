@@ -8,7 +8,7 @@
           <h4 class="media-heading"><%= book.title %></h4>
           <%= book.author.name %>
           <hr>
-          <p class="book-description"><%= truncate(book.description, :length => 100, :separator => ' ') %></p>
+          <p class="book-description"><%= description_replacement(book).html_safe %></p>
         </div>
       </div>
       <div class="media-footer"><br>

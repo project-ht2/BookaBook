@@ -14,4 +14,12 @@ module BooksHelper
       book_path(book)
     end
   end
+  
+  def description_replacement(book)
+    if @col_wide == 'col-md-4'
+      truncate(book.description, :length => 100, :separator => ' ')
+    else
+      book.description
+    end
+  end
 end
