@@ -38,24 +38,10 @@ class BookItemsController < ApplicationController
     
     if shelf.save!
       flash[:success] = "Book item was successfully created."
-      redirect_to root_path
+      redirect_to user_path
     else
       flash[:error] = "Cannot add book to Bookshelf"
-      redirect_to root_path
-    end
-  end
-
-  # PATCH/PUT /book_items/1
-  # PATCH/PUT /book_items/1.json
-  def update
-    respond_to do |format|
-      if @book_item.update(book_item_params)
-        format.html { redirect_to @book_item, notice: 'Book item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @book_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @book_item.errors, status: :unprocessable_entity }
-      end
+      redirect_to user_path
     end
   end
 
@@ -63,10 +49,7 @@ class BookItemsController < ApplicationController
   # DELETE /book_items/1.json
   def destroy
     @book_item.destroy
-    respond_to do |format|
-      format.html { redirect_to book_items_url, notice: 'Book item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_path
   end
 
   private

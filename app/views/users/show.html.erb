@@ -26,7 +26,7 @@
             	<% current_user.shelves.each do | shelf | %>
                 	<div class="tab-pane fade" id="shelf_<%= shelf.id %>" >
                   		<% shelf.book_items.each do |book_item| %>
-                  			<li><%= book_item.book.title %> - Quantity: <%= book_item.quantity %></li>
+                  			<li><%= book_item.book.title %> - Quantity: <%= book_item.quantity %> - <%= link_to 'Xoa', book_item, method: :delete, data: { confirm: 'Are you sure?' } %></li>
                   		<% end %>
                   	</div>
                  <% end %>
