@@ -14,7 +14,7 @@
 				<% end %>
 			</ul>
 			<div class="shelfnav-footer">
-			<%= link_to "New Shelf", new_shelf_path, class: 'btn btn-primary' %>
+			<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
 			</div>
 		</div>
 	</div>

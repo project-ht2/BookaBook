@@ -15,7 +15,7 @@ class ShelvesController < ApplicationController
   end
 
   def show
-	render 'users/show'
+	  render 'users/show'
   end
 
   private
