@@ -24,18 +24,25 @@ class BookItemsController < ApplicationController
   # POST /book_items
   # POST /book_items.json
   def create
-    byebug 
-    @book_item.shelf_id = Shelf.find(params[:shelf_id]).id
-    @book_item.book_id =
-
-    respond_to do |format|
-      if @book_item.save
-        format.html { redirect_to @book_item, notice: 'Book item was successfully created.' }
-        format.json { render :show, status: :created, location: @book_item }
-      else
-        format.html { render :new }
-        format.json { render json: @book_item.errors, status: :unprocessable_entity }
-      end
+    # Check if this book is in the system
+    @book = Book.find_by(id: book_item_params[:book_id])
+    if @book == nil 
+      # Meaning this book is not added to database and 
+      # book_item_params[:id] is Goodread id
+      @book = save_goodreads_book(book_item_params[:book_id])
+      book_item_params[:book_id] = @book.id
+    end
+    # Check if this book_item already in this shelf
+    
+    shelf = Shelf.find(book_item_params[:shelf_id])
+    @book_item = shelf.book_items.new(book_item_params)
+    
+    if shelf.save!
+      flash[:success] = "Book item was successfully created."
+      redirect_to root_path
+    else
+      flash[:error] = "Cannot add book to Bookshelf"
+      redirect_to :back
     end
   end
 
@@ -67,5 +74,35 @@ class BookItemsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_book_item
       @book_item = BookItem.find(params[:id])
+    end
+    
+    def book_item_params
+      params.require(:book_item).permit(:book_id, :shelf_id, :quantity)
+    end
+    
+    def save_goodreads_book(goodreads_id)
+      book_gr = Goodreads.new.book(goodreads_id)
+      if book_gr.authors.count == 1
+        author_name = book_gr.authors.author.name
+      else
+        author_name = book_gr.authors.author[0].name
+      end
+      
+      # Assign data
+      book = Book.create(
+        title: book_gr.title, 
+        description: book_gr.description,
+        isbn: book_gr.isbn13,
+        author_id: Author.find_or_create_by(name: author_name).id,
+        image_url: book_gr.image_url,
+        goodreads_id: book_gr.id, 
+        category_id: Category.first.id
+      )
+      
+      if book.save!
+        return book
+      else
+        return false
+      end
     end
 end
