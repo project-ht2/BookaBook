@@ -14,7 +14,8 @@
 class Book < ApplicationRecord
     belongs_to :author
     belongs_to :category
-  
+    has_many :book_items
+    
     validates :title, presence: true
     validates :isbn, uniqueness: true, :allow_blank => true, :allow_nil => true
 

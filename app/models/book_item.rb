@@ -1,4 +1,4 @@
 class BookItem < ApplicationRecord
-    belongs_to :users
-    belongs_to :shelves 
+    belongs_to :book
+    belongs_to :shelf 
 end

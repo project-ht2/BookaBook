@@ -43,7 +43,7 @@
                     <%= f.number_field :quantity, class: "form-control col-md-4" %>
                   </div>
                 </div>
-                    <%= f.hidden_field :id, value: @book_item.book_id%>
+                    <%= f.hidden_field :book_id, value: @book_item.book_id%>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
                   <%= f.submit "Thêm sách", class: "btn btn-primary" %>
