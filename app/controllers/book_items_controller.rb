@@ -38,10 +38,10 @@ class BookItemsController < ApplicationController
     
     if shelf.save!
       flash[:success] = "Book item was successfully created."
-      redirect_to user_path
+      redirect_to current_user
     else
       flash[:error] = "Cannot add book to Bookshelf"
-      redirect_to user_path
+      redirect_to current_user
     end
   end
 
