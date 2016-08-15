@@ -33,7 +33,6 @@ class BookItemsController < ApplicationController
       book_item_params[:book_id] = @book.id
     end
     # Check if this book_item already in this shelf
-    
     shelf = Shelf.find(book_item_params[:shelf_id])
     @book_item = shelf.book_items.new(book_item_params)
     
@@ -42,7 +41,7 @@ class BookItemsController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = "Cannot add book to Bookshelf"
-      redirect_to :back
+      redirect_to root_path
     end
   end
 
@@ -82,7 +81,7 @@ class BookItemsController < ApplicationController
     
     def save_goodreads_book(goodreads_id)
       book_gr = Goodreads.new.book(goodreads_id)
-      if book_gr.authors.count == 1
+      if book_gr.authors.author.count == 1
         author_name = book_gr.authors.author.name
       else
         author_name = book_gr.authors.author[0].name
@@ -90,6 +89,7 @@ class BookItemsController < ApplicationController
       
       # Assign data
       book = Book.create(
+        id: book_gr.id, 
         title: book_gr.title, 
         description: book_gr.description,
         isbn: book_gr.isbn13,

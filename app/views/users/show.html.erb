@@ -1,21 +1,36 @@
 <div class="container">
+	<h3>Your shelves</h3>
 	<div class="row">
-	<div class="shelfnav col-md-3">
-			<h3>Your shelves</h3>
-			<ul class="list-group">
-			<li class="list-group-item <%= "active" if current_page?(user_path)%>">
-				<%= link_to "All", user_path%>
-			</li>
-				<% current_user.shelves.each do |shelf| %>
-				<span class="tag tag-default tag-pill pull-xs-right">12</span>
-				<li class="list-group-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
-					<%= link_to shelf.name, user_shelf_path(shelf) %>
+		<div class="shelfnav col-md-3">
+			<ul class="nav nav-pills nav-stacked ">
+				<li class="nav-item <%= "active" if current_page?(user_path)%>">
+					<a class="nav-link" href="#all" data-toggle="tab">All books</a>
 				</li>
+				<% current_user.shelves.each do |shelf| %>
+					<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
+						<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
+					</li>
 				<% end %>
 			</ul>
 			<div class="shelfnav-footer">
-			<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
+				<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
 			</div>
 		</div>
+		<div class="col-md-6">
+            <div class="tab-content">
+                <div class="tab-pane" id="all">
+            		<p>
+            			This is your bookshelf
+            		</p>
+            	</div>
+            	<% current_user.shelves.each do | shelf | %>
+                	<div class="tab-pane" id="shelf_<%= shelf.id %>" >
+                  		<% shelf.book_items.each do |book_item| %>
+                  			<li><%= book_item.book.title %> - Quantity: <%= book_item.quantity %></li>
+                  		<% end %>
+                  	</div>
+                 <% end %>
+            </div>
+        </div>
 	</div>
 </div>

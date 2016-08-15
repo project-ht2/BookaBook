@@ -1,6 +1,8 @@
 class ShelvesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_shelf, only: [:new]
+  
   def new
-  	@shelf = Shelf.new
   end
 
   def create
@@ -19,7 +21,11 @@ class ShelvesController < ApplicationController
   end
 
   private
-  def shelf_params
-  	params.require(:shelf).permit(:name, :description, :user_id)
-  end
+    def shelf_params
+    	params.require(:shelf).permit(:name, :description, :user_id)
+    end
+    
+    def set_shelf
+  	  @shelf = current_user.shelves.new
+  	end
 end
