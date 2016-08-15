@@ -2,3 +2,7 @@
 <%= image_tag @book.image_url %>
 <%= @book.author.name %>
 <%= @book.description %>
+
+<% @book.book_reviews.each do |review| %>
+    <%= render partial: 'books/review', locals: {review: review} %>
+<% end %>
