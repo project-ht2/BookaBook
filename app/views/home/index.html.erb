@@ -1,12 +1,11 @@
 <%= render 'application/search_box' %>
-<div class="jumbotron horizontal-wood-background">
-  <div class="container">
-    <% @books.in_groups_of(3) do |g| %>
-      <div class="row 3-books">
-        <% g.compact.each do |b| %>
-          <%= render partial: 'books/book', locals: {book: b} %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+<div class="container main-content">
+  <% @books.in_groups_of(3) do |g| %>
+    <div class="row 3-books">
+      <% g.compact.each do |b| %>
+        <%= render partial: 'books/book', locals: {book: b} %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+

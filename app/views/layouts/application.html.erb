@@ -8,11 +8,10 @@
 </head>
 
 <body>
-	<%= render 'layouts/navbar' %>
-	<%= render '/application/toastr_flash' %>
-	<!--<% if flash.any? %>-->
-	<!--<%= flash_messages %>-->
-	<!--<% end %>-->
-	<%= yield %>	
+	<div class="jumbotron <%= @background %>">
+		<%= render 'layouts/navbar' %>
+		<%= render '/application/toastr_flash' %>
+		<%= yield %>	
+	</div>
 </body>
 </html>
