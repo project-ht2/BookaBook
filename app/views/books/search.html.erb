@@ -12,10 +12,10 @@
 <h4 class="text-xs-right">From Goodreads database</h4>
 <div class="row">
     <% if @books_from_goodreads.total_results.to_i == 1 %>
-        <%= render partial: 'book', locals: {book: @books_from_goodreads.results.work.best_book, source: "goodreads"} %>
+        <%= render partial: 'book_from_goodreads', locals: {book: @books_from_goodreads.results.work.best_book, source: "goodreads"} %>
     <% else %>
         <% @books_from_goodreads.results.work.each do |book| %>
-            <%= render partial: 'book', locals: {book: book.best_book, source: "goodreads" } %>
+            <%= render partial: 'book_from_goodreads', locals: {book: book.best_book, source: "goodreads" } %>
         <% end %>
     <% end %>
 </div>

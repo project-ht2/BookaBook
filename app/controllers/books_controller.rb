@@ -10,6 +10,7 @@ class BooksController < ApplicationController
     end 
     
     def create
+        
         @book = Book.new(book_params)
         @book.author_id = Author.find_or_create_by(name: book_params[:author_id]).id
 
@@ -40,7 +41,7 @@ class BooksController < ApplicationController
             flash[:success] = "Một sách đã cập nhật."
             redirect_to books_path
         else
-            flash[:error] = @book.errors.full_messages.to_sentence
+            flash[:error] = "Oh, không cập nhật được sách"
             redirect_to :back 
         end 
     end
@@ -55,7 +56,7 @@ class BooksController < ApplicationController
     def search
         @query = params[:q].downcase
         @books = Book.where(["title ILIKE ?", "%#{@query}%"])
-        
+
         client = Goodreads.new
         @books_from_goodreads = client.search_books(@query)
     end
