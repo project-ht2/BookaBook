@@ -77,10 +77,10 @@ class BookItemsController < ApplicationController
     
     def save_goodreads_book(goodreads_id)
       book_gr = Goodreads.new.book(goodreads_id)
-      if book_gr.authors.count == 1
-        author_name = book_gr.authors.author.name
-      else
+      if book_gr.authors.author.class == Array
         author_name = book_gr.authors.author[0].name
+      else
+        author_name = book_gr.authors.author.name
       end
       
       # Assign data
