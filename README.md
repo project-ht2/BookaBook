@@ -84,6 +84,27 @@ URL: **https://bokabook.herokuapp.com**
 
 Describe any challenges encountered while building the app.
 
+### How to enable Unaccent extension for PostgreSQL
+
+This extension help us to remove accent on Vietnamese words, then it can be searched from database
+
+1. Install from Ubuntu repository:
+~~~ 
+sudo apt-get update
+sudo apt-get install postgres-contrib
+~~~
+2. Create extension on our database:
+~~~
+psql BookaBook_development -c "CREATE EXTENSION \"unaccent\""; 
+~~~
+3. Restart **postgres** server:
+~~~
+sudo service postgresql restart
+~~~
+
+Now it's ready to go. You can type in Vietnamese words on Search book and look for vietnamese books also.
+
+
 ## License
 
     Copyright [2016] [HT2 GROUP - HOANG, TAN & TIEN]
