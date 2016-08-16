@@ -1,7 +1,8 @@
-<h1><%= @book.title %></h1>
-<%= image_tag @book.image_url %>
-<%= @book.author.name %>
-<%= @book.description %>
+<div class="jumbotron horizontal-wood-background">
+  <div class="container main-content">
+    <%= render @book %>
+  </div>
+</div>
 
 <% @book.book_reviews.each do |review| %>
     <%= render partial: 'books/review', locals: {review: review} %>

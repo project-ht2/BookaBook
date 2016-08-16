@@ -12,7 +12,7 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   background-size: cover;
   position: relative;
   background-position: left bottom;
-  height: 680px;
+  height: 100vh;
   // padding-top: 80px;
 }
 
@@ -24,6 +24,12 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 .authentication-box {
   padding-top: 80px;
+}
+
+/*shared*/
+.main-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 /*search box*/
@@ -40,11 +46,12 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 /*book page*/
 .horizontal-wood-background {
   background-image: image-url('background/background-wood-horizontal.jpg');
+  background-size: cover;
   background-repeat: repeat-y;
   position: relative;
-  min-height: 620px;
-  padding-top: 50px;
-  padding-bottom: 10px;
+  min-height: 100vh;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 /*book block*/
@@ -55,6 +62,14 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 .book-cover {
   @include box-shadow($value: $book-cover-shadow);
+  height: 193px;
+  width: 128px;
+}
+
+.big-book-cover {
+  @include box-shadow($value: $book-cover-shadow);
+  height: 475px;
+  width: 315px;
 }
 
 .book-info {

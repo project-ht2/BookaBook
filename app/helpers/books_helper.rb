@@ -6,4 +6,20 @@ module BooksHelper
         image_url
       end
   end
+  
+  def book_path_replacement(book)
+    if book.respond_to?(:small_image_url)
+      "#"
+    else
+      book_path(book)
+    end
+  end
+  
+  def description_replacement(book)
+    if @col_wide == 'col-md-4'
+      truncate(book.description, :length => 100, :separator => ' ')
+    else
+      book.description
+    end
+  end
 end

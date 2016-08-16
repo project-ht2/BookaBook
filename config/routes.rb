@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   # Route to search for book
-  post 'book/search' => 'books#search'
+  get 'book/search' => 'books#search'
   
+  # Create book_item from goodreads
+  post 'book_item/create_from_goodreads' => 'book_items#create_from_goodreads'
   get 'home/index'
   root 'home#index'
   resources :shelves
