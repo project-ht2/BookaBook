@@ -1,5 +1,11 @@
-<div class="review_tag">
-  <h3 class="reviewer_name"><%= review.user.name %></h3>
-  <div class="rating"><%= review.rating %></div>
-  <div class="content"><%= review.content %></div>
+<div class="row">
+<div class="card">
+		<div class="card-header">
+			<div class="reviewer_name"><%= review.user.name %></div>		
+		</div>
+		<div class="card-block">
+			<h4 class="card-title"><%= review.rating %></h4>
+			<p class="card-text"><%= review.content %></p>
+		</div>
+	</div>
 </div>
