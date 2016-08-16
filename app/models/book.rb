@@ -12,10 +12,15 @@
   # end
 
 class Book < ApplicationRecord
-    belongs_to :author
-    belongs_to :category
-  
-    validates :title, presence: true
-    validates :isbn, uniqueness: true, :allow_blank => true, :allow_nil => true
+  belongs_to :author
+  belongs_to :category
+
+  validates :title, presence: true
+  validates :isbn, uniqueness: true, :allow_blank => true, :allow_nil => true
+    
+  after_create do
+    self.title_downcase = self.title.mb_chars.downcase.to_s
+    self.save!
+  end
 
 end
