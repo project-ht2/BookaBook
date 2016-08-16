@@ -44,6 +44,7 @@ class BooksController < ApplicationController
       redirect_to books_path
     else
       flash[:error] = "Oh, không cập nhật được sách"
+      flash[:error] = @book.errors.full_messages.to_sentence
       redirect_to :back 
     end 
   end
@@ -56,11 +57,10 @@ class BooksController < ApplicationController
   end 
     
   def search
-    @query = I18n.transliterate(params[:q].downcase)
-    @books = Book.where(["unaccent(title) ILIKE ?", "%#{@query}%"])
+    @books = Book.where(["title_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"])
 
     client = Goodreads.new
-    @books_from_goodreads = client.search_books(@query)
+    @books_from_goodreads = client.search_books(params[:q])
   end
 
   def show
