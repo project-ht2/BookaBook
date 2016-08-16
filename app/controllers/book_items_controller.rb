@@ -42,20 +42,25 @@ class BookItemsController < ApplicationController
     
     # byebug
     # Save book to Book Model
-    @book = save_goodreads_book(book_item_params[:book_id])
+    if @book = save_goodreads_book(book_item_params[:book_id])
     
-    # Create book_items
-    shelf = Shelf.find(book_item_params[:shelf_id])
-    @book_item = shelf.book_items.new 
-    @book_item.book_id = @book.id 
-    @book_item.quantity = book_item_params[:quantity]
-    
-    if shelf.save!
-      flash[:success] = "Book item was successfully created."
-      redirect_to user_path(current_user)
+      # Create book_items
+      shelf = Shelf.find(book_item_params[:shelf_id])
+      @book_item = shelf.book_items.new 
+      @book_item.book_id = @book.id 
+      @book_item.quantity = book_item_params[:quantity]
+      
+      if shelf.save!
+        flash[:success] = "Book item was successfully created."
+        redirect_to user_path(current_user)
+      else
+        flash[:error] = "Cannot add book to Bookshelf"
+        redirect_to user_path(current_user)
+      end
     else
-      flash[:error] = "Cannot add book to Bookshelf"
-      redirect_to user_path(current_user)
+      # This book is already in the database or error during adding book
+      flash[:error] = "Cannot save this book to database"
+      redirect_to :back
     end
   end
   # DELETE /book_items/1
@@ -76,28 +81,36 @@ class BookItemsController < ApplicationController
     end
     
     def save_goodreads_book(goodreads_id)
-      book_gr = Goodreads.new.book(goodreads_id)
-      if book_gr.authors.count == 1
-        author_name = book_gr.authors.author.name
-      else
-        author_name = book_gr.authors.author[0].name
-      end
-      
-      # Assign data
-      book = Book.create(
-        title: book_gr.title, 
-        description: book_gr.description,
-        isbn: book_gr.isbn13,
-        author_id: Author.find_or_create_by(name: author_name).id,
-        image_url: book_gr.image_url,
-        goodreads_id: book_gr.id, 
-        category_id: Category.first.id
-      )
-      
-      if book.save!
-        return book
-      else
+      # check if this book is in the database yet
+      if Book.find_by(goodreads_id: goodreads_id) != nil
+        # Don't save again
         return false
+      else
+        
+        # Not found in database, save new book.
+        book_gr = Goodreads.new.book(goodreads_id)
+        if book_gr.authors.author.class == Array
+          author_name = book_gr.authors.author[0].name
+        else
+          author_name = book_gr.authors.author.name
+        end
+        
+        # Assign data
+        book = Book.create(
+          title: book_gr.title, 
+          description: book_gr.description,
+          isbn: book_gr.isbn13,
+          author_id: Author.find_or_create_by(name: author_name).id,
+          image_url: book_gr.image_url,
+          goodreads_id: book_gr.id, 
+          category_id: Category.first.id
+        )
+        
+        if book.save!
+          return book
+        else
+          return false
+        end
       end
     end
 end

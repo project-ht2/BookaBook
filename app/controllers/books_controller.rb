@@ -56,8 +56,8 @@ class BooksController < ApplicationController
   end 
     
   def search
-    @query = params[:q].downcase
-    @books = Book.where(["title ILIKE ?", "%#{@query}%"])
+    @query = I18n.transliterate(params[:q].downcase)
+    @books = Book.where(["unaccent(title) ILIKE ?", "%#{@query}%"])
 
     client = Goodreads.new
     @books_from_goodreads = client.search_books(@query)
