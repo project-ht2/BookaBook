@@ -3,3 +3,7 @@
     <%= render @book %>
   </div>
 </div>
+
+<% @book.book_reviews.each do |review| %>
+    <%= render partial: 'books/review', locals: {review: review} %>
+<% end %>
