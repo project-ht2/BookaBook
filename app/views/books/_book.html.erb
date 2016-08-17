@@ -1,14 +1,14 @@
  <div class="<%= @col_wide %> book-block">
   <div class="media">
     <div class="media-left">
-      <%= link_to book_path_replacement(book), class: "book-cover" do %>
-        <%= image_tag(image_url_replacement(book), class: "media-object #{@book_cover}", alt: book.title) %>
+      <%= link_to book_path_replacement(book), class: "media-object" do %>
+        <%= image_tag(image_url_replacement(book), class: "#{@book_cover}", alt: book.title) %>
       <% end %>
       
-      <div class="book-btn"><br>
+      <div class="book-btn" align="center"><br>
         <% if user_signed_in? %>
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_<%= book.id %>">
+          <button type="button" class="btn btn-primary" align="center" data-toggle="modal" data-target="#modal_<%= book.id %>">
             Lưu 
           </button>
           
