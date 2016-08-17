@@ -1,8 +1,8 @@
 <div class=<%= @col_wide %>>
     <div class="media book-block">
-        <%= link_to book_path_replacement(book), class: "media-left" do %>
-          <%= image_tag(image_url_replacement(book.image_url), class: "media-object #{@book_cover}", alt: book.title) %>
-        <% end %>
+      <%= link_to book_path_replacement(book), class: "media-left" do %>
+        <%= image_tag(image_url_replacement(book.image_url), class: "media-object #{@book_cover}", alt: book.title) %>
+      <% end %>
       <div class="media-body">
         <div class="book-info">
           <h4 class="media-heading"><%= book.title %></h4>
