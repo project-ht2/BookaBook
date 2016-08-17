@@ -1,3 +1,71 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
+
+/*book block*/
+.book-block {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.book-cover {
+  @include box-shadow($value: $book-cover-shadow);
+  height: 193px;
+  width: 128px;
+}
+
+.big-book-cover {
+  @include box-shadow($value: $book-cover-shadow);
+  height: 475px;
+  width: 315px;
+}
+
+.book-info {
+  margin-left: 10px;
+  min-height: 193px;
+  padding: 5px;
+  background-color: #ffffff;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+.box {
+	width:70%;
+	height:200px;
+	background:#FFF;
+	margin:40px auto;
+}
+
+/*==================================================
+ * Shadow Effect 2
+ * ===============================================*/
+.shadow-effect2
+{
+  position: relative;
+}
+.shadow-effect2:before, .shadow-effect2:after
+{
+ z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  box-shadow: 0 15px 10px #777;
+  transform: rotate(-3deg);
+}
+.shadow-effect2:after
+{
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+
 .review-list{
 	.card {
 		

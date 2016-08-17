@@ -14,7 +14,7 @@ class BooksController < ApplicationController
     
   def create
     @book = Book.new(book_params)
-    @book.author_id = Author.find_or_create_by(name: book_params[:author_id]).id
+    @book.author_id = Author.find_or_create_by(name: book_params[:author_name]).id
 
     if @book.save
       flash[:success] = "Một sách mới đã được tạo."
@@ -32,13 +32,14 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     
-    @book.author_id = Author.find_or_create_by(name: book_params[:author_id]).id
+    @book.author = Author.find_or_create_by(name: book_params[:author_name])
     @book.category_id = book_params[:category_id]
     @book.title = book_params[:title]
     @book.isbn = book_params[:isbn]
     @book.description = book_params[:description]
     @book.image_url = book_params[:image_url]
     
+    @book = update_goodreads_book(@book.goodreads_id)
     if @book.save
       flash[:success] = "Một sách đã cập nhật."
       redirect_to books_path
@@ -66,10 +67,35 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
   end
+  
+  def update_goodreads_book(goodreads_id)
+    book_gr = Goodreads.new.book(goodreads_id)
+    if book_gr.authors.author.class == Array
+      author_name = book_gr.authors.author[0].name
+    else
+      author_name = book_gr.authors.author.name
+    end
+    # Assign data
+    book = Book.find_or_create_by(goodreads_id: goodreads_id)
+    book.update(
+      title: book_gr.title, 
+      description: book_gr.description,
+      isbn: book_gr.isbn13,
+      author_id: Author.find_or_create_by(name: author_name).id,
+      image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}"),
+      goodreads_id: book_gr.id, 
+      category_id: Category.first.id
+    )
+    if book.save!
+      return book
+    else
+      flash[:error] = book.errors.full_messages.to_sentence
+      return false
+    end
+  end
 
 private 
   def book_params
-    params.require(:book).permit(:title, :author_id, :description, :isbn, :category_id, :image_url)
-  end 
-
+    params.require(:book).permit(:title, :author_name, :description, :isbn, :category_id, :image_url)
+  end
 end
