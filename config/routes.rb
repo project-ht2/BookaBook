@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'book_reviews/create'
+
   resources :books
   resources :book_items
   resources :shelves
