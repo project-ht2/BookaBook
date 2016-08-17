@@ -4,7 +4,7 @@
       <%= form_tag({controller: "books", action: "search"}, method: :get, class: "input-group") do %>
         <%= text_field_tag(:q, nil, placeholder: "Tìm kiếm sách...", class: "form-control") %>
         <span class="input-group-btn">
-          <%= submit_tag("Tìm kiếm", :name => nil, class: "btn btn-info") %>    
+          <%= submit_tag("Tìm kiếm", :name => nil, class: "btn btn-primary") %>    
         </span>
       <% end %>
     </div>

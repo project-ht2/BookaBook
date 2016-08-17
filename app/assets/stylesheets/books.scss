@@ -12,18 +12,20 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 .book-cover {
   @include box-shadow($value: $book-cover-shadow);
+  margin: 8px 0px 0px 8px;
   height: 193px;
   width: 128px;
 }
 
 .big-book-cover {
   @include box-shadow($value: $book-cover-shadow);
+  margin: 8px 0px 0px 8px;
   height: 475px;
   width: 315px;
 }
 
 .book-info {
-  margin-left: 10px;
+  margin: 8px 0px 0px 10px;
   min-height: 193px;
   padding: 5px;
   background-color: #ffffff;
