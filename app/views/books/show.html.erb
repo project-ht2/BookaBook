@@ -1,38 +1,14 @@
 <div class="jumbotron horizontal-wood-background">
   <div class="container main-content">
-    <%= render @book %>
-  </div>
-</div>
-<div class="review-list">
-  <% @book.book_reviews.each do |review| %>
-      <%= render partial: 'books/review', locals: {review: review} %>
-  <% end %>
-</div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#comment-modal">
-          Review 
-        </button>
-<div class="modal fate" id="comment-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">x</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Review</h4>
-        <%= form_for BookReview.new do |f| %>
-            <div class="modal-body">
-              <div class="row">
-                <%= f.text_field :rating, class: 'form-control'%>
-                <%= f.text_area :content, class: 'form-control'%>
-                <%= f.hidden_field :user_id %>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-              <%= f.submit :Add, class: 'btn btn-primary' %>
-            </div>
-        <% end %>
-      </div>
+    <div class="row">
+      <%= render @book %>
     </div>
+    <% if current_user %>
+      <%= render "book_reviews/form" %>        
+    <% end %>
+    <% if @book.book_reviews.any? %>
+      <%= render @book.book_reviews %>
+    <% end %>
   </div>
 </div>
+
