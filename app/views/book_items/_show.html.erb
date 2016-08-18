@@ -21,6 +21,7 @@
     <%= book_item.available_count %>
   </p>
   
+  <% if signed_in? %>
   <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
     <div class="input-group">
       <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
@@ -30,5 +31,6 @@
         <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
       </div>
     </div>
+  <% end %>
   <% end %>
 </div>
