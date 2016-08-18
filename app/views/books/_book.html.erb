@@ -1,12 +1,13 @@
  <div class="<%= @col_wide %> book-block">
-  <div class="media">
-    <div class="media-left">
-      <%= link_to book_path_replacement(book), class: "media-object" do %>
-        <%= image_tag(image_url_replacement(book), class: "#{@book_cover}", alt: book.title) %>
-      <% end %>
+  <div class="clearfix">
+    <div class="<%= @size %>-book-left-sidebar">
+      <div class="<%= @size %>-book-cover-box">
+        <%= link_to image_tag(image_url_replacement(book), :alt => book.title, :class => "#{@size}-book-cover"), book_path_replacement(book) %>
+      </div>
       
-      <div class="book-btn" align="center"><br>
-        <% if user_signed_in? %>
+      <% if user_signed_in? %>
+        <hr>
+        <div class="book-btn" align="center">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary" align="center" data-toggle="modal" data-target="#modal_<%= book.id %>">
             Lưu 
@@ -37,11 +38,11 @@
                       <%= f.number_field :quantity, class: "form-control col-md-4" %>
                     </div>
                   </div>
-                    <% if book_id_replacement(book).nil? %>
-                      <%= f.hidden_field :goodreads_id, value: goodreads_id_replacement(book) %>
-                    <% else %>
-                      <%= f.hidden_field :book_id, value: book_id_replacement(book) %>
-                    <% end %>
+                  <% if book_id_replacement(book).nil? %>
+                    <%= f.hidden_field :goodreads_id, value: goodreads_id_replacement(book) %>
+                  <% else %>
+                    <%= f.hidden_field :book_id, value: book_id_replacement(book) %>
+                  <% end %>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
                     <%= f.submit "Thêm sách", class: "btn btn-primary" %>
@@ -54,17 +55,23 @@
           
           <!--<%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary" %>-->
           <!--<%= link_to "Xoá", book_path(book.id), class: "btn btn-danger", method: :delete  %>-->
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-    
-    <div class="media-body">
-      <div class="book-info">
-          <h4 class="media-heading"><%= book.title %></h4>
-          <%= book.author.name %>
-          <hr>
-          <p class="book-description"><%= description_replacement(book).html_safe %></p>
+      
+    <div class="<%= @size %>-book-right-sidebar">
+      <div class="<%= @size %>-book-info">
+        <h4><%= book.title %></h4>
+        <%= book.author.name %>
+        <hr>
+        <p class="book-description"><%= description_replacement(book).html_safe %></p>
       </div>
+      <% if @size == 'big' %>
+        <%= render @book_reviews %>
+        <% if current_user %>
+          <%= render "book_reviews/form" %>        
+        <% end %>
+      <% end %>  
     </div>
   </div>
 </div>

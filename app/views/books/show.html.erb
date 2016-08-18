@@ -1,14 +1,6 @@
-<div class="jumbotron horizontal-wood-background">
-  <div class="container main-content">
-    <div class="row">
-      <%= render @book %>
-    </div>
-    <% if current_user %>
-      <%= render "book_reviews/form" %>        
-    <% end %>
-    <% if @book.book_reviews.any? %>
-      <%= render @book.book_reviews %>
-    <% end %>
+<div class="container main-content">
+  <div class="row">
+    <%= render @book %>
   </div>
 </div>
-
+ 
