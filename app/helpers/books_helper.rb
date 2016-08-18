@@ -40,4 +40,12 @@ module BooksHelper
       book.goodreads_id
     end
   end
+  
+  def modal_replacement(book)
+    if book.respond_to?(:small_image_url)
+      "goodreads_#{book.id}"
+    else
+      "internal_#{book.id}"
+    end
+  end
 end

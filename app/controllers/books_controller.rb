@@ -66,6 +66,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_reviews = @book.book_reviews
   end
   
   def update_goodreads_book(goodreads_id)

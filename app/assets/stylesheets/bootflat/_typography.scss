@@ -110,7 +110,7 @@ $image-radius:               4px !default;
     font-size: 14px;
   }
   blockquote {
-    border-left: 3px solid $blockquote-border-color;
+    // border-left: 3px solid $blockquote-border-color;
   }
   .img-rounded {
     @include radius($type: border-radius, $value: $image-radius);

@@ -4,68 +4,80 @@
 
 $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
+@media screen and (min-width:1200px) {
+  .big-book-left-sidebar {
+    float: left;
+    width: 30%;
+    margin-bottom: 15px;
+  }
+  .big-book-right-sidebar {
+    margin-left: 30%;
+  }
+}
+
+@media screen and (max-width:1199px) {
+  nav li {
+    display: inline;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  .small-book-left-sidebar {
+    float: left;
+    width: 35%;
+    margin-bottom: 15px;
+  }
+  .small-book-right-sidebar {
+    margin-left: 35%;
+  }
+}
+
+@media screen and (max-width:1199px) {
+  nav li {
+    display: inline;
+  }
+}
+
+.clearfix {
+  overflow: auto;
+}
+
 /*book block*/
 .book-block {
   padding-top: 10px;
   padding-left: 10px;
 }
 
-.book-cover {
+.small-book-cover {
   @include box-shadow($value: $book-cover-shadow);
   margin: 8px 0px 0px 8px;
-  height: 193px;
-  width: 128px;
+  width: 120px;
+  // float: center;
 }
 
 .big-book-cover {
   @include box-shadow($value: $book-cover-shadow);
   margin: 8px 0px 0px 8px;
-  height: 475px;
-  width: 315px;
+  width: 300px;
+  // float: center;
 }
 
-.book-info {
-  margin: 8px 0px 0px 10px;
-  min-height: 193px;
-  padding: 5px;
+.big-book-info {
+  margin: 8px 0px 20px 0px;
+  min-height: 200px;
+  padding: 10px;
   background-color: #ffffff;
   opacity: 0.6;
   filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
-.box {
-	width:70%;
-	height:200px;
-	background:#FFF;
-	margin:40px auto;
-}
-
-/*==================================================
- * Shadow Effect 2
- * ===============================================*/
-.shadow-effect2
-{
-  position: relative;
-}
-.shadow-effect2:before, .shadow-effect2:after
-{
- z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: #777;
-  box-shadow: 0 15px 10px #777;
-  transform: rotate(-3deg);
-}
-.shadow-effect2:after
-{
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
+.small-book-info {
+  margin: 8px 0px 8px 16px;
+  min-height: 200px;
+  padding: 5px;
+  background-color: #ffffff;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 
 .review-list{
