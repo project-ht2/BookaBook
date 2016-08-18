@@ -1,0 +1,34 @@
+<div id="show_book_item">  
+  <p id="notice"><%= notice %></p>
+  
+  <p>
+    <strong>Shelf:</strong>
+    <%= book_item.shelf.name %>
+  </p>
+  
+  <p>
+    <strong>Book:</strong>
+    <%= book_item.book.title %>
+  </p>
+  
+  <p>
+    <strong>Quantity:</strong>
+    <%= book_item.quantity %>
+  </p>
+  
+  <p>
+    <strong>Available count:</strong>
+    <%= book_item.available_count %>
+  </p>
+  
+  <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
+    <div class="input-group">
+      <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
+      <div class="input-group-btn">
+        <%= f.hidden_field :book_item_id, value: book_item.id %>
+        <%= f.hidden_field :borrower_id, value: current_user.id %>
+        <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

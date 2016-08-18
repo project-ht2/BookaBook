@@ -1,2 +1,16 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<h1>All your transactions</h1>
+
+<h3 class="text-xs-center">Your borrowing books</h3>
+<hr/>
+<div class="container">
+    <% @borrow_transactions.each do |transaction|
+        <%= render "transaction", transaction: transaction %>
+    <% end %>
+</div>
+<h3 class="text-xs-center">Your lending books</h3>
+<hr/>
+<div class="container">
+    <% @lend_transactions.each do |transaction|
+        <%= render "transaction", transaction: transaction %>
+    <% end %>
+</div>

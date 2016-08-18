@@ -1,19 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'carts/show'
-
-  get 'transactions/create'
-
-  get 'transactions/update'
-
-  get 'transactions/destroy'
-
-  get 'transaction/create'
-
-  get 'transaction/update'
-
-  get 'transaction/destroy'
-
+  resource :cart, only: [:show]
+  resources :transactions, only: [:create, :update, :destroy]
   resources :books
   resources :book_items
   resources :shelves

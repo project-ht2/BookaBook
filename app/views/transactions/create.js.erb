@@ -1,0 +1,5 @@
+<% if @transaction.errors.any? %>
+    alert("not valid.")
+<% else %>
+  $("#show_book_item").html("<%= escape_javascript(render 'book_items/show', book_item: @transaction.book_item) %>")
+<% end %>
