@@ -1,9 +1,18 @@
 <div class="jumbotron horizontal-wood-background">
   <div class="container main-content">
-    <%= render @book %>
+    <div class="row">
+      <%= render @book %>
+    </div>
+    <% if current_user %>
+      <%= render "book_reviews/form" %>        
+    <% end %>
+    <% if @book.book_reviews.any? %>
+      <%= render @book.book_reviews %>
+    <% end %>
   </div>
 </div>
 
+<<<<<<< HEAD
 <% @book.book_reviews.each do |review| %>
     <%= render partial: 'books/review', locals: {review: review} %>
 <% end %>
@@ -15,3 +24,5 @@
     <%= render 'book_items/show', book_item: bi %>
   <% end %>  
 </div>
+=======
+>>>>>>> master
