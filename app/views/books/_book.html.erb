@@ -67,7 +67,10 @@
         <p class="book-description"><%= description_replacement(book).html_safe %></p>
       </div>
       <% if @size == 'big' %>
-        <%= render @book_reviews %>
+        <% if @book_reviews.any? %>
+            <h5>Cảm nhận sách:</h5>
+            <%= render @book_reviews %>
+        <% end %>
         <% if current_user %>
           <%= render "book_reviews/form" %>        
         <% end %>
