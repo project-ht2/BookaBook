@@ -2,10 +2,12 @@
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <%= form_tag({controller: "books", action: "search"}, method: :get, class: "input-group") do %>
-        <%= text_field_tag(:q, nil, placeholder: "Tìm kiếm sách...", class: "form-control") %>
-        <span class="input-group-btn">
-          <%= submit_tag("Tìm kiếm", :name => nil, class: "btn btn-primary") %>    
-        </span>
+        <div class="input-group">
+          <%= text_field_tag(:q, nil, placeholder: "Tìm kiếm sách...", class: "form-control") %>
+          <span class="input-group-btn">
+            <%= submit_tag("Tìm kiếm", :name => nil, class: "btn btn-primary") %>    
+          </span>
+        </div>
       <% end %>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <div class="review-writer">
-    <h5>Cảm nhận sách:</h5>
+    <h5>Viết cảm nhận sách:</h5>
     <%= form_for([@book, @book.book_reviews.build]) do |f| %>
 			<%= f.label :rating %><br>
 			<%= f.text_field :rating, class: 'form-control' %>
