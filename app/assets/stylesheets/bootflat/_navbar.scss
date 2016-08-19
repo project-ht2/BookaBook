@@ -5,6 +5,8 @@
 $navbar-background-color:                    $mighty-dark !default;
 $navbar-background-color-active:             $mighty-light !default;
 
+$navbar-line-color:                          #888888 !default;
+
 $navbar-font-color:                          $white !default;
 $navbar-item-background-color-hover:         $navbar-background-color-active !default;
 
@@ -214,5 +216,13 @@ $navbar-inverse-background-color:            $black !default;
           }
       }
   }
-
+  
+  .margin-bottom-10 {
+    border-bottom: 1px dashed $navbar-line-color;
+  }
+  
+  .web-header {
+    background-color: $navbar-background-color;
+    padding-bottom: 10px;
+  }
 }

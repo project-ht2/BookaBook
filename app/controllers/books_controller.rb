@@ -39,7 +39,10 @@ class BooksController < ApplicationController
     @book.description = book_params[:description]
     @book.image_url = book_params[:image_url]
     
-    @book = update_goodreads_book(@book.goodreads_id)
+    if @book.goodreads_id?
+      @book = update_goodreads_book(@book.goodreads_id)
+    end
+    
     if @book.save
       flash[:success] = "Một sách đã cập nhật."
       redirect_to books_path
@@ -66,6 +69,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_reviews = @book.book_reviews
   end
   
   def update_goodreads_book(goodreads_id)
@@ -82,7 +86,7 @@ class BooksController < ApplicationController
       description: book_gr.description,
       isbn: book_gr.isbn13,
       author_id: Author.find_or_create_by(name: author_name).id,
-      image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}"),
+      image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}").sub("http:","https:"),
       goodreads_id: book_gr.id, 
       category_id: Category.first.id
     )

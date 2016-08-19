@@ -1,14 +1,19 @@
-<nav class="navbar navbar-default">
-  <a href="/" class="navbar-middle-left"><%= image_tag("logo/logo_light.png", alt: "BôkaBook", height: '40') %></a>
-  
-  <form class="form-inline pull-xs-right">
-    <% if user_signed_in? %>
-        <%= link_to "Chào #{current_user.email}.", user_path(current_user), class: 'navbar-link' %>
-        <%= link_to "Transaction", cart_path, class: "btn btn-link" %>
-        <%= link_to "Thoát", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-    <% else %>
-      <%= link_to "Tạo tài khoản", new_user_registration_path, class: "btn btn-primary" %> 
-      <%= link_to "Đăng nhập", new_user_session_path, class: "btn btn-primary" %>
-    <% end %>
-  </form>
-</nav>
+<div class="web-header">
+  <div class="margin-bottom-10">
+    <nav class="navbar navbar-default">
+      <a href="/" class="navbar-middle-left"><%= image_tag("logo/logo_light.png", alt: "BôkaBook", height: '40') %></a>
+      
+      <form class="form-inline pull-xs-right">
+        <% if user_signed_in? %>
+            <%= link_to "Chào #{current_user.email}.", user_path(current_user), class: 'navbar-link' %>
+            <%= link_to "Transaction", cart_path, class: "btn btn-link" %>
+            <%= link_to "Thoát", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Tạo tài khoản", new_user_registration_path, class: "btn btn-primary" %> 
+          <%= link_to "Đăng nhập", new_user_session_path, class: "btn btn-primary" %>
+        <% end %>
+      </form>
+    </nav>
+  </div>
+</div>
+>>>>>>> master

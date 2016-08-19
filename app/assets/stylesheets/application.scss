@@ -1,11 +1,24 @@
+// sudo service postgresql start
 @import "bootstrap";
 @import "bootflat";
 @import "users";
 @import "toastr";
 @import "books";
 @import "book_reviews";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
+
+body {
+  background-image: image-url('background/background-wood-horizontal.jpg');
+  background-size: cover;
+  background-repeat: repeat-y;
+  position: relative;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  overflow-x:hidden;
+}
 
 /*landing page*/
 .authentication-background {
@@ -18,9 +31,9 @@ $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
 }
 
 .authentication-quote {
-  padding-left: 50px;
+  padding-left: 70px;
   padding-right: 50px;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 .authentication-box {
@@ -31,6 +44,7 @@ $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
 .main-content {
   padding-top: 50px;
   padding-bottom: 50px;
+  min-height: 320px;
 }
 
 /*search box*/
@@ -66,5 +80,9 @@ $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
   padding: 15px;
 }
 
+.fa {
+  float: left;
+  padding: 6px;
+}
 
 

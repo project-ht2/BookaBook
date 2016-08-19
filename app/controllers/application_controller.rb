@@ -9,11 +9,13 @@ class ApplicationController < ActionController::Base
   def set_small_book_block
     @col_wide = 'col-md-4'
     @book_cover = 'book-cover'
+    @size = 'small'
   end
   
   def set_big_book_block
     @col_wide = 'col-md-12'
     @book_cover = 'big-book-cover'
+    @size = 'big'
   end
   
 
