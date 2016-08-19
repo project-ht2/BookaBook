@@ -25,6 +25,8 @@ class User < ApplicationRecord
          
   has_many :shelves, class_name: 'Shelf'
   has_many :book_reviews
+
+  scope :all_except, -> (user) { where.not(id: user) }
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -48,5 +50,9 @@ class User < ApplicationRecord
 		  description: 'Mặc định',
 		  user: self
 		})
-	end
+  end
+
+  def gravatar
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.downcase)}"
+  end
 end
