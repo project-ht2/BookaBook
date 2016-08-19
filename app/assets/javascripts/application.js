@@ -18,7 +18,7 @@
 //= require toastr
 //= require_tree .
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   toastr.options = {
                   "closeButton": false,
                   "debug": false,
@@ -32,5 +32,21 @@ $(document).ready(function() {
                   "hideEasing": "linear",
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
-                }
+                };
+    rv = bookReview();
+    rv.initBookReview();
+    rv.initReviewRatingList();
 });
+
+
+// bookReview =  function() {
+//     return {
+//         initBookReview: function() {
+//           $('#rating-form').raty({
+//             click: function(score,evt) {
+//               $('#book_review_rating').val(score);
+//             }
+//           });
+//         }
+//     }
+// }

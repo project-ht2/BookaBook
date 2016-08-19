@@ -1,8 +1,9 @@
 <div class="review-writer">
     <h5>Viết cảm nhận sách:</h5>
+
     <%= form_for([@book, @book.book_reviews.build]) do |f| %>
-			<%= f.label :rating %><br>
-			<%= f.text_field :rating, class: 'form-control' %>
+			<%= f.label :rating %><div id="rating-form"></div>
+			<%= f.hidden_field :rating, class: 'form-control' %>
     	<br>	    
 			<%= f.label :content %><br>
 			<%= f.text_area :content, class: 'form-control', rows: '4' %>
