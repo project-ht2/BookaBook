@@ -25,7 +25,6 @@ class User < ApplicationRecord
          
   has_many :shelves, class_name: 'Shelf'
   has_many :book_reviews
-  has_many :transactions, class_name: 'Transaction'
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

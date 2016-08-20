@@ -1,5 +1,0 @@
-<% if @transaction.errors.any? %>
-    alert("not valid.")
-<% else %>
-  $("#show_transaction_<%= @transaction.id %>").html("<%= escape_javascript(render 'transactions/transaction', transaction: @transaction)%>")
-<% end %>
