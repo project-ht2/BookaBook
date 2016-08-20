@@ -25,7 +25,7 @@ class User < ApplicationRecord
          
   has_many :shelves, class_name: 'Shelf'
   has_many :book_reviews
-
+  has_many :transactions, class_name: 'Transaction'
   scope :all_except, -> (user) { where.not(id: user) }
   
   def self.from_omniauth(auth)

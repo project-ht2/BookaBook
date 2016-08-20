@@ -1,0 +1,32 @@
+<div id="show_transaction_<%= transaction.id %>">
+  <div class="row panel">
+    <div class="col-xs-2">
+      <%= image_tag(image_url_replacement(transaction.book_item.book), class: "#{@book_cover}") %>
+    </div>
+  <div class="col-xs-4">
+    <h4><%= transaction.book_item.book.title %></h4>
+    <p>
+      Trạng thái: <%= transaction.transaction_status.name %><br/>
+      Người cho mượn: <%= transaction.book_item.shelf.user.name %><br/>
+      Người mượn: <%= User.find(transaction.borrower_id).name %>
+    </p>
+    
+    <small>Hien co: <%= transaction.book_item.available_count %></small> 
+  </div>
+  <div class="col-xs-6">
+    <%= form_for transaction, remote: true do |f| %>
+      <div class="row">
+        <div class="col-xs-4">
+          <%= f.select :transaction_status_id, options_from_collection_for_select(TransactionStatus.all, "id", "name", transaction.transaction_status_id), {}, {class: " form-control"}%>
+        </div>
+        <div class="col-xs-8 text-right">
+          <div class="btn-group">
+            <%= f.submit "Change Status", class: "btn btn-primary" %>
+            <%= link_to "Delete", transaction, { data: { confirm: "Are you sure you wish to cancel the request of '#{transaction.book_item.book.title}' " }, method: :delete, remote: true, class: "btn btn-danger" } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>
+</div>

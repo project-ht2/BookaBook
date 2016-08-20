@@ -1,0 +1,14 @@
+<h3 class="text-xs-center">Những yêu cầu mượn sách của người khác từ bạn.</h3>
+<hr/>
+<div class="container">
+    <% @borrower_transactions.each do |transaction| %>
+        <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
+    <% end %>
+</div>
+<h3 class="text-xs-center">Những yêu cầu mượn sách của bạn từ người khác</h3>
+<hr/>
+<div class="container">
+    <% @lender_transactions.each do |transaction| %>
+        <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
+    <% end %>
+</div>

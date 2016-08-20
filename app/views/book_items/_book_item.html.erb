@@ -1,0 +1,22 @@
+<div class="panel" id="show_book_item_<%= book_item.id %>">  
+  <div class="container">
+    <p id="notice"><%= notice %></p>
+    
+    <p>
+      <strong><%= User.find(book_item.shelf.user_id).name %></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
+      <% if signed_in? %>
+      <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Số lượng</span>
+          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
+          <div class="input-group-btn">
+            <%= f.hidden_field :book_item_id, value: book_item.id %>
+            <%= f.hidden_field :borrower_id, value: current_user.id %>
+            <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>

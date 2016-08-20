@@ -12,7 +12,7 @@ $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
 
 body {
   background-image: image-url('background/background-wood-horizontal.jpg');
-  background-size: cover;
+  width: 100%;
   background-repeat: repeat-y;
   position: relative;
   padding-top: 0px;
