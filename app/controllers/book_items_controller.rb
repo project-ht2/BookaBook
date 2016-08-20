@@ -50,39 +50,41 @@ class BookItemsController < ApplicationController
   # POST /book_items
   # POST /book_items.json
   def create
-    if book_item_params[:book_id].nil?
-      
-      if @book = Book.find_by(goodreads_id: book_item_params[:goodreads_id]) # check if this book is in the database yet
-      elsif @book = save_goodreads_book(book_item_params[:goodreads_id]) # Not found in database, create new book from Goodreads.
+    if book_item_params[:quantity].to_i > 0 
+      if !book_item_params[:book_id].blank?
+        @book = Book.find(book_item_params[:book_id])
       else
-        # This book is already in the database or error during adding book
-        flash[:error] = "Cannot save this book to database"
-        redirect_to :back
+        @book = Book.find_or_create_by(goodreads_id: book_item_params[:goodreads_id])
+        @book.update_goodreads_info
       end
-    else
-      @book = Book.find(book_item_params[:book_id])
-    end
       # Check if this book_item already in this shelf
-      shelf = Shelf.find(book_item_params[:shelf_id])
-      @book_item = shelf.book_items.new
-      @book_item.book_id = @book.id 
+      @book_item = BookItem.find_or_create_by(shelf_id: book_item_params[:shelf_id], book_id: @book.id)
       @book_item.quantity = book_item_params[:quantity]
-    
-    if shelf.save!
-      flash[:success] = "Book item was successfully created."
-      redirect_to user_path(current_user)
-    else
-      flash[:error] = "Cannot add book to Bookshelf"
-      flash[:error] = shelf.errors.full_messages.to_sentence
-      redirect_to user_path(current_user)
+      
+      if @book_item.save!
+        flash[:success] = "Đã thêm một sách vào kệ sách."
+      else
+        flash[:error] = "Không thể thêm sách vào kệ sách."
+        flash[:error] = @book_item.errors.full_messages.to_sentence
+      end
+    else 
+      book_id = (book_item_params[:book_id] || Book.find_by(goodreads_id: book_item_params[:goodreads_id].to_i).presence.try(:id))
+      @book_items = BookItem.where("shelf_id = ? AND book_id = ?", book_item_params[:shelf_id], book_id) if book_id.present?
+      if @book_items.present?
+        @book_items.destroy_all 
+        flash[:warning] = "Đã xóa sách."
+      else
+        flash[:warning] = "Không thể thêm sách vào kệ sách."
+      end
     end
+    redirect_to current_user
   end
     
   # DELETE /book_items/1
   # DELETE /book_items/1.json
   def destroy
     @book_item.destroy
-    redirect_to user_path(current_user)
+    redirect_to current_user
   end
 
 private
@@ -93,32 +95,5 @@ private
   
   def book_item_params
     params.require(:book_item).permit(:book_id, :shelf_id, :quantity, :goodreads_id)
-  end
-  
-  def save_goodreads_book(goodreads_id)
-    book_gr = Goodreads.new.book(goodreads_id)
-    if book_gr.authors.author.class == Array
-      author_name = book_gr.authors.author[0].name
-    else
-      author_name = book_gr.authors.author.name
-    end
-    
-    # Assign data
-    book = Book.create(
-      title: book_gr.title, 
-      description: book_gr.description,
-      isbn: book_gr.isbn13,
-      author_id: Author.find_or_create_by(name: author_name).id,
-      image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}"),
-      goodreads_id: book_gr.id, 
-      category_id: Category.first.id
-    )
-    
-    if book.save!
-      return book
-    else
-      flash[:error] = book.errors.full_messages.to_sentence
-      return false
-    end
   end
 end

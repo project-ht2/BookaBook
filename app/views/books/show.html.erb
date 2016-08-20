@@ -23,9 +23,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="container">
   <h3>Borrow this book from</h3>
   <% BookItem.where(book_id: @book.id).each do |bi| %>
     <%= render 'book_items/book_item', book_item: bi %>

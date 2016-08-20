@@ -23,4 +23,26 @@ class Book < ApplicationRecord
     self.title_downcase = self.title.mb_chars.downcase.to_s
     self.save!
   end
+  
+  def update_goodreads_info
+    if self.goodreads_id?
+      book_gr = Goodreads.new.book(self.goodreads_id)
+      # Author trick
+      if book_gr.authors.author.class == Array
+        author_name = book_gr.authors.author[0].name
+      else
+        author_name = book_gr.authors.author.name
+      end
+      # Assign data
+      self.update(
+        title: book_gr.title, 
+        description: book_gr.description,
+        isbn: book_gr.isbn13,
+        author_id: Author.find_or_create_by(name: author_name).id,
+        image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}").sub("http:","https:"),
+        category_id: Category.first.id
+      )
+    end
+    self
+  end
 end

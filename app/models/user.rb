@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
          
   has_many :shelves, class_name: 'Shelf'
+  has_many :book_items, :through => :shelves, :source => :book_items
   has_many :book_reviews
   has_many :transactions, class_name: 'Transaction'
 
