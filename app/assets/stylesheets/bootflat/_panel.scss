@@ -27,6 +27,8 @@ $panel-radius:                  4px !default;
   .panel {
     background-color: $panel-background-color;
     border: none;
+    margin: 5px;
+    padding: 5px;
     @include radius($type: border-radius, $value: $panel-radius); 
     @include box-shadow($value: $panel-shadow);
 
