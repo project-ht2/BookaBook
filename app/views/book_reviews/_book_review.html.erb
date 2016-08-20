@@ -1,6 +1,8 @@
 <div class="review-box effect">
 	<section class="notepaper">
-		Đánh giá: <%= book_review.rating %>
+	<div>
+		<label>Đánh giá:</label><div class="review-rating" data-score="<%= book_review.rating %>"></div>
+	</div>
 	  <figure class="quote">
 	    <blockquote class="curly-quotes">
 	      <%= book_review.content %>

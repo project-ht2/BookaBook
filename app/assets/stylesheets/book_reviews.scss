@@ -6,6 +6,9 @@ $review-min-height: 150px;
 
 .review-box {
 	width:100%;
+  .review-rating {
+    display: inline-block;
+  }
 }
 
 /*==================================================
