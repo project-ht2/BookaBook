@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrower: one
+  book_item: one
+  transaction_status: one
+  quantity: 1
+
+two:
+  borrower: two
+  book_item: two
+  transaction_status: two
+  quantity: 1

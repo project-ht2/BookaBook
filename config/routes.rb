@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resource :cart, only: [:show]
+  resources :transactions, only: [:create, :update, :destroy]
+  resources :books
+
   get 'book_reviews/create'
   get 'goodreads/:goodreads_id' => 'books#show_goodreads'
 
