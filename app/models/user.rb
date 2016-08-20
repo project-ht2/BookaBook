@@ -26,6 +26,12 @@ class User < ApplicationRecord
   has_many :shelves, class_name: 'Shelf'
   has_many :book_reviews
   has_many :transactions, class_name: 'Transaction'
+
+  has_many :following_relationship, foreign_key: 'follower_id', class_name: 'UserRelationship'
+  has_many :follower_relationship, foreign_key: 'following_id', class_name: 'UserRelationship'
+  has_many :followers, through: :follower_relationship
+  has_many :followings, through: :following_relationship
+  
   scope :all_except, -> (user) { where.not(id: user) }
   
   def self.from_omniauth(auth)
