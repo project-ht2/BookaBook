@@ -1,4 +1,4 @@
- <div class="<%= @col_wide %> book-block">
+
   <div class="clearfix">
     <div class="<%= @size %>-book-left-sidebar">
       <div class="<%= @size %>-book-cover-box">
@@ -9,12 +9,12 @@
         <hr>
         <div class="book-btn" align="center">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" align="center" data-toggle="modal" data-target="#modal_<%= book.id %>">
+          <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= modal_replacement(book) %>">
             Lưu 
           </button>
           
           <!-- Modal Starting-->
-          <div class="modal fade" id="modal_<%= book.id %>" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal fade" id="modal_<%= modal_replacement(book) %>" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -53,8 +53,8 @@
           </div>
           <!-- Modal Ending -->
           
-          <!--<%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary" %>-->
-          <!--<%= link_to "Xoá", book_path(book.id), class: "btn btn-danger", method: :delete  %>-->
+          <!--<%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary btn-sm" %>-->
+          <!--<%= link_to "Xoá", book_path(book.id), class: "btn btn-danger btn-sm", method: :delete  %>-->
         </div>
       <% end %>
     </div>
@@ -77,4 +77,3 @@
       <% end %>  
     </div>
   </div>
-</div>

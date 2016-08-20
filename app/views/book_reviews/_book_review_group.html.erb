@@ -1,0 +1,11 @@
+<% if @size == 'big' %>
+  <% if !@book_reviews.nil? %>
+      <h5>Cảm nhận sách:</h5>
+      <%= render @book_reviews %>
+  <% end %>
+  <% if current_user %>
+    <%= render "book_reviews/form" %>        
+  <% end %>
+<% end %>  
+
+

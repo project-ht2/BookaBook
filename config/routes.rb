@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'book_reviews/create'
+  get 'goodreads/:goodreads_id' => 'books#show_goodreads'
 
   resources :books do
     resources :book_reviews

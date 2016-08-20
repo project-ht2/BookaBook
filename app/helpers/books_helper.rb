@@ -48,4 +48,16 @@ module BooksHelper
       "internal_#{book.id}"
     end
   end
+  
+  def author_replacement(book)
+    if book.author.respond_to?(:name)
+      book.author.name
+    else
+      if book.authors.author.class == Array
+        book.authors.author[0].name
+      else
+        book.authors.author.name
+      end
+    end
+  end
 end
