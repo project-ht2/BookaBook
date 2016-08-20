@@ -1,7 +1,15 @@
-<div class="row">
-	<div class="review-box effect2">
-		<h3><%= book_review.user_id %></h3>
-		<h4><%= book_review.rating %></h4>
-		<p><%= book_review.content %></p>
+<% if !book_review.user_id.nil? %>
+	<div class="review-box effect">
+		<section class="notepaper">
+			Đánh giá: <%= book_review.rating %>
+		  <figure class="quote">
+		    <blockquote class="curly-quotes">
+		      <%= book_review.content %>
+		    </blockquote>
+		    <figcaption class="quote-by">— <%= book_review.user.email %></figcaption>
+		  </figure>
+		</section>
 	</div>
-</div>
+	<br>
+<% end %>
+

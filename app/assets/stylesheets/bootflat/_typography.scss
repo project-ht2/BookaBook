@@ -3,8 +3,11 @@
 $body-font-color:            $darkgray-dark !default;
 $body-background-color:      $white !default;
 
-$link-font-color:            $aqua-dark !default; 
-$link-font-color-hover:      $aqua-light !default; 
+// $link-font-color:            $aqua-dark !default; 
+// $link-font-color-hover:      $aqua-light !default; 
+
+$link-font-color:            $pacifica-dark !default; 
+$link-font-color-hover:      $pacifica-light !default; 
 
 $blockquote-border-color:    $mediumgray-light !default;
 
@@ -110,7 +113,7 @@ $image-radius:               4px !default;
     font-size: 14px;
   }
   blockquote {
-    border-left: 3px solid $blockquote-border-color;
+    // border-left: 3px solid $blockquote-border-color;
   }
   .img-rounded {
     @include radius($type: border-radius, $value: $image-radius);

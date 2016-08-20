@@ -1,0 +1,5 @@
+<% if !book.nil? %>
+  <% if user_signed_in? %>
+    <%= link_to "Xoá", book_path(book.id), class: "btn btn-danger btn-sm", method: :delete  %>
+  <% end %>
+<% end %>

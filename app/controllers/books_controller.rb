@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_wooden_background, only: [:index, :search, :show]
   before_action :set_small_book_block, only: [:index, :search]
-  before_action :set_big_book_block, only: [:show] 
+  before_action :set_big_book_block, only: [:show, :show_goodreads] 
     
   def index
     @books = Book.all
@@ -39,7 +39,10 @@ class BooksController < ApplicationController
     @book.description = book_params[:description]
     @book.image_url = book_params[:image_url]
     
-    @book = update_goodreads_book(@book.goodreads_id)
+    if @book.goodreads_id?
+      @book = update_goodreads_book(@book.goodreads_id)
+    end
+    
     if @book.save
       flash[:success] = "Một sách đã cập nhật."
       redirect_to books_path
@@ -58,6 +61,7 @@ class BooksController < ApplicationController
   end 
     
   def search
+    redirect_to root_path if params[:q].blank? 
     @books = Book.where(["title_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"])
 
     client = Goodreads.new
@@ -66,9 +70,10 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_reviews = @book.book_reviews
   end
-  
-  def update_goodreads_book(goodreads_id)
+ 
+  def get_goodreads_info(goodreads_id)
     book_gr = Goodreads.new.book(goodreads_id)
     if book_gr.authors.author.class == Array
       author_name = book_gr.authors.author[0].name
@@ -82,10 +87,25 @@ class BooksController < ApplicationController
       description: book_gr.description,
       isbn: book_gr.isbn13,
       author_id: Author.find_or_create_by(name: author_name).id,
-      image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}"),
+      image_url: book_gr.image_url.sub("m/#{goodreads_id}", "l/#{goodreads_id}").sub("http:","https:"),
       goodreads_id: book_gr.id, 
       category_id: Category.first.id
     )
+    return book
+  end
+  
+  def show_goodreads
+    @book = Book.find_by(goodreads_id: params[:goodreads_id])
+    if @book.nil?
+      @book =  Goodreads.new.book(params[:goodreads_id])
+      @book.image_url = @book.image_url.sub("m/#{@book.id}", "l/#{@book.id}").sub("http:","https:")
+    else
+      redirect_to @book
+    end
+  end
+  
+  def update_goodreads_book(goodreads_id)
+    book = get_goodreads_info(goodreads_id)
     if book.save!
       return book
     else
