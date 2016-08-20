@@ -34,10 +34,19 @@ class User < ApplicationRecord
   
   scope :all_except, -> (user) { where.not(id: user) }
   
+  def image_url_or_default
+    if image_url.nil?
+      "background/musroom.jpg"
+    else
+      image_url
+    end
+  end
+  
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+      user.image_url = auth.info.image
       user.name = auth.info.name   # assuming the user model has a name
     end
   end
