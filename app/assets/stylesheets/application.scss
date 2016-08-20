@@ -10,13 +10,17 @@
 
 $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
 
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
 body {
   background-image: image-url('background/background-wood-horizontal.jpg');
   width: 100%;
   background-repeat: repeat-y;
-  position: relative;
-  padding-top: 0px;
-  padding-bottom: 0px;
   overflow-x:hidden;
 }
 
@@ -41,10 +45,12 @@ body {
 }
 
 /*shared*/
+.content {
+  min-height: 370px;
+}
 .main-content {
   padding-top: 50px;
   padding-bottom: 50px;
-  min-height: 320px;
 }
 
 /*search box*/

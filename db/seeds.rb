@@ -23,12 +23,12 @@ end
 
 
 book_list = [
-	["Life of Pi", Author.first.id, Category.where(name: 'Truyện').first, 770430074, "Life of Pi is a fantasy adventure novel by Yann Martel published in 2001. The protagonist, Piscine Molitor \"Pi\" Patel, a Tamil boy from Pondicherry, explores issues of spirituality and practicality from an early age. He survives 227 days after a shipwreck while stranded on a boat in the Pacific Ocean with a Bengal tiger named Richard Parker.", "https://d.gr-assets.com/books/1320562005l/4214.jpg"],
-  ["The Little Prince", Author.last.id, Category.where(name: 'Sách thiếu nhi').first, 156012197, "Moral allegory and spiritual autobiography, The Little Prince is the most translated book in the French language. With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures.", "https://d.gr-assets.com/books/1367545443l/157993.jpg"]
+	["Life of Pi", Author.first.id, Category.where(name: 'Truyện').first, 770430074, "Life of Pi is a fantasy adventure novel by Yann Martel published in 2001. The protagonist, Piscine Molitor \"Pi\" Patel, a Tamil boy from Pondicherry, explores issues of spirituality and practicality from an early age. He survives 227 days after a shipwreck while stranded on a boat in the Pacific Ocean with a Bengal tiger named Richard Parker.", "https://d.gr-assets.com/books/1320562005l/4214.jpg", 4214],
+  ["The Little Prince", Author.last.id, Category.where(name: 'Sách thiếu nhi').first, 156012197, "Moral allegory and spiritual autobiography, The Little Prince is the most translated book in the French language. With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures.", "https://d.gr-assets.com/books/1367545443l/157993.jpg", 157993]
 ]
 
-book_list.each do |title, author_id, category, isbn, description, image_url|
-  Book.create(title:title, author_id:author_id, category:category, isbn:isbn, description:description, image_url:image_url)
+book_list.each do |title, author_id, category, isbn, description, image_url, goodreads_id|
+  Book.create(title:title, author_id:author_id, category:category, isbn:isbn, description:description, image_url:image_url, goodreads_id:goodreads_id)
 end
 
 # Seed data for Transaction Status
