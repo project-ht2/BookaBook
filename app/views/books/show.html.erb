@@ -24,4 +24,15 @@
     </div>
   </div>
 </div>
- 
+
+<% @book.book_reviews.each do |review| %>
+    <%= render partial: 'books/review', locals: {review: review} %>
+<% end %>
+
+
+<div class="container">
+  <h3>Borrow this book from</h3>
+  <% BookItem.where(book_id: @book.id).each do |bi| %>
+    <%= render 'book_items/show', book_item: bi %>
+  <% end %>  
+</div>

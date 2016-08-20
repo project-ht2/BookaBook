@@ -1,3 +1,15 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+window.bookReview = ->
+  {
+    initBookReview: ->
+      $('#rating-form').raty click: (score, evt) ->
+        $('#book_review_rating').val score
+        return   
+      return
+    initReviewRatingList: ->
+      $('.review-rating').raty
+        score: ->
+          $(this).attr 'data-score'
+        readOnly: true
+      return
+
+  }
