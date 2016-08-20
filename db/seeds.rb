@@ -30,3 +30,10 @@ book_list = [
 book_list.each do |title, author_id, category, isbn, description, image_url|
   Book.create(title:title, author_id:author_id, category:category, isbn:isbn, description:description, image_url:image_url)
 end
+
+# Seed data for Transaction Status
+TransactionStatus.delete_all
+TransactionStatus.create! id: 1, name: "Requested"
+TransactionStatus.create! id: 2, name: "In process"
+TransactionStatus.create! id: 3, name: "Sent"
+TransactionStatus.create! id: 4, name: "Cancelled"
