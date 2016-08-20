@@ -1,6 +1,11 @@
-<div id="show_book_item_<%= book_item.id %>">  
+<div class="panel" id="show_book_item_<%= book_item.id %>">  
+<div class="container">
   <p id="notice"><%= notice %></p>
   
+  <p>
+    <strong>Owner:</strong>
+    <%= User.find(book_item.shelf.user_id).name %>
+  </p>
   <p>
     <strong>Shelf:</strong>
     <%= book_item.shelf.name %>
@@ -33,4 +38,5 @@
     </div>
   <% end %>
   <% end %>
+</div>
 </div>

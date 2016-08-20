@@ -10,18 +10,15 @@ class Transaction < ApplicationRecord
   validates_presence_of :borrower, :book_item
   validate :quantity_not_greater_than_available_count
   
-  before_validation :set_transaction_status, :set_available_count
-  before_save :update_available_count
-  
+  before_validation :set_available_count
+  before_create :decrease_available_count
+  before_destroy :increase_available_count
+
   private
-    def set_transaction_status
-      # set Transaction_stats to 1 which is "Requested"
-      self.transaction_status_id = 1
-    end
     
     def quantity_not_greater_than_available_count
-      if self.quantity < self.book_item.available_count
-        flash[:error] = "Ban khong the muon hon so sach hien co"
+      if self.quantity > self.book_item.available_count
+        # "Ban khong the muon hon so sach hien co"
         return false
       else
         return true
@@ -34,9 +31,13 @@ class Transaction < ApplicationRecord
       end
     end
     
-    def update_available_count
+    def decrease_available_count
       self.book_item.available_count = self.book_item.available_count - self.quantity
       self.book_item.save!
-      
+    end
+    
+    def increase_available_count
+      self.book_item.available_count = self.book_item.available_count + self.quantity 
+      self.book_item.save!
     end
 end
