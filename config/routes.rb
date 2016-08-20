@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resource :cart, only: [:show]
+  resources :transactions, only: [:create, :update, :destroy]
+  resources :books
+
   get 'book_reviews/create'
 
   resources :books do
