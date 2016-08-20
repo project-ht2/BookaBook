@@ -1,79 +1,20 @@
-
-  <div class="clearfix">
-    <div class="<%= @size %>-book-left-sidebar">
-      <div class="<%= @size %>-book-cover-box">
-        <%= link_to image_tag(image_url_replacement(book), :alt => book.title, :class => "#{@size}-book-cover"), book_path_replacement(book) %>
-      </div>
-      
-      <% if user_signed_in? %>
+<% source = nil unless defined?(source) && source == "goodreads" %>
+<% if !book.nil? %>
+  <div class="<%= @col_wide %> book-block">
+    <div class="clearfix">
+      <div class="<%= @size %>-book-left-sidebar">
+        <%= render partial: 'books/book_cover', object: book, as: :book, locals: {source: source} %>
         <hr>
         <div class="book-btn" align="center">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= modal_replacement(book) %>">
-            Lưu 
-          </button>
-          
-          <!-- Modal Starting-->
-          <div class="modal fade" id="modal_<%= modal_replacement(book) %>" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">Thêm sách <strong><%= book.title %></strong> vào tủ sách của bạn</h4>
-                </div>
-                <%= form_for @book_item = BookItem.new do |f| %>
-                  <div class="modal-body">
-                    <div class="form-inline row ">
-                      <label class="col-md-3 col-form-label text-xs-right">
-                          Tủ sách 
-                      </label>
-                      <%= f.select :shelf_id, options_from_collection_for_select(current_user.shelves.all, "id", "name", @book_item.shelf_id), {}, {class: " form-control col-md-4"}%>
-                    </div>
-                    <div class="form-inline row ">
-                      <label class="col-md-3 col-form-label text-xs-right">
-                          Số lượng 
-                      </label>
-                      <%= f.number_field :quantity, class: "form-control col-md-4" %>
-                    </div>
-                  </div>
-                  <% if book_id_replacement(book).nil? %>
-                    <%= f.hidden_field :goodreads_id, value: goodreads_id_replacement(book) %>
-                  <% else %>
-                    <%= f.hidden_field :book_id, value: book_id_replacement(book) %>
-                  <% end %>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                    <%= f.submit "Thêm sách", class: "btn btn-primary" %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <!-- Modal Ending -->
-          
-          <!--<%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary btn-sm" %>-->
-          <!--<%= link_to "Xoá", book_path(book.id), class: "btn btn-danger btn-sm", method: :delete  %>-->
+          <%= render partial: 'books/btn_to_add_book', object: book, as: :book, locals: {source: source} %>
         </div>
-      <% end %>
-    </div>
-      
-    <div class="<%= @size %>-book-right-sidebar">
-      <div class="<%= @size %>-book-info">
-        <h4><%= book.title %></h4>
-        <%= book.author.name %>
-        <hr>
-        <p class="book-description"><%= description_replacement(book).html_safe %></p>
       </div>
-      <% if @size == 'big' %>
-        <% if @book_reviews.any? %>
-            <h5>Cảm nhận sách:</h5>
-            <%= render @book_reviews %>
-        <% end %>
-        <% if current_user %>
-          <%= render "book_reviews/form" %>        
-        <% end %>
-      <% end %>  
+      <div class="<%= @size %>-book-right-sidebar">
+        <%= render partial: 'books/book_info', object: book, as: :book, locals: {source: source} %>
+        <!--Review group Beginning-->
+        <%= render partial: 'book_reviews/book_review_group', locals: {source: source} %>
+        <!--Review Group Ending-->          
+      </div>
     </div>
   </div>
+<% end %>

@@ -1,13 +1,14 @@
+<% source = nil unless defined?(source) && source == "goodreads" %>
 <% if !book.nil? %>
   <% if user_signed_in? %>
   
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= modal_replacement(book) %>">
+    <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= source.to_s + book.id.to_s %>">
       Lưu 
     </button>
     
     <!-- Modal Starting-->
-    <div class="modal fade" id="modal_<%= modal_replacement(book) %>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modal_<%= source.to_s + book.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">

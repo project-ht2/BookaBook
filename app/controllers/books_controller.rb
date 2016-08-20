@@ -61,6 +61,7 @@ class BooksController < ApplicationController
   end 
     
   def search
+    redirect_to root_path if params[:q].blank? 
     @books = Book.where(["title_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"])
 
     client = Goodreads.new

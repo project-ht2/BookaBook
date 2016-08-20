@@ -1,10 +1,7 @@
 <% if @size == 'big' %>
-  <% if !@book_reviews.nil? %>
+  <% if !@book_reviews.nil? && @book_reviews.any? %>
       <h5>Cảm nhận sách:</h5>
-      <%= render @book_reviews %>
-  <% end %>
-  <% if current_user %>
-    <%= render "book_reviews/form" %>        
+      <%= render partial: 'book_reviews/book_review', collection: @book_reviews, as: :book_review %>
   <% end %>
 <% end %>  
 

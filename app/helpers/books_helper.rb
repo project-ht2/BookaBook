@@ -1,6 +1,6 @@
 module BooksHelper
   def image_url_replacement(book)
-    if book.image_url.blank? || (book.image_url.include? "assets/nophoto")
+    if book.nil? || book.image_url.blank? || (book.image_url.include? "assets/nophoto")
         "book_image/book_cover.jpg"
     else 
       book.image_url

@@ -11,7 +11,14 @@
         </div>
         <div class="<%= @size %>-book-right-sidebar">
           <%= render partial: 'books/book_info', object: @book, as: :book %>
-          <%= render partial: 'book_reviews/book_review_group', object: @book, as: :book %>
+          <!--Review group Beginning-->
+          <%= render partial: 'book_reviews/book_review_group' %>
+          <!--Review Group Ending-->          
+          <!--Review Form Beginning-->
+          <% if current_user %>
+            <%= render "book_reviews/form", object: @book, as: :book %>
+          <% end %>
+          <!--Review Form Ending-->
         </div>
       </div>
     </div>

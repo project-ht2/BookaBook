@@ -1,14 +1,14 @@
-  <div class="container main-content">
-    <h3>Tất cả sách</h3>
-    <div class="container-fluid books-list">
-      <% @books.in_groups_of(3) do |g| %>
-        <div class="row event-item">
-          <% g.compact.each do |b| %>
-            <%= render partial: 'book', locals: {book: b} %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <hr>
-    <%= link_to 'Thêm Sách', new_book_path, class: "btn btn-default" %>
+<div class="container main-content">
+  <h3>Tất cả sách (<%= @books.count %>)</h3>
+  <div class="books-list">
+    <% @books.in_groups_of(3) do |g| %>
+      <div class="row">
+        <% g.compact.each do |book| %>
+            <%= render partial: 'book', object: book, as: 'book' %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
+  <hr>
+  <%= link_to 'Thêm Sách', new_book_path, class: "btn btn-default" %>
+</div>

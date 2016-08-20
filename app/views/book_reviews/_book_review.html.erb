@@ -1,13 +1,15 @@
-<div class="review-box effect">
-	<section class="notepaper">
-		Đánh giá: <%= book_review.rating %>
-	  <figure class="quote">
-	    <blockquote class="curly-quotes">
-	      <%= book_review.content %>
-	    </blockquote>
-	    <figcaption class="quote-by">— <%= find_reviewer_email(book_review) %></figcaption>
-	  </figure>
-	</section>
-</div>
-<br>
+<% if !book_review.user_id.nil? %>
+	<div class="review-box effect">
+		<section class="notepaper">
+			Đánh giá: <%= book_review.rating %>
+		  <figure class="quote">
+		    <blockquote class="curly-quotes">
+		      <%= book_review.content %>
+		    </blockquote>
+		    <figcaption class="quote-by">— <%= book_review.user.email %></figcaption>
+		  </figure>
+		</section>
+	</div>
+	<br>
+<% end %>
 

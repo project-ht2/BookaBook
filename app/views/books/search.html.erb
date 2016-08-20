@@ -40,10 +40,10 @@
           <% g.compact.each do |book| %>
             <div class="<%= @col_wide %> book-block">
               <div class="<%= @size %>-book-left-sidebar">
-                <%= render partial: 'books/book_cover', object:book.best_book, as: :book, locals: {source: "goodreads"} %>
+                <%= render partial: 'books/book_cover', object: book.best_book, as: :book, locals: {source: "goodreads"} %>
               </div>
               <div class="<%= @size %>-book-right-sidebar">
-                <%= render partial: 'books/book_info', object:book.best_book, as: :book, locals: {source: "goodreads"} %>
+                <%= render partial: 'books/book_info', object: book.best_book, as: :book, locals: {source: "goodreads"} %>
               </div>
             </div>
           <% end %>
