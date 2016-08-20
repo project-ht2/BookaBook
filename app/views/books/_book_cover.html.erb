@@ -1,8 +1,8 @@
 <div class="<%= @size %>-book-cover-box">
-  <% if source == "internal" %>
-    <%= link_to image_tag(image_url_replacement(book), :alt => book.title, :class => "#{@size}-book-cover"), book_path(book.id) %>
-  <% elsif source == "goodreads" %>
+  <% if defined?(source) && source == "goodreads" %>
     <%= link_to image_tag(image_url_replacement(book), :alt => book.title, :class => "#{@size}-book-cover"), "/goodreads/#{book.id}" %>
+  <% else %>
+    <%= link_to image_tag(image_url_replacement(book), :alt => book.title, :class => "#{@size}-book-cover"), book_path(book.id) %>
   <% end %>
 </div>
 
