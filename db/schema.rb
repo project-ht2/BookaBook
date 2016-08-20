@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817034423) do
+ActiveRecord::Schema.define(version: 20160816184734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "unaccent"
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -75,23 +74,6 @@ ActiveRecord::Schema.define(version: 20160817034423) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "transaction_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.integer  "borrower_id"
-    t.integer  "book_item_id"
-    t.integer  "transaction_status_id"
-    t.integer  "quantity"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["book_item_id"], name: "index_transactions_on_book_item_id", using: :btree
-    t.index ["transaction_status_id"], name: "index_transactions_on_transaction_status_id", using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -116,6 +98,4 @@ ActiveRecord::Schema.define(version: 20160817034423) do
   add_foreign_key "book_items", "shelves"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
-  add_foreign_key "transactions", "book_items"
-  add_foreign_key "transactions", "transaction_statuses"
 end

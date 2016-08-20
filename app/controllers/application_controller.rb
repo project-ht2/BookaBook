@@ -16,6 +16,4 @@ class ApplicationController < ActionController::Base
     @book_cover = 'big-book-cover'
     @size = 'big'
   end
-  
-
 end
