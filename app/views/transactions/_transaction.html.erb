@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-4">
+    <h4><%= transaction.book_item.book.title %></h4>
+    <small>Hien co: <%= transaction.book_item.available_count %></small>
+  </div>
+  <div class="col-xs-8">
+    <%= form_for transaction, remote: true do |f| %>
+      <div class="row">
+        <div class="col-xs-4">
+          <%= f.number_field :quantity, value: transaction.quantity.to_i, class: "form-control", min: 1 %>
+        </div>
+        <div class="col-xs-8 text-right">
+          <div class="btn-group">
+            <%= f.submit "Update Quantity", class: "btn btn-primary" %>
+            <%= link_to "Delete", transaction, { data: { confirm: "Are you sure you wish to cancel the request of '#{transaction.book_item.book.title}' " }, method: :delete, remote: true, class: "btn btn-danger" } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

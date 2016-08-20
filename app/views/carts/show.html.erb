@@ -3,14 +3,14 @@
 <h3 class="text-xs-center">Your borrowing books</h3>
 <hr/>
 <div class="container">
-    <% @borrow_transactions.each do |transaction|
-        <%= render "transaction", transaction: transaction %>
+    <% @borrower_transactions.each do |transaction| %>
+        <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
     <% end %>
 </div>
 <h3 class="text-xs-center">Your lending books</h3>
 <hr/>
 <div class="container">
-    <% @lend_transactions.each do |transaction|
-        <%= render "transaction", transaction: transaction %>
+    <% @lender_transactions.each do |transaction| %>
+        <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
     <% end %>
 </div>
