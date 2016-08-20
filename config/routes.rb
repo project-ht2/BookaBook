@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :book_items
   resources :shelves
   
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations' }
   
   # Route to search for book
   get 'book/search' => 'books#search'
