@@ -1,0 +1,16 @@
+<h1>All your transactions</h1>
+
+<h3 class="text-xs-center">Your borrowing books</h3>
+<hr/>
+<div class="container">
+    <% @borrower_transactions.each do |transaction| %>
+        <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
+    <% end %>
+</div>
+<h3 class="text-xs-center">Your lending books</h3>
+<hr/>
+<div class="container">
+    <% @lender_transactions.each do |transaction| %>
+        <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
+    <% end %>
+</div>
