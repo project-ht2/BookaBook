@@ -13,4 +13,9 @@ class BookReview < ApplicationRecord
   belongs_to :book
   belongs_to :user
   
+  
+  def find_reviewer_email
+    @user = User.find(self.user_id)
+    @user.email
+  end
 end

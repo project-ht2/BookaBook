@@ -1,6 +1,6 @@
 module BooksHelper
   def image_url_replacement(book)
-    if book.image_url.blank? 
+    if book.nil? || book.image_url.blank? || (book.image_url.include? "assets/nophoto")
         "book_image/book_cover.jpg"
     else 
       book.image_url
@@ -46,6 +46,18 @@ module BooksHelper
       "goodreads_#{book.id}"
     else
       "internal_#{book.id}"
+    end
+  end
+  
+  def author_replacement(book)
+    if book.author.respond_to?(:name)
+      book.author.name
+    else
+      if book.authors.author.class == Array
+        book.authors.author[0].name
+      else
+        book.authors.author.name
+      end
     end
   end
 end
