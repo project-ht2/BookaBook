@@ -85,11 +85,11 @@ class BookItemsController < ApplicationController
   # DELETE /book_items/1.json
   def destroy
     @book_item.destroy
-    redirect_to current_user
+    redirect_to :back
   end
   
   def book_item_owner
-    unless current_user.id ==  @book_item.user_id
+    unless current_user.id ==  @book_item.shelf.user_id
       flash[:notice] = 'Access denied as you are not owner of this Book Item'
       redirect_to :back
     end
