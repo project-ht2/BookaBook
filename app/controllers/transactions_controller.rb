@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+
   def create
     @transaction = Transaction.new(transaction_params)
     

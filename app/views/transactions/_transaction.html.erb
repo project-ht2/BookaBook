@@ -6,12 +6,16 @@
   <div class="col-xs-4">
     <h4><%= transaction.book_item.book.title %></h4>
     <p>
-      Trạng thái: <%= transaction.transaction_status.name %><br/>
-      Người cho mượn: <%= transaction.book_item.shelf.user.name %><br/>
-      Người mượn: <%= User.find(transaction.borrower_id).name %>
+      Trạng thái: <strong><%= transaction.transaction_status.name %></strong><br/>
+      <% if current_user.id == transaction.borrower_id %>
+        Người cho mượn: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
+      <% end %>
+      <% if current_user.id == transaction.book_item.shelf.user.id %>
+        Người mượn: <strong><%= User.find(transaction.borrower_id).name %></strong>
+      <% end %>
     </p>
     
-    <small>Hien co: <%= transaction.book_item.available_count %></small> 
+    <p>Hien co: <%= transaction.book_item.available_count %></p> 
   </div>
   <div class="col-xs-6">
     <%= form_for transaction, remote: true do |f| %>
