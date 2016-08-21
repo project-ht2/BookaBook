@@ -1,14 +1,37 @@
-<h3 class="text-xs-center">Những yêu cầu mượn sách của người khác từ bạn.</h3>
-<hr/>
 <div class="container">
-    <% @borrower_transactions.each do |transaction| %>
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills nav-justified panel" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#borrower" role="tab">Yêu cầu từ bạn</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#lender" role="tab">Yêu cầu tới bạn</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content panel">
+    <div class="tab-pane active" id="borrower" role="tabpanel">
+      <% if @borrower_transactions.count == 0 %>
+      <div class="panel">
+        <p>Bạn chưa mượn cuốn sách nào cả.</p>
+      </div>
+      <% else %>
+      <% @borrower_transactions.each do |transaction| %>
         <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
-    <% end %>
-</div>
-<h3 class="text-xs-center">Những yêu cầu mượn sách của bạn từ người khác</h3>
-<hr/>
-<div class="container">
-    <% @lender_transactions.each do |transaction| %>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="lender" role="tabpanel">
+      <% if @lender_transactions.count == 0 %>
+      <div class="panel">
+        <p>Không có yêu cầu nào gửi tới bạn.</p>
+      </div>
+      <% else %>
+      <% @lender_transactions.each do |transaction| %>
         <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
-    <% end %>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

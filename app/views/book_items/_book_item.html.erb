@@ -3,19 +3,26 @@
     <p id="notice"><%= notice %></p>
     
     <p>
-      <strong><%= User.find(book_item.shelf.user_id).name %></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
-      <% if signed_in? %>
-      <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
-        <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1">Số lượng</span>
-          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
-          <div class="input-group-btn">
-            <%= f.hidden_field :book_item_id, value: book_item.id %>
-            <%= f.hidden_field :borrower_id, value: current_user.id %>
-            <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+      <!--Owner cannot borrow book from themshelves-->
+      <% if is_book_owner(book_item) %>
+        <strong><%= link_to "Bạn #{current_user.name}", user_path(current_user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
+      <% else %>
+        <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
+
+        <!--If signed_in then they can start create request to borrow book from other people-->
+        <% if signed_in? %>
+        <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Số lượng</span>
+            <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
+            <div class="input-group-btn">
+              <%= f.hidden_field :book_item_id, value: book_item.id %>
+              <%= f.hidden_field :borrower_id, value: current_user.id %>
+              <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+        <% end %>
       <% end %>
     </p>
   </div>
