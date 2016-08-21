@@ -26,6 +26,7 @@
 
 class BookItemsController < ApplicationController
   before_action :set_book_item, only: [:show, :edit, :update, :destroy]
+  before_action :book_item_owner, only: [:edit, :update, :destroy]
 
   # GET /book_items
   # GET /book_items.json
@@ -85,6 +86,13 @@ class BookItemsController < ApplicationController
   def destroy
     @book_item.destroy
     redirect_to current_user
+  end
+  
+  def book_item_owner
+    unless current_user.id ==  @book_item.user_id
+      flash[:notice] = 'Access denied as you are not owner of this Book Item'
+      redirect_to :back
+    end
   end
 
 private
