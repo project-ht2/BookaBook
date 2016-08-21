@@ -1,36 +1,32 @@
 <div id="show_transaction_<%= transaction.id %>">
-  <div class="row panel">
+  <div class="row panel" style="background-color: #F5F7FA">
     <div class="col-xs-2">
       <%= image_tag(image_url_replacement(transaction.book_item.book), class: "#{@book_cover}") %>
     </div>
-  <div class="col-xs-4">
-    <h4><%= transaction.book_item.book.title %></h4>
-    <p>
-      Trạng thái: <strong><%= transaction.transaction_status.name %></strong><br/>
-      <% if current_user.id == transaction.borrower_id %>
-        Người cho mượn: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
-      <% end %>
-      <% if current_user.id == transaction.book_item.shelf.user.id %>
-        Người mượn: <strong><%= User.find(transaction.borrower_id).name %></strong>
-      <% end %>
-    </p>
-    
-    <p>Hien co: <%= transaction.book_item.available_count %></p> 
-  </div>
-  <div class="col-xs-6">
-    <%= form_for transaction, remote: true do |f| %>
-      <div class="row">
-        <div class="col-xs-4">
-          <%= f.select :transaction_status_id, options_from_collection_for_select(TransactionStatus.all, "id", "name", transaction.transaction_status_id), {}, {class: " form-control"}%>
+    <div class="col-xs-3">
+      <h4><%= transaction.book_item.book.title %></h4>
+      <p>
+        Trạng thái: <strong><%= transaction.transaction_status.name %></strong><br/>
+        <% if current_user_is_borrower(transaction) %>
+          Người cho mượn: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
+        <% end %>
+        <% if current_user_is_lender(transaction) %>
+          Người mượn: <strong><%= User.find(transaction.borrower_id).name %></strong>
+        <% end %>
+      </p>
+      
+      <p>Hien co: <%= transaction.book_item.available_count %></p> 
+    </div>
+    <div class="col-xs-7">
+      <%= form_for transaction, remote: true do |f| %>
+        <div class="btn-group">
+          <% TransactionStatus.all.each do |ts| %>
+            <button type="submit" name="transaction[transaction_status_id]" 
+            id="transaction_transaction_status_id" value=<%= ts.id %> class="btn btn-default"><%= ts.name %></button>
+          <% end %>
+          <%= link_to "Huỷ Yêu Cầu", transaction, { data: { confirm: "Bạn muốn huỷ yêu cầu mượn sách <strong>'#{transaction.book_item.book.title}'</strong>?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
         </div>
-        <div class="col-xs-8 text-right">
-          <div class="btn-group">
-            <%= f.submit "Change Status", class: "btn btn-primary" %>
-            <%= link_to "Delete", transaction, { data: { confirm: "Are you sure you wish to cancel the request of '#{transaction.book_item.book.title}' " }, method: :delete, remote: true, class: "btn btn-danger" } %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
   </div>
 </div>
