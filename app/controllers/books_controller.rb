@@ -61,7 +61,13 @@ class BooksController < ApplicationController
     @books = Book.where(["title_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"])
 
     client = Goodreads.new
-    @books_from_goodreads = client.search_books(params[:q])
+    books_from_goodreads = client.search_books(params[:q])
+    if books_from_goodreads.total_results.to_i == 1
+      @books_from_goodreads = books_from_goodreads.results.work.best_book
+    else
+      @books_from_goodreads = books_from_goodreads.results.work
+    end
+    @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.best_book.id}
   end
 
   def show

@@ -15,6 +15,7 @@ class Book < ApplicationRecord
   belongs_to :author
   belongs_to :category
   has_many :book_reviews
+  has_many :ratings, :through => :book_reviews, :source => :rating
 
   validates :title, presence: true
   validates :isbn, uniqueness: true, :allow_blank => true, :allow_nil => true
@@ -22,6 +23,10 @@ class Book < ApplicationRecord
   after_create do
     self.title_downcase = self.title.mb_chars.downcase.to_s
     self.save!
+  end
+  
+  def rating
+    self.book_reviews.average(:rating)
   end
   
   def update_goodreads_info
