@@ -4,11 +4,7 @@ module BookItemsHelper
   end
   
   def is_book_owner(book_item)
-    if book_item.shelf.user.id == current_user.id 
-      return true
-    else
-      return false
-    end
+    current_user && book_item.shelf.user.id == current_user.id
   end
     
 end

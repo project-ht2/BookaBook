@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def set_wooden_background
-    @background = "horizontal-wood-background" 
+    @background = "background-wood-horizontal" 
   end
   
   def set_small_book_block
@@ -16,8 +16,4 @@ class ApplicationController < ActionController::Base
     @book_cover = 'big-book-cover'
     @size = 'big'
   end
-
-
-  
-
 end

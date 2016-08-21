@@ -52,9 +52,8 @@ class BookItemsController < ApplicationController
   # POST /book_items.json
   def create
     if book_item_params[:quantity].to_i > 0 
-      if !book_item_params[:book_id].blank?
-        @book = Book.find(book_item_params[:book_id])
-      else
+      @book = Book.find(book_item_params[:book_id]) if !book_item_params[:book_id].blank?
+      if @book.blank?  
         @book = Book.find_or_create_by(goodreads_id: book_item_params[:goodreads_id])
         @book.update_goodreads_info
       end
