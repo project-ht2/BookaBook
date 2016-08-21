@@ -3,7 +3,7 @@
     <%= image_tag user.gravatar %>
     <div class="card-block">
       <h4 class="card-title"><%= user.try(:name) %></h4>
-
+      <%= follow_button(current_user.id, user.id) %>
     </div>
   </div>
 </div>

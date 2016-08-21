@@ -10,4 +10,23 @@ module ApplicationHelper
 			end
 		end.join.html_safe
 	end
+
+	def follow_button(follower_id, following_id)
+		user_relationship = UserRelationship.where(follower_id: follower_id, following_id: following_id)
+			if user_relationship.any?
+			form_tag user_relationship_destroy_path, :method => :post do
+				concat(
+					hidden_field_tag(:relationship_id, user_relationship.first.id) +
+
+					submit_tag(:Unfollow,  class: 'btn btn-warning'))
+				end
+		else
+			form_tag user_relationship_create_path, :method => :post do
+				concat(
+					hidden_field_tag(:follower_id, follower_id) +
+				hidden_field_tag(:following_id,  following_id) +
+				submit_tag(:Follow,  class: 'btn btn-primary'))
+			end
+		end
+		end
 end
