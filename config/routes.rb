@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   post 'user_relationship/create'
+  post 'user_relationship/destroy'
 
   resource :cart, only: [:show]
   resources :transactions, only: [:create, :update, :destroy]
@@ -28,6 +29,6 @@ Rails.application.routes.draw do
   resources :users do 
   	resources :shelves
   end
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

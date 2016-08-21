@@ -12,14 +12,20 @@ module ApplicationHelper
 	end
 
 	def follow_button(follower_id, following_id)
-		form_tag user_relationship_create_path, :method => :post do
-			hidden_field :follower_id, :value => follower_id
-			hidden_field :following_id, :value => following_id
+		user_relationship = UserRelationship.where(follower_id: follower_id, following_id: following_id)
+			if user_relationship.any?
+			form_tag user_relationship_destroy_path, :method => :post do
+				concat(
+					hidden_field_tag(:relationship_id, user_relationship.first.id) +
 
-			if UserRelationship.where(follower_id: follower_id, following_id: following_id).any?
-				content_tag(:button, 'followed'.html_safe, class: 'btn btn-secondary')
-			else
-				 submit_tag :Follow,  class: 'btn btn-primary'
+					submit_tag(:Unfollow,  class: 'btn btn-warning'))
+				end
+		else
+			form_tag user_relationship_create_path, :method => :post do
+				concat(
+					hidden_field_tag(:follower_id, follower_id) +
+				hidden_field_tag(:following_id,  following_id) +
+				submit_tag(:Follow,  class: 'btn btn-primary'))
 			end
 		end
 		end
