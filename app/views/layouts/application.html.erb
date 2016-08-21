@@ -9,8 +9,10 @@
 	
 	<body>
 		<%= render 'layouts/navbar' %>
-		<%= render '/application/toastr_flash' %>
-		<%= yield %>	
+		<div class="content">
+			<%= render '/application/toastr_flash' %>
+			<%= yield %>	
+		</div>
 		<%= render 'layouts/footer' %>
 	</body>
 </html>

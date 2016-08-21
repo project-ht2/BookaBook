@@ -30,10 +30,10 @@
 	            	<% g.compact.each do |book_item| %>
 	        				<div class="col-md-6">
 			              <div class="<%= @size %>-book-left-sidebar">
-			                <%= render partial: 'books/book_cover', object: find_book(book_item), as: :book, locals: {:source => "internal"} %>
+			                <%= render partial: 'books/book_cover', object: find_book(book_item), as: :book %>
 			              </div>
 			              <div class="<%= @size %>-book-right-sidebar">
-			                <%= render partial: 'books/book_info', object: find_book(book_item), as: :book, locals: {:source => "internal"} %>
+			                <%= render partial: 'books/book_info', object: find_book(book_item), as: :book %>
 			              </div>
 		        			</div>
 		        		<% end %>

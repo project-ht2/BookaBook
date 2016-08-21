@@ -10,6 +10,10 @@
             <div class="<%= @col_wide %> book-block">
               <div class="<%= @size %>-book-left-sidebar">
                 <%= render partial: 'books/book_cover', object: book, as: :book %>
+                <br>
+                <div class="book-btn" align="center">
+                  <%= render partial: 'books/btn_to_add_book', object: book, as: :book %>
+                </div>
               </div>
               <div class="<%= @size %>-book-right-sidebar">
                 <%= render partial: 'books/book_info', object: book, as: :book %>
@@ -29,6 +33,10 @@
       <div class="<%= @col_wide %> book-block">
         <div class="<%= @size %>-book-left-sidebar">
           <%= render partial: 'books/book_cover', object: @books_from_goodreads.results.work.best_book, as: :book, locals: {source: "goodreads"} %>
+          <br>
+          <div class="book-btn" align="center">
+            <%= render partial: 'books/btn_to_add_book', object: @books_from_goodreads.results.work.best_book, as: :book, locals: {source: "goodreads"} %>
+          </div>
         </div>
         <div class="<%= @size %>-book-left-sidebar">
           <%= render partial: 'books/book_info', object: @books_from_goodreads.results.work.best_book, as: :book, locals: {source: "goodreads"} %>
@@ -41,6 +49,10 @@
             <div class="<%= @col_wide %> book-block">
               <div class="<%= @size %>-book-left-sidebar">
                 <%= render partial: 'books/book_cover', object: book.best_book, as: :book, locals: {source: "goodreads"} %>
+                <br>
+                <div class="book-btn" align="center">
+                  <%= render partial: 'books/btn_to_add_book', object: book.best_book, as: :book, locals: {source: "goodreads"} %>
+                </div>
               </div>
               <div class="<%= @size %>-book-right-sidebar">
                 <%= render partial: 'books/book_info', object: book.best_book, as: :book, locals: {source: "goodreads"} %>

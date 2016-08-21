@@ -20,7 +20,9 @@
               <div class="price-body">
                 <p>
                   <%= f.label :email %>
-                  <%= f.email_field :email, autofocus: true, class: "form-control", require: true %>  
+                  <%= f.email_field :email, autofocus: true, class: "form-control", require: true %>
+                  <%= f.label :name %>
+                  <%= f.text_field :name, autofocus: true, class: "form-control", require: true %>
                   <%= f.label :password %>
                   <%= f.password_field :password, autocomplete: "off", class: "form-control", require: true %>
                   <% if @minimum_password_length %>

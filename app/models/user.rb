@@ -24,8 +24,16 @@ class User < ApplicationRecord
          :omniauthable, :omniauth_providers => [:facebook]
          
   has_many :shelves, class_name: 'Shelf'
+  has_many :book_items, :through => :shelves, :source => :book_items
   has_many :book_reviews
   has_many :transactions, class_name: 'Transaction'
+
+  has_many :following_relationship, foreign_key: 'follower_id', class_name: 'UserRelationship'
+  has_many :follower_relationship, foreign_key: 'following_id', class_name: 'UserRelationship'
+  has_many :followers, through: :follower_relationship
+  has_many :followings, through: :following_relationship
+  
+  scope :all_except, -> (user) { where.not(id: user) }
   
   def image_url_or_default
     if image_url.nil?
@@ -58,5 +66,9 @@ class User < ApplicationRecord
 		  description: 'Mặc định',
 		  user: self
 		})
-	end
+  end
+
+  def gravatar
+    "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.downcase)}"
+  end
 end

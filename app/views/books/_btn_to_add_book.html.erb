@@ -29,13 +29,15 @@
                 <label class="col-md-3 col-form-label text-xs-right">
                   Số lượng 
                 </label>
-                <%= f.number_field :quantity, class: "form-control col-md-4" %>
+                <%= f.number_field :quantity, :value => 1, class: "form-control col-md-4", input_html: { min: '0' } %>
               </div>
             </div>
-            <% if book_id_replacement(book).nil? %>
-              <%= f.hidden_field :goodreads_id, value: goodreads_id_replacement(book) %>
+            <!--Assign book ID-->
+            <% if source.nil? %>
+              <%= f.hidden_field :book_id, value: book.id %>
+              <%= f.hidden_field :goodreads_id, value: book.goodreads_id %>              
             <% else %>
-              <%= f.hidden_field :book_id, value: book_id_replacement(book) %>
+              <%= f.hidden_field :goodreads_id, value: book.id %>
             <% end %>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
