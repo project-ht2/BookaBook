@@ -15,17 +15,31 @@
         <% end %>
       </p>
       
-      <p>Hien co: <%= transaction.book_item.available_count %></p> 
+      <p>
+        Hiện có: <strong><%= transaction.book_item.available_count %></strong> cuốn<br/>
+        Yêu cầu: <strong><%= transaction.quantity %></strong>
+      </p> 
     </div>
     <div class="col-xs-7">
-      <%= form_for transaction, remote: true do |f| %>
+      <%= form_for transaction, remote: true do |f| %></%>
         <div class="btn-group">
-          <% TransactionStatus.all.each do |ts| %>
-            <button type="submit" name="transaction[transaction_status_id]" 
-            id="transaction_transaction_status_id" value=<%= ts.id %> class="btn btn-default"><%= ts.name %></button>
+          <% if current_user_is_borrower(transaction) %>
+            <% transaction_statuses = TransactionStatus.where(id: transaction.next_transaction_statuses[:borrower]) %>
+          <% else %>
+            <% transaction_statuses = TransactionStatus.where(id: transaction.next_transaction_statuses[:lender]) %>
           <% end %>
-          <%= link_to "Huỷ Yêu Cầu", transaction, { data: { confirm: "Bạn muốn huỷ yêu cầu mượn sách <strong>'#{transaction.book_item.book.title}'</strong>?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+          <% transaction_statuses.each do |ts| %>
+            <button type="submit" name="transaction[transaction_status_id]" 
+            id="transaction_transaction_status_id" value=<%= ts.id %> class="btn <%= "btn-danger" if (ts.id == 6)%>"><%= ts.name %></button>
+          <% end %>
         </div>
+        <!--Status la 5. Da nhan sach, thi Link to Transaction review hoac la Xoa transaction(optional)-->
+        <% if transaction.transaction_status_id == 5 %>
+        <div class="btn-group">
+          <%= link_to "Xoá Yêu Cầu", transaction, { data: { confirm: "Bạn muốn huỷ yêu cầu mượn sách '#{transaction.book_item.book.title}'?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+          <button class="btn btn-primary">Viết Nhận Xét</button>
+        </div>
+        <% end %>
       <% end %>
     </div>
   </div>

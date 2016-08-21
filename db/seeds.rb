@@ -32,8 +32,16 @@ book_list.each do |title, author_id, category, isbn, description, image_url, goo
 end
 
 # Seed data for Transaction Status
+# 1 Đang yêu cầu
+# 2 Đồng ý
+# 3 Đã nhận sách
+# 4 Trả sách
+# 5 Đã trả sách
+# 6 Huỷ
 TransactionStatus.delete_all
-TransactionStatus.create! id: 1, name: "Requested"
-TransactionStatus.create! id: 2, name: "In process"
-TransactionStatus.create! id: 3, name: "Sent"
-TransactionStatus.create! id: 4, name: "Cancelled"
+TransactionStatus.create! id: 1, name: "Đang yêu cầu"
+TransactionStatus.create! id: 2, name: "Đồng ý"
+TransactionStatus.create! id: 3, name: "Đã nhận sách"
+TransactionStatus.create! id: 4, name: "Trả sách"
+TransactionStatus.create! id: 5, name: "Đã trả sách"
+TransactionStatus.create! id: 6, name: "Huỷ"
