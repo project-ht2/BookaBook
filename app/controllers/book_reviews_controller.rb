@@ -6,9 +6,9 @@ class BookReviewsController < ApplicationController
   end
   
   def destroy
-		@book = Book.find(params[:book_id])
+    @book = Book.find(params[:book_id])
 		@book_review = @book.book_reviews.find(params[:id])
 		@book_review.destroy
 		redirect_to @book
-	end
+  end
 end

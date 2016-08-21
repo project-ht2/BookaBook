@@ -3,14 +3,10 @@
     <p id="notice"><%= notice %></p>
     
     <p>
+      <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
+      <!--If signed_in then they can start create request to borrow book from other people-->
       <!--Owner cannot borrow book from themshelves-->
-      <% if is_book_owner(book_item) %>
-        <strong><%= link_to "Bạn #{current_user.name}", user_path(current_user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
-      <% else %>
-        <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
-
-        <!--If signed_in then they can start create request to borrow book from other people-->
-        <% if signed_in? %>
+      <% if signed_in? && !(book_item.shelf.user == current_user) %>
         <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
           <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">Số lượng</span>
@@ -21,7 +17,6 @@
               <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
             </div>
           </div>
-        <% end %>
         <% end %>
       <% end %>
     </p>

@@ -8,5 +8,10 @@
  # 	t.datetime "updated_at",  null: false
  # end
 
- class Author < ApplicationRecord
- end
+class Author < ApplicationRecord
+  has_many :books
+  
+  before_save do
+    self.name_downcase = self.name.mb_chars.downcase.to_s
+  end
+end
