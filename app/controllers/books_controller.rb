@@ -57,17 +57,11 @@ class BooksController < ApplicationController
   end 
     
   def search
-    redirect_to root_path if params[:q].blank? 
-    @books = Book.where(["title_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"])
-
-    client = Goodreads.new
-    books_from_goodreads = client.search_books(params[:q])
-    if books_from_goodreads.total_results.to_i == 1
-      @books_from_goodreads = books_from_goodreads.results.work.best_book
-    else
-      @books_from_goodreads = books_from_goodreads.results.work
-    end
-    @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.best_book.id}
+    redirect_to :back if params[:q].blank?
+    author_ids = Author.where(["name_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"]).map(&:id)
+    @books = Book.where(["title_downcase ILIKE ? OR author_id IN (?)","%#{params[:q].mb_chars.downcase.to_s}%", author_ids])
+    @books_from_goodreads = Goodreads.new.search_books(params[:q]).results.work.map(&:best_book)
+    @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.id}
   end
 
   def show
@@ -77,12 +71,9 @@ class BooksController < ApplicationController
  
   def show_goodreads
     @book = Book.find_by(goodreads_id: params[:goodreads_id])
-    if @book.nil?
-      @book =  Goodreads.new.book(params[:goodreads_id])
-      @book.image_url = @book.image_url.sub("m/#{@book.id}", "l/#{@book.id}").sub("http:","https:")
-    else
-      redirect_to @book
-    end
+    redirect_to @book unless @book.nil?
+    @book =  Goodreads.new.book(params[:goodreads_id])
+    @book.image_url = @book.image_url.sub("m/#{@book.id}", "l/#{@book.id}").sub("http:","https:")
   end
 
 private 

@@ -1,6 +1,6 @@
 <div class="web-header">
-  <div class="margin-bottom-10">
-    <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="margin-bottom-8">
       <a href="/" class="navbar-middle-left"><%= image_tag("logo/logo_light.png", alt: "BôkaBook", height: '40') %></a>
       
       <form class="form-inline pull-xs-right">
@@ -15,6 +15,6 @@
           <%= link_to "Đăng nhập", new_user_session_path, class: "btn btn-primary" %>
         <% end %>
       </form>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </div>

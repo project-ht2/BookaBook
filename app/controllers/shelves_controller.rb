@@ -26,6 +26,6 @@ class ShelvesController < ApplicationController
     end
     
     def set_shelf
-  	  @shelf = current_user.shelves.new
-  	end
+      @shelf = current_user.shelves.new
+    end
 end

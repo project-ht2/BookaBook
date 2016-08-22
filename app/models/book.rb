@@ -20,9 +20,12 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :isbn, uniqueness: true, :allow_blank => true, :allow_nil => true
     
-  after_create do
+  before_save do
     self.title_downcase = self.title.mb_chars.downcase.to_s
-    self.save!
+  end
+  
+  def author_name
+    self.author.name
   end
   
   def rating

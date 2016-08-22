@@ -77,7 +77,7 @@ class BookItemsController < ApplicationController
         flash[:warning] = "Không thể thêm sách vào kệ sách."
       end
     end
-    redirect_to current_user
+    redirect_to :back
   end
     
   # DELETE /book_items/1
