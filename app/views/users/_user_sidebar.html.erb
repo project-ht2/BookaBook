@@ -4,6 +4,9 @@
 			<%= link_to image_tag(current_user.avatar, class: "img-rounded big-avatar"), "https://fb.com/#{@user.uid}" %>
 			<a href="mailto:<%= @user.email %>" class="fa fa-envelope" title="Email"></a>
 			<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook" title="Facebook"></a>
+			<% if current_user != @user %>
+				<%= render partial: 'messages/create', locals: {sender: current_user, receiver: @user} %>
+			<% end %>
 		</p>
 		<br>
 	</div>
