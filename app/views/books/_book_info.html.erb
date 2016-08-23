@@ -1,7 +1,12 @@
 <% if !book.nil? %>
   <% @size ||= "small" %>
+  <% if defined?(source) && source == "goodreads" %>
+    <% show_link = "/goodreads/#{book.id}" %>
+  <% else %>
+    <% show_link = book_path(book.id) %>
+  <% end %>
   <div class="<%= @size %>-book-info">
-    <h5><%= book.title %></h5>
+    <h5><%= link_to book.title, show_link %></h5>
     <%= author_replacement(book) %>
     <% if book.respond_to?(:book_reviews) %>
       <div class="review-rating" data-score="<%= book.rating %>"></div>

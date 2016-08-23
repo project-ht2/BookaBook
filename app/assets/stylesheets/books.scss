@@ -4,12 +4,18 @@
 
 $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
-/*book block*/
+/* SMALL BOOK */
+
+#masonry-container {
+  margin: 0 auto;
+  width: 100%;
+}  
 .small-book-block {
+  width: 350px;
   padding-top: 5px;
   padding-bottom: 5px;
   background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
-  background: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, .6);
   
   .clearfix {
     overflow: auto;
@@ -34,12 +40,20 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
         margin: 8px 0px 0px 0px;
         min-height: 200px;
         padding: 5px;
+        
+        a {
+          color: $darkgray-light;
+          &:hover,
+          &:focus {
+            color: $link-font-color-hover;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
 }
 
-  
   
   // BIG BOOK IS HERE
   
@@ -52,41 +66,15 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   }
 }
 
-.book-btn {
-  
-}
-
 .big-book-info {
   margin: 8px 0px 20px 0px;
   min-height: 200px;
   padding: 10px;
   background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
-  background: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, .6);
 }
 
-@media screen and (min-width:1200px) {
-  .small-book-block {
-    width: 30%;
-    margin-left: 1%;
-    margin-right: 1%;
-  }
-  
-  .big-book-left-sidebar {
-    float: left;
-  }
-  
-  .big-book-right-sidebar {
-    margin-left: 325px;
-  }
-}
-
-@media screen and (min-width:800px) and (max-width:1199px) {
-  .small-book-block {
-    width: 48%;
-    margin-left: 1%;
-    margin-right: 1%;
-  }
-  
+@media screen and (min-width:800px) {
   .big-book-left-sidebar {
     float: left;
   }
@@ -97,12 +85,6 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 }
 
 @media screen and (max-width:799px) {
-  .small-book-block {
-    width: 100%;
-    margin-left: 0%;
-    margin-right: 0%;
-  }
-  
   .big-book-left-sidebar {
     width: 100%;
     margin: auto;
@@ -116,11 +98,4 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   .big-book-right-sidebar {
     
   }
-}
-
-
-.review-list{
-	.card {
-		
-	}	
 }

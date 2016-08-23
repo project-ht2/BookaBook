@@ -63,12 +63,16 @@ class BooksController < ApplicationController
       author_ids = Author.where(["name_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"]).map(&:id)
       @books = Book.where(["title_downcase ILIKE ? OR author_id IN (?)","%#{params[:q].mb_chars.downcase.to_s}%", author_ids])
       goodreads_search = Goodreads.new.search_books(params[:q])
-      if goodreads_search.total_results.to_i == 1
-        @books_from_goodreads = [goodreads_search.results.work.best_book]
+      if  goodreads_search.total_results.to_i == 0
+        @books_from_goodreads = nil
       else
-        @books_from_goodreads = goodreads_search.results.work.map(&:best_book)
+        if goodreads_search.total_results.to_i == 1
+          @books_from_goodreads = [goodreads_search.results.work.best_book]
+        else
+          @books_from_goodreads = goodreads_search.results.work.map(&:best_book)
+        end
+        @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.id}
       end
-      @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.id}
     end
   end
 

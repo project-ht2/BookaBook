@@ -2,8 +2,8 @@
 <%= render 'application/search_box' %>
 <div class="container main-content">
   <h4 class="text-xs-center">Search resulfs for <strong><%= params[:q] %></strong></h4>
-    <% if !@books.nil? %>
-      <%= render partial: 'books/book_small', collection: @books, as: :book %>
-    <% end %>
-    <%= render partial: 'books/book_small', collection: @books_from_goodreads, as: :book , locals: {source: "goodreads"} %>
+  <% if !@books.nil? %>
+    <%= render partial: 'books/book_small', collection: @books, as: :book %>
+  <% end %>
+  <%= render partial: 'books/book_small', collection: @books_from_goodreads, as: :book , locals: {source: "goodreads"} %>
 </div>
