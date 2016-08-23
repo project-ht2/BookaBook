@@ -1,0 +1,2 @@
+class TransactionReview < ApplicationRecord
+end
