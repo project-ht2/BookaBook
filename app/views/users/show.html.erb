@@ -1,22 +1,6 @@
+<%= render partial: 'user_header' %>
 <div class="container main-content">
-	<div class="sidebar col-md-2">
-		<ul class="nav nav-pills nav-stacked ">
-			<li class="nav-item <%= "active" if current_page?(user_path)%>">
-				<a class="nav-link" href="#all" data-toggle="tab">All books</a>
-			</li>
-			<% @user.shelves.each do |shelf| %>
-				<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
-					<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
-				</li>
-			<% end %>
-		</ul>
-		
-		<% if @page_owner %>
-			<div class="shelfnav-footer">
-				<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
-			</div>
-		<% end %>
-	</div>
+	<%= render partial: 'user_sidebar' %>
 	<div class="col-md-10">
     <div class="tab-content">
       <div class="tab-pane fade in active" id="all">

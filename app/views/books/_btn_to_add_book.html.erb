@@ -1,6 +1,6 @@
 <% source = nil unless defined?(source) && source == "goodreads" %>
 <% if !book.nil? %>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user != @user %>
   
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= source.to_s + book.id.to_s %>">

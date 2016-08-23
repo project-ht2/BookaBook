@@ -16,8 +16,4 @@ class ApplicationController < ActionController::Base
     @book_cover = 'big-book-cover'
     @size = 'big'
   end
-  
-  def https_url
-    self.image_url.sub!("http:","https:")
-  end
 end

@@ -6,7 +6,7 @@
       <form class="form-inline pull-xs-right">
         <% if user_signed_in? %>
             <%= link_to "Chào #{current_user.name || current_user.email}", current_user, class: 'navbar-link' %>
-            <%= image_tag(current_user.image_url_or_default, class: "img-rounded avatar") %>
+            <%= link_to image_tag(current_user.avatar, class: "img-rounded avatar"), current_user %>
             <%= link_to "Transaction", cart_path, class: "btn btn-link" %>
             <%= link_to "Users", users_path, class: 'btn btn-link' %>
             <%= link_to "Thoát", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>

@@ -1,0 +1,27 @@
+<div class="sidebar col-md-2">
+	<div class="user-info">
+		<p>
+			<%= link_to image_tag(current_user.avatar, class: "img-rounded big-avatar"), "https://fb.com/#{@user.uid}" %>
+			<a href="mailto:<%= @user.email %>" class="fa fa-envelope" title="Email"></a>
+			<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook" title="Facebook"></a>
+		</p>
+		<br>
+	</div>
+	
+	<ul class="nav nav-pills nav-stacked ">
+		<li class="nav-item <%= "active" if current_page?(user_path)%>">
+			<a class="nav-link" href="#all" data-toggle="tab">All books</a>
+		</li>
+		<% @user.shelves.each do |shelf| %>
+			<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
+				<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
+			</li>
+		<% end %>
+	</ul>
+	
+	<% if @page_owner %>
+		<div class="shelfnav-footer">
+			<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
+		</div>
+	<% end %>
+</div>
