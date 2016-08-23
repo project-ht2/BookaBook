@@ -7,6 +7,9 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#lender" role="tab">Yêu cầu tới bạn</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#messages", role="tab">Tin nhắn của bạn</a>
+    </li>
   </ul>
 
   <!-- Tab panes -->
@@ -32,6 +35,21 @@
         <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
       <% end %>
       <% end %>
+    </div>
+    <div class="tab-pane" id="messages" role="tabpanel">
+      <% if @current_user_messages.count == 0 %>
+      <div class="panel">
+        <p>Không có tin nhắn nào.</p>
+      </div>
+      <% else %>
+      <ul class="media-list">
+        <% @current_user_messages.each do |message| %>
+          <%= render partial: "messages/message", locals: {message: message} %>
+        <% end %>
+      </ul>
+      <%= render partial: "messages/form", locals: {sender: current_user, receiver: User.first} %>
+      <% end %>
+      
     </div>
   </div>
 </div>

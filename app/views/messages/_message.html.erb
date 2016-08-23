@@ -1,0 +1,7 @@
+<% if current_user == message.sender %>
+<!--current user sent this message, render on the right-->
+  <%= render partial: 'messages/message_right', locals: {message: message} %>
+<% else %>
+<!--current user receives this message, render on the left-->
+  <%= render partial: 'messages/message_left', locals: {message: message} %>
+<% end %>
