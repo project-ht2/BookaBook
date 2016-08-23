@@ -19,6 +19,8 @@ class MessagesController < ApplicationController
     else
       flash[:error] = "Lỗi khi xoá tin."
     end
+    
+    redirect_to :back
   end
   
   private
