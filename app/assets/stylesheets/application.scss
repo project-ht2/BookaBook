@@ -7,22 +7,25 @@
 @import "book_reviews";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "masonry/transitions";
 
 $envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
 
 html,
-body {
-	margin:0;
-	padding:0;
-	height:100%;
-}
 
 body {
-  background-image: image-url('background/background-wood-horizontal.jpg');
-  background-size: cover;
   width: 100%;
+  height: 100%;
+  margin:0;
+	padding:0;
+	background-image: image-url('background/background-wood-horizontal.jpg');
+  background-size: cover;
   background-repeat: repeat-y;
-  overflow-x:hidden;
+  overflow-x: hidden;
+}
+
+.above-navbar {
+  padding-top: 50px;
 }
 
 /*landing page*/
@@ -76,7 +79,7 @@ body {
   padding-bottom: 0px;
 }
 
-/*form envelope*/
+/*form envelope start*/
 .form-envelope-outside {
   @include box-shadow($value: $envelope-shadow);
   background-image: repeating-linear-gradient(135deg, #d85064 0, #d85064 50px, transparent 50px, transparent 80px, #4b578c 80px, #4b578c 130px, transparent 130px, transparent 160px);
@@ -86,6 +89,7 @@ body {
   background: #ffffff;
   padding: 15px;
 }
+/*form envelope end*/
 
 .fa {
   float: left;

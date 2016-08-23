@@ -1,78 +1,36 @@
 <div class="container main-content">
-	<h3>Your shelves</h3>
-	<div class="row">
-		<div class="shelfnav col-md-2">
-			<ul class="nav nav-pills nav-stacked ">
-				<li class="nav-item <%= "active" if current_page?(user_path)%>">
-					<a class="nav-link" href="#all" data-toggle="tab">All books</a>
+	<div class="sidebar col-md-2">
+		<ul class="nav nav-pills nav-stacked ">
+			<li class="nav-item <%= "active" if current_page?(user_path)%>">
+				<a class="nav-link" href="#all" data-toggle="tab">All books</a>
+			</li>
+			<% @user.shelves.each do |shelf| %>
+				<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
+					<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
 				</li>
-				<% @user.shelves.each do |shelf| %>
-					<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
-						<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
-					</li>
-				<% end %>
-			</ul>
-			<% if @page_owner %>
-				<div class="shelfnav-footer">
-					<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
+			<% end %>
+		</ul>
+		
+		<% if @page_owner %>
+			<div class="shelfnav-footer">
+				<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-md-10">
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="all">
+      	<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+        	<%= render partial: 'book_items/book_item', collection: @user.book_items, as: :book_item %>
+        </div>
+      </div>
+			<% @user.shelves.each do |shelf| %>
+				<div class="tab-pane fade" id="shelf_<%= shelf.id %>">
+					<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+						<%= render partial: 'book_items/book_item', collection: shelf.book_items, as: :book_item %>
+					</div>
 				</div>
 			<% end %>
 		</div>
-		<div class="col-md-10">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="all">
-    			<!--mark-->
-    			<% @user.book_items.in_groups_of(2) do |g| %>
-          	<div class="row book_group">
-            	<% g.compact.each do |book_item| %>
-        				<div class="col-md-6">
-		              <div class="<%= @size %>-book-left-sidebar">
-		                <%= render partial: 'books/book_cover', object: book_item.book, as: :book %>
-		              </div>
-		              <div class="<%= @size %>-book-right-sidebar">
-		                <%= render partial: 'books/book_info', object: book_item.book, as: :book %>
-		              </div>
-	        			</div>
-	        		<% end %>
-	        	</div>
-	        	<div class="row">
-	        		<% g.compact.each do |book_item| %>
-	        			<div class="col-md-6">
-	        				- Quantity: <%= book_item.quantity %> - <%= link_to 'Xoa', book_item, method: :delete, data: { confirm: 'Are you sure?' } %>
-	        			</div>
-	        		<% end %>
-	        	</div>
-	        	<br>
-      		<% end %>
-      		<!--mark-->
-      	</div>
-      	<% @user.shelves.each do |shelf| %>
-          <div class="tab-pane fade" id="shelf_<%= shelf.id %>">
-            <% shelf.book_items.in_groups_of(2) do |g| %>
-            	<div class="row book_group">
-	            	<% g.compact.each do |book_item| %>
-	        				<div class="col-md-6">
-			              <div class="<%= @size %>-book-left-sidebar">
-			                <%= render partial: 'books/book_cover', object: book_item.book, as: :book %>
-			              </div>
-			              <div class="<%= @size %>-book-right-sidebar">
-			                <%= render partial: 'books/book_info', object: book_item.book, as: :book %>
-			              </div>
-		        			</div>
-		        		<% end %>
-		        	</div>
-		        	<div class="row">
-		        		<% g.compact.each do |book_item| %>
-		        			<div class="col-md-6">
-		        				- Quantity: <%= book_item.quantity %> - <%= link_to 'Xoa', book_item, method: :delete, data: { confirm: 'Are you sure?' } %>
-		        			</div>
-		        		<% end %>
-		        	</div>
-		        	<br>
-        		<% end %>
-          </div>
-        <% end %>
-      </div>
-  	</div>
-	</div>
+  </div>
 </div>

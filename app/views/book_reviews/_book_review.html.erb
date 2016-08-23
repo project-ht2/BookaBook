@@ -6,7 +6,7 @@
 		    <blockquote class="curly-quotes">
 		      <%= book_review.content %>
 		    </blockquote>
-		    <figcaption class="quote-by">— <%= book_review.user.email %></figcaption>
+		    <figcaption class="quote-by">— <%= book_review.user.name || book_review.user.email %></figcaption>
 		  </figure>
 		</section>
 	</div>

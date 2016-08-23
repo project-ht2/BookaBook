@@ -1,51 +1,11 @@
+<% @size ||= "small" %>
+<%= render 'application/search_box' %>
 <div class="container main-content">
-  <h3 class="text-xs-center">Search resulfs for <strong><%= params[:q] %></strong></h3>
-  <hr/>
-  <h4 class="text-xs-right">From our database</h4>
-  <div class="row">
-    <% if @books.any? %>
-      <% @books.in_groups_of(3) do |g| %>
-        <div class="row 3-books">
-          <% g.compact.each do |book| %>
-            <div class="<%= @col_wide %> book-block">
-              <div class="<%= @size %>-book-left-sidebar">
-                <%= render partial: 'books/book_cover', object: book, as: :book %>
-                <br>
-                <div class="book-btn" align="center">
-                  <%= render partial: 'books/btn_to_add_book', object: book, as: :book %>
-                </div>
-              </div>
-              <div class="<%= @size %>-book-right-sidebar">
-                <%= render partial: 'books/book_info', object: book, as: :book %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="alert alert-info">Không tìm thấy sách trong cơ sở dữ liệu BôkaBook</p>
+  <h4 class="text-xs-center">Kết quả tìm kiếm cho: <strong><%= params[:q] %></strong></h4>
+  <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+    <% if !@books.nil? %>
+      <%= render partial: 'books/book', collection: @books, as: :book %>
     <% end %>
+    <%= render partial: 'books/book', collection: @books_from_goodreads, as: :book , locals: {source: "goodreads"} %>
   </div>
-  <br/><hr/>
-  <h4 class="text-xs-right">From Goodreads database</h4>
-  <div class="row">
-    <% @books_from_goodreads.in_groups_of(3) do |g| %>
-      <div class="row 3-books">
-        <% g.compact.each do |book| %>
-          <div class="<%= @col_wide %> book-block">
-            <div class="<%= @size %>-book-left-sidebar">
-              <%= render partial: 'books/book_cover', object: book, as: :book, locals: {source: "goodreads"} %>
-              <br>
-              <div class="book-btn" align="center">
-                <%= render partial: 'books/btn_to_add_book', object: book, as: :book, locals: {source: "goodreads"} %>
-              </div>
-            </div>
-            <div class="<%= @size %>-book-right-sidebar">
-              <%= render partial: 'books/book_info', object: book, as: :book, locals: {source: "goodreads"} %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>  
+</div>

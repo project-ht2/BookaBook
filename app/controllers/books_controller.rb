@@ -57,11 +57,23 @@ class BooksController < ApplicationController
   end 
     
   def search
-    redirect_to :back if params[:q].blank?
-    author_ids = Author.where(["name_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"]).map(&:id)
-    @books = Book.where(["title_downcase ILIKE ? OR author_id IN (?)","%#{params[:q].mb_chars.downcase.to_s}%", author_ids])
-    @books_from_goodreads = Goodreads.new.search_books(params[:q]).results.work.map(&:best_book)
-    @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.id}
+    if params[:q].blank?
+      @books = Book.all
+    else
+      author_ids = Author.where(["name_downcase ILIKE ?","%#{params[:q].mb_chars.downcase.to_s}%"]).map(&:id)
+      @books = Book.where(["title_downcase ILIKE ? OR author_id IN (?)","%#{params[:q].mb_chars.downcase.to_s}%", author_ids])
+      goodreads_search = Goodreads.new.search_books(params[:q])
+      if  goodreads_search.total_results.to_i == 0
+        @books_from_goodreads = nil
+      else
+        if goodreads_search.total_results.to_i == 1
+          @books_from_goodreads = [goodreads_search.results.work.best_book]
+        else
+          @books_from_goodreads = goodreads_search.results.work.map(&:best_book)
+        end
+        @books_from_goodreads.reject! {|book| @books.map(&:goodreads_id).include? book.id}
+      end
+    end
   end
 
   def show
