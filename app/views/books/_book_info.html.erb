@@ -7,7 +7,7 @@
   <% end %>
   <div class="<%= @size %>-book-info">
     <h5><%= link_to book.title, show_link %></h5>
-    <%= author_replacement(book) %>
+    <%= link_to author_replacement(book), book_search_path(:q => author_replacement(book)) %>
     <% if book.respond_to?(:book_reviews) %>
       <div class="review-rating" data-score="<%= book.rating %>"></div>
     <% end %>

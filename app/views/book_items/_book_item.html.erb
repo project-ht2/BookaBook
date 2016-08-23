@@ -2,7 +2,7 @@
   <div class="<%= @size %>-book-block panel panel-default">
     <%= render partial: 'books/book_small', object: book_item.book, as: :book %>
     <div class="book-item-btn" align="center">
-      - Quantity: <%= book_item.quantity %> - <%= link_to 'Xoa', book_item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+      - Quantity: <%= book_item.quantity %> - <%= link_to 'Xóa', book_item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
     </div>
   </div>
 </div>
