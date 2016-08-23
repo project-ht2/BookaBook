@@ -33,6 +33,8 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationship
   has_many :followings, through: :following_relationship
   
+  has_many :messages, class_name: 'Message'
+  
   scope :all_except, -> (user) { where.not(id: user) }
   
   def avatar
