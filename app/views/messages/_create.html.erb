@@ -1,7 +1,7 @@
-<a href="" class="fa fa-pencil" data-toggle="modal" data-target="#new_message"></a>
+<a href="" class="fa fa-comments-o" data-toggle="modal" data-target="#new_message"></a>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="new_message" aria-labelledby="new_message" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,16 +10,11 @@
         <h4 class="modal-title">Gửi tin nhắn</h4>
       </div>
       <div class="modal-body">
-        <%= form_for @message = Message.new do |f| %>
-          <%= f.text_field :body, placeholder: "Gõ tin nhắn tới #{receiver.name}...", class: "form-control" %>
-          <%= f.hidden_field :sender_id, value: sender.id %>
-          <%= f.hidden_field :receiver_id, value: receiver.id %>
-          
+        <%= render partial: "messages/form", locals: {sender: sender, receiver: receiver} %>
       </div>
       <div class="modal-footer">
-        <%= f.submit "Gửi tin", class: "btn btn-primary" %>
+        <small>From <%= sender.name %> with :)</small>
       </div>
-      <% end %>
     </div>
   </div>
 </div>
