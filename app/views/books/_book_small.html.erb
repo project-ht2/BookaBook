@@ -1,7 +1,6 @@
 <% @size ||= "small" %>
 <% source = nil unless defined?(source) && source == "goodreads" %>
 <% if !book.nil? %>
-  <div class="<%= @size %>-book-block panel panel-default">
     <div class="clearfix">
       <div class="<%= @size %>-book-left-sidebar">
         <%= render partial: 'books/book_cover', object: book, as: :book, locals: {source: source} %>
@@ -13,5 +12,4 @@
         <%= render partial: 'books/book_info', object: book, as: :book, locals: {source: source} %>
       </div>
     </div>
-  </div>
 <% end %>

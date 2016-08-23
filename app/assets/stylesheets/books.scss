@@ -54,7 +54,10 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   }
 }
 
-  
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
   // BIG BOOK IS HERE
   
 .big-book-cover-box {

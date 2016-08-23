@@ -2,7 +2,7 @@
 <%= render 'application/search_box' %>
 <div class="container main-content">
   <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
-    <%= render partial: 'books/book_small', collection: @books, as: :book %>
+    <%= render partial: 'books/book', collection: @books, as: :book %>
   </div>
 </div>
 
