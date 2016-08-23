@@ -14,6 +14,7 @@
 //= require tether
 //= require jquery_ujs
 //= require turbolinks
+//= require masonry/jquery.masonry
 //= require bootstrap-sprockets
 //= require toastr
 //= require_tree .
@@ -33,9 +34,9 @@ $(document).on('turbolinks:load', function() {
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
                 };
-    rv = bookReview();
-    rv.initBookReview();
-    rv.initReviewRatingList();
+  rv = bookReview();
+  rv.initBookReview();
+  rv.initReviewRatingList();
 });
 
 

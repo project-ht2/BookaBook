@@ -1,6 +1,7 @@
 <% if !book.nil? %>
+  <% @size ||= "small" %>
   <div class="<%= @size %>-book-info">
-    <h4><%= book.title %></h4>
+    <h5><%= book.title %></h5>
     <%= author_replacement(book) %>
     <% if book.respond_to?(:book_reviews) %>
       <div class="review-rating" data-score="<%= book.rating %>"></div>

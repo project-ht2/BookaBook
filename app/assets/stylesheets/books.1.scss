@@ -6,6 +6,8 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 
 /*book block*/
 .small-book-block {
+  float: left;
+  // vertical-align: top;
   padding-top: 5px;
   padding-bottom: 5px;
   background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
@@ -25,6 +27,10 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
           width: 120px;
         }
       }
+      
+      .book-btn {
+        
+      }
     }
     
     .small-book-right-sidebar {
@@ -39,30 +45,7 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   }
 }
 
-  
-  
-  // BIG BOOK IS HERE
-  
-.big-book-cover-box {
-  padding: 8px 8px 16px 8px;
-  
-  .big-book-cover {
-    @include box-shadow($value: $book-cover-shadow);
-    width: 300px;
-  }
-}
 
-.book-btn {
-  
-}
-
-.big-book-info {
-  margin: 8px 0px 20px 0px;
-  min-height: 200px;
-  padding: 10px;
-  background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
-  background: rgba(255, 255, 255, .5);
-}
 
 @media screen and (min-width:1200px) {
   .small-book-block {
@@ -73,10 +56,12 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   
   .big-book-left-sidebar {
     float: left;
+    width: 30%;
+    margin-bottom: 15px;
   }
   
   .big-book-right-sidebar {
-    margin-left: 325px;
+    margin-left: 30%;
   }
 }
 
@@ -89,35 +74,54 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   
   .big-book-left-sidebar {
     float: left;
+    width: 30%;
+    margin-bottom: 15px;
   }
   
   .big-book-right-sidebar {
-    margin-left: 325px;
+    margin-left: 30%;
   }
 }
 
 @media screen and (max-width:799px) {
-  .small-book-block {
+  .-small-book-block {
     width: 100%;
     margin-left: 0%;
     margin-right: 0%;
   }
-  
-  .big-book-left-sidebar {
-    width: 100%;
-    margin: auto;
-    
-    .big-book-cover {
-      display: block;
-      margin: 0 auto;
-    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  nav li {
+    display: inline;
   }
-  
-  .big-book-right-sidebar {
     
+  .small-book-cover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
   }
 }
 
+.big-book-cover {
+  @include box-shadow($value: $book-cover-shadow);
+  margin: 8px 0px 0px 8px;
+  width: 300px;
+}
+
+.big-book-info {
+  margin: 8px 0px 20px 0px;
+  min-height: 200px;
+  padding: 10px;
+  background-color: #ffffff;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+}
 
 .review-list{
 	.card {
