@@ -1,9 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 $(document).on 'turbolinks:load', ->
-  $('#masonry-container').imagesLoaded ->
-    $('#masonry-container').masonry
+  $this = undefined
+  $('.masonry-container').imagesLoaded ->
+    $('.masonry-container').masonry
       itemSelector: '.small-book-block'
       isFitWidth: true
+  $('a[data-toggle=tab]').each ->
+  $this = $(this)
+  $this.on 'shown.bs.tab', ->
+    $('.masonry-container').imagesLoaded ->
+      $('.masonry-container').masonry
+        itemSelector: '.small-book-block'
+        isFitWidth: true
+      return
+    return
+  return
