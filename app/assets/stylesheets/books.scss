@@ -20,19 +20,6 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   .clearfix {
     overflow: auto;
     
-    .small-book-left-sidebar {
-      float: left;
-      
-      .small-book-cover-box {
-        padding: 8px 8px 16px 8px;
-        
-        .small-book-cover {
-          @include box-shadow($value: $book-cover-shadow);
-          width: 120px;
-        }
-      }
-    }
-    
     .small-book-right-sidebar {
       margin-left: 145px;
       
@@ -57,6 +44,19 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
+
+.small-book-left-sidebar {
+      float: left;
+      
+      .small-book-cover-box {
+        padding: 8px 8px 16px 8px;
+        
+        .small-book-cover {
+          @include box-shadow($value: $book-cover-shadow);
+          width: 120px;
+        }
+      }
+    }
 
   // BIG BOOK IS HERE
   
