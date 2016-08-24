@@ -19,7 +19,7 @@ $review-min-height: 150px;
 }
 .effect:before, .effect:after
 {
-  z-index: -1;
+  z-index: 0;
   position: absolute;
   content: "";
   bottom: 10px;
@@ -60,6 +60,7 @@ $noteBorderColor: #c3baaa;
 $noteLineColor: #efcfad;
 
 .notepaper {
+  z-index: 3;
   position: relative;
   margin: 0px auto;
   padding: 30px 20px 10px 200px;
