@@ -1,13 +1,27 @@
-<div class="sidebar col-md-2">
+<% if @user.provider.nil? %>
+	<% social_link = nil %>
+<% else %>
+	<% social_link = "https://fb.com/#{@user.uid}" %>
+<% end %>
+<div class="user-sidebar clearfix">
 	<div class="user-info">
-		<p>
-			<%= link_to image_tag(current_user.avatar, class: "img-rounded big-avatar"), "https://fb.com/#{@user.uid}" %>
-			<a href="mailto:<%= @user.email %>" class="fa fa-envelope" title="Email"></a>
-			<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook" title="Facebook"></a>
-			<% if current_user != @user %>
-				<%= render partial: 'messages/create', locals: {sender: current_user, receiver: @user} %>
+		<div class="avatar-block clearfix">
+			<%= link_to image_tag(@user.avatar, class: "img-rounded big-avatar"), social_link || @user %>
+		</div>
+		<hr>
+		<div class="contact-block clearfix" align="center">
+			<a href="mailto:<%= @user.email %>" class="fa fa-envelope fa-2x" title="Email"></a>
+			<% if !@user.provider.nil? %>
+				<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook fa-2x" title="Facebook"></a>
 			<% end %>
-		</p>
+		</div>
+		<% if current_user != @user %>
+			<%= render partial: 'messages/create', locals: {sender: current_user, receiver: @user} %>
+		<% end %>
+		<hr>
+		<div class="follow_button clearfix">
+			<%= follow_button(current_user.id, @user.id) if !@page_owner %>
+		</div>
 		<br>
 	</div>
 	
@@ -21,10 +35,5 @@
 			</li>
 		<% end %>
 	</ul>
-	
-	<% if @page_owner %>
-		<div class="shelfnav-footer">
-			<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' %>
-		</div>
-	<% end %>
+	<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' if @page_owner %>
 </div>
