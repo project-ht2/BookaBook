@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_many :followings, through: :following_relationship
   
   scope :all_except, -> (user) { where.not(id: user) }
+  scope :search, -> (name) { where("name_downcase ILIKE ? OR lower(email) ILIKE ?", "%#{name}%", "%#{name}%")}
   
   def avatar
     image_url || "background/musroom.jpg"
@@ -54,6 +55,10 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+  
+  before_save do
+    self.name_downcase = self.name.mb_chars.downcase.to_s
   end
   
   after_create do

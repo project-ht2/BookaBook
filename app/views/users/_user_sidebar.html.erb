@@ -4,21 +4,26 @@
 	<% social_link = "https://fb.com/#{@user.uid}" %>
 <% end %>
 <div class="user-sidebar clearfix">
-	<div class="user-info">
-			<div class="avatar-block clearfix">
-				<%= link_to image_tag(@user.avatar, class: "img-rounded big-avatar"), social_link || @user %>
-			</div>
-			<hr>
-			<div class="contact-block clearfix" align="center">
-				<a href="mailto:<%= @user.email %>" class="fa fa-envelope fa-2x" title="Email"></a>
-				<% if !@user.provider.nil? %>
-					<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook fa-2x" title="Facebook"></a>
-				<% end %>
-			</div>
+	<div class="user-info clearfix">
+		<div class="user-name clearfix">
+			<h4><%= @user.name || @user.email %></h4>
+		</div>
+		<div class="avatar-block clearfix">
+			<%= link_to image_tag(@user.avatar, class: "img-rounded big-avatar"), social_link || @user %>
+		</div>
+		<hr>
+		<div class="contact-block clearfix" align="center">
+			<% if !@user.provider.nil? %>
+				<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook-square fa-2x" title="Facebook"></a>
+			<% end %>
+			<a href="mailto:<%= @user.email %>" class="fa fa-envelope-o fa-2x" title="Email"></a>
+		</div>
+		<% if user_signed_in? && current_user != @user %>
 			<hr>
 			<div class="follow_button clearfix">
 				<%= follow_button(current_user.id, @user.id) if !@page_owner %>
 			</div>
+		<% end %>
 		<br>
 	</div>
 	

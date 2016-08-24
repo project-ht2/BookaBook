@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all_except current_user
+    @users = User.all_except(current_user).search(params[:q_user].mb_chars.downcase.to_s)
   end
   
 private
