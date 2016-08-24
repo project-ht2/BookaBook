@@ -34,10 +34,18 @@ class User < ApplicationRecord
   has_many :followings, through: :following_relationship
   
   scope :all_except, -> (user) { where.not(id: user) }
-  scope :search, -> (name) { where("name_downcase ILIKE ? OR lower(email) ILIKE ?", "%#{name}%", "%#{name}%")}
   
   def avatar
     image_url || "background/musroom.jpg"
+  end
+  
+  def self.search(search)
+    if search
+      search_downcase = search.mb_chars.downcase.to_s
+      where(["name_downcase iLIKE ? OR lower(email) ILIKE ?", "%#{search_downcase}%", "%#{search_downcase}%"])
+    else
+      all
+    end
   end
   
   def self.from_omniauth(auth)

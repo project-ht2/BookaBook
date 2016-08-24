@@ -1,3 +1,12 @@
+#masonry-container {
+  margin: 0 auto;
+  width: 100%;
+}  
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
 .shelfnav-footer {
 	margin-top: 15px;
 }
@@ -16,6 +25,12 @@
   overflow: hidden;
   background-position: center center;
   background-repeat: no-repeat;
+  display: block;
+  margin: 0 auto;
+}
+
+.user-name {
+  text-align: center;
 }
 
 .user-sidebar {
@@ -24,10 +39,23 @@
   height: 100%;
 }
 
+.user-block {
+  width: 200px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: rgb(255, 255, 255); /* Fall-back for browsers that don't support rgba */
+  background: rgba(255, 255, 255, .9);
+}
+
 .contact-block {
   text-align: center;
   display: block;
   margin: 0 auto;
+  // font awesome
+  .fa {
+    text-align:center;
+    padding: 6px;
+  }
 }
 
 .user-right-panel {
@@ -47,3 +75,4 @@
   padding-top: 120px;
   padding-bottom: 120px;
 }
+
