@@ -39,6 +39,15 @@ class User < ApplicationRecord
     image_url || "background/musroom.jpg"
   end
   
+  def self.search(search)
+    if search
+      search_downcase = search.mb_chars.downcase.to_s
+      where(["name_downcase iLIKE ? OR lower(email) ILIKE ?", "%#{search_downcase}%", "%#{search_downcase}%"])
+    else
+      all
+    end
+  end
+  
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -54,6 +63,10 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+  
+  before_save do
+    self.name_downcase = self.name.mb_chars.downcase.to_s
   end
   
   after_create do
