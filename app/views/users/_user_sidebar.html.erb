@@ -4,24 +4,22 @@
 	<% social_link = "https://fb.com/#{@user.uid}" %>
 <% end %>
 <div class="user-sidebar clearfix">
-<<<<<<< HEAD
 	<div class="user-info clearfix">
 		<div class="user-name clearfix">
 			<h4><%= @user.name || @user.email %></h4>
 		</div>
-=======
-	<div class="user-info">
->>>>>>> c48e93609fc0623c01000833ef856a4fa41d3029
 		<div class="avatar-block clearfix">
 			<%= link_to image_tag(@user.avatar, class: "img-rounded big-avatar"), social_link || @user %>
 		</div>
 		<hr>
 		<div class="contact-block clearfix" align="center">
-<<<<<<< HEAD
 			<% if !@user.provider.nil? %>
 				<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook-square fa-2x" title="Facebook"></a>
 			<% end %>
 			<a href="mailto:<%= @user.email %>" class="fa fa-envelope-o fa-2x" title="Email"></a>
+			<% if current_user != @user %>
+				<%= render partial: 'messages/create', locals: {sender: current_user, receiver: @user} %>
+			<% end %>
 		</div>
 		<% if user_signed_in? && current_user != @user %>
 			<hr>
@@ -30,35 +28,19 @@
 			</div>
 		<% end %>
 		<hr>
-=======
-			<a href="mailto:<%= @user.email %>" class="fa fa-envelope fa-2x" title="Email"></a>
-			<% if !@user.provider.nil? %>
-				<a href="https://fb.com/<%= @user.uid %>" class="fa fa-facebook fa-2x" title="Facebook"></a>
-			<% end %>
-		</div>
-		<% if current_user != @user %>
-			<%= render partial: 'messages/create', locals: {sender: current_user, receiver: @user} %>
-		<% end %>
-		<hr>
-		<div class="follow_button clearfix">
-			<%= follow_button(current_user.id, @user.id) if !@page_owner %>
-		</div>
-		<br>
->>>>>>> c48e93609fc0623c01000833ef856a4fa41d3029
 	</div>
 	<div class="user-shelf-btn-block">
 		<ul class="nav nav-pills nav-stacked ">
 			<li class="nav-item <%= "active" if current_page?(user_path)%>">
 				<a class="nav-link" href="#all" data-toggle="tab">All books</a>
 			</li>
-<<<<<<< HEAD
 			<% @user.shelves.each do |shelf| %>
 				<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
 					<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
 				</li>
 			<% end %>
 		</ul>
-		<%= link_to "Tạo tủ sách", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' if @page_owner %>
+	<%= link_to "Tạo tủ sách", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' if @page_owner %>
 		<hr>
 	</div>
 	<div class="user-follower-block">
@@ -71,9 +53,4 @@
 		<%= render partial: 'user_small_avatar', collection: @user.followings, as: :user %>
 		<hr>
 	</div>
-=======
-		<% end %>
-	</ul>
-	<%= link_to "Tạo tủ sách", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' if @page_owner %>
->>>>>>> c48e93609fc0623c01000833ef856a4fa41d3029
 </div>

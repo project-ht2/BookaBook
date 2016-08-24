@@ -2,7 +2,7 @@
 <%= render 'application/search_box' %>
 <div class="container main-content">
   <h4 class="text-xs-center">Kết quả tìm kiếm cho: <strong><%= params[:q] %></strong></h4>
-  <div id="masonry-container" class="masonry-container transitions-enabled infinite-scroll clearfix">
+  <div id="masonry-container" class="masonry-container transitions-enabled clearfix">
     <% if !@books.nil? %>
       <%= render partial: 'books/book', collection: @books, as: :book %>
     <% end %>
