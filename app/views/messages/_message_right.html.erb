@@ -1,0 +1,12 @@
+<!--if the message from current user, it will render on the right-->
+  <li class="media">
+    <div class="media-body">
+      <h4 class="media-heading"><%= message.sender.name %> nhắn</h4>
+      <p><%= message.body %></p>  
+    </div>
+    <div class="media-right">
+      <a href="<%= user_path(id: message.sender.id) %>">
+        <%= image_tag(message.sender.avatar, class: "media-object img-rounded avatar") %>
+      </a>
+    </div>
+  </li>

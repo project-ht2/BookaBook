@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160824040510) do
+=======
+ActiveRecord::Schema.define(version: 20160823153002) do
+>>>>>>> c48e93609fc0623c01000833ef856a4fa41d3029
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -65,6 +70,16 @@ ActiveRecord::Schema.define(version: 20160824040510) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id", using: :btree
+    t.index ["sender_id"], name: "index_messages_on_sender_id", using: :btree
   end
 
   create_table "shelves", force: :cascade do |t|

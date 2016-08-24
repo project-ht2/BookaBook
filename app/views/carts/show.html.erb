@@ -7,6 +7,9 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#lender" role="tab">Yêu cầu tới bạn</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#messages", role="tab">Tin nhắn của bạn</a>
+    </li>
   </ul>
 
   <!-- Tab panes -->
@@ -31,6 +34,38 @@
       <% @lender_transactions.each do |transaction| %>
         <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
       <% end %>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="messages" role="tabpanel">
+      <% if @current_user_messages.count == 0 %>
+      <div class="panel">
+        <p>Không có tin nhắn nào.</p>
+      </div>
+      <% else %>
+      <div class="row panel">
+        <div class="tab-content col-md-9 push-md-3">
+          <% user_list = [] %>
+          <% User.all.each do |u| %>
+            <% messages = load_conversation(u.id, current_user.id) %>
+            <% if messages.count > 0 %>
+              <% user_list.append(u) %>
+              <ul class="tab-pane" id="user_<%= u.id %>" role="tabpanel">
+                <% messages.each do |message| %>
+                  <%= render partial: "messages/message", locals: {message: message} %>
+                <% end %>
+                <%= render partial: "messages/form", locals: {sender: current_user, receiver: u} %>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+        <ul class="nav nav-pills nav-stacked col-md-3 pull-md-9" role="tablist">
+          <% user_list.each do |u| %>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" role="tab" href="#user_<%=u.id %>"><%= u.name %></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       <% end %>
     </div>
   </div>

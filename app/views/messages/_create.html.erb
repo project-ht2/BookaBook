@@ -1,0 +1,20 @@
+<a href="" class="fa fa-comments-o" data-toggle="modal" data-target="#new_message"></a>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="new_message" aria-labelledby="new_message" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Gửi tin nhắn</h4>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "messages/form", locals: {sender: sender, receiver: receiver} %>
+      </div>
+      <div class="modal-footer">
+        <small>From <%= sender.name %> with :)</small>
+      </div>
+    </div>
+  </div>
+</div>
