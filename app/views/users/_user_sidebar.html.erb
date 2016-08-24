@@ -24,18 +24,30 @@
 				<%= follow_button(current_user.id, @user.id) if !@page_owner %>
 			</div>
 		<% end %>
-		<br>
+		<hr>
 	</div>
-	
-	<ul class="nav nav-pills nav-stacked ">
-		<li class="nav-item <%= "active" if current_page?(user_path)%>">
-			<a class="nav-link" href="#all" data-toggle="tab">All books</a>
-		</li>
-		<% @user.shelves.each do |shelf| %>
-			<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
-				<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
+	<div class="user-shelf-btn-block">
+		<ul class="nav nav-pills nav-stacked ">
+			<li class="nav-item <%= "active" if current_page?(user_path)%>">
+				<a class="nav-link" href="#all" data-toggle="tab">All books</a>
 			</li>
-		<% end %>
-	</ul>
-	<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' if @page_owner %>
+			<% @user.shelves.each do |shelf| %>
+				<li class="nav-item <%= "active" if current_page?(user_shelf_path(shelf))%>">
+					<a class="nav-link" href="#shelf_<%= shelf.id %>" data-toggle="tab"><%= shelf.name %></a>
+				</li>
+			<% end %>
+		</ul>
+		<%= link_to "New Shelf", new_user_shelf_path(user_id: current_user.id), class: 'btn btn-primary' if @page_owner %>
+		<hr>
+	</div>
+	<div class="user-follower-block">
+		<h5>Followers</h5>
+		<%= render partial: 'user_small_avatar', collection: @user.followers, as: :user %>
+		<hr>
+	</div>
+	<div class="user-folling-block">
+		<h5>Followings</h5>
+		<%= render partial: 'user_small_avatar', collection: @user.followings, as: :user %>
+		<hr>
+	</div>
 </div>

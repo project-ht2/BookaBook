@@ -6,3 +6,5 @@ $(document).on 'turbolinks:load', ->
     $('.masonry-container').masonry
       itemSelector: '.user-block'
       isFitWidth: true
+    return
+  return
