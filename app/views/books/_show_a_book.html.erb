@@ -8,7 +8,15 @@
         <hr>
         <div class="book-btn" align="center">
           <%= render partial: 'books/btn_to_add_book', object: @book, as: :book, locals: {:source => source} %>
+          <hr>
         </div>
+        <% unless defined?(source) && source == "goodreads" %>
+        
+          <div class="users-have-this-book" align="center">
+            <h4>Những thành viên chia sẻ sách này</h4>
+            <%= render partial: 'book_items/book_item_request', collection: @book_items, as: :book_item %>
+          </div>
+        <% end %>
       </div>
       <div class="<%= @size %>-book-right-sidebar">
         <%= render partial: 'books/book_info', object: @book, as: :book, locals: {:source => source} %>

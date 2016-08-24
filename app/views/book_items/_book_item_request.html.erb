@@ -1,24 +1,44 @@
-<div class="panel" id="show_book_item_<%= book_item.id %>">  
-  <div class="container">
-    <p id="notice"><%= notice %></p>
-    
-    <p>
-      <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
-      <!--If signed_in then they can start create request to borrow book from other people-->
-      <!--Owner cannot borrow book from themshelves-->
-      <% if signed_in? && !(book_item.shelf.user == current_user) %>
-        <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Số lượng</span>
-            <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
-            <div class="input-group-btn">
-              <%= f.hidden_field :book_item_id, value: book_item.id %>
-              <%= f.hidden_field :borrower_id, value: current_user.id %>
-              <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+<% if !book_item.nil? %>
+  <!-- Button trigger modal -->
+  <a data-target="#modal_book_item_<%= book_item.id.to_s %>" data-toggle="modal"><%= image_tag(book_item.shelf.user.avatar, class: "img-rounded avatar", :alt => book_item.shelf.user.name || book_item.shelf.user.email) %></a>
+  
+  <!-- Modal Starting-->
+  <div class="modal fade" id="modal_book_item_<%= book_item.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h6 class="modal-title" id="myModalLabel">Mượn sách <strong><%= book_item.book.title %></strong></h6>
+        </div>
+        <div class="modal-body">
+          <div class="panel" id="show_book_item_<%= book_item.id %>">  
+            <div class="container">
+              <p id="notice"><%= notice %></p>
+              
+              <p>
+                <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
+                <!--If signed_in then they can start create request to borrow book from other people-->
+                <!--Owner cannot borrow book from themshelves-->
+                <% if signed_in? && !(book_item.shelf.user == current_user) %>
+                  <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1">Số lượng</span>
+                      <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
+                      <div class="input-group-btn">
+                        <%= f.hidden_field :book_item_id, value: book_item.id %>
+                        <%= f.hidden_field :borrower_id, value: current_user.id %>
+                        <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </p>
             </div>
           </div>
-        <% end %>
-      <% end %>
-    </p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>

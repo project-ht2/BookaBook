@@ -2,8 +2,4 @@
   <div class="row">
     <%= render partial: 'books/show_a_book', object: @book, as: :book %>
   </div>
-  <h3>Borrow this book from</h3>
-  <% BookItem.where(book_id: @book.id).each do |bi| %>
-    <%= render 'book_items/book_item_request', book_item: bi %>
-  <% end %>  
 </div>

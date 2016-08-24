@@ -79,6 +79,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_reviews = @book.book_reviews
+    @book_items = BookItem.where(book_id: @book.id)
   end
  
   def show_goodreads
