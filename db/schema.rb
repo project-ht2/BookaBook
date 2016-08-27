@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 20160824040510) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "transaction_reviews", force: :cascade do |t|
+    t.integer  "reviewer_id"
+    t.integer  "target_id"
+    t.integer  "rating"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "transaction_statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
