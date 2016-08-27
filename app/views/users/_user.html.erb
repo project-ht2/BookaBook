@@ -1,9 +1,11 @@
-<div class="col-xs-12 col-md-4">
-  <div class="card">
-    <%= image_tag user.avatar %>
-    <div class="card-block">
-      <h4 class="card-title"><%= user.try(:name) %></h4>
+<% if user_signed_in? && current_user != @user %>
+  <div class="user-block">
+    <div class="avatar-block" text-align="center">
+      <%= link_to image_tag(user.avatar, class: "img-rounded big-avatar"), user %>
+      <h4 class="user-name"><%= link_to user.name || user.email, user %></h4>
+    </div>
+    <div class="book-btn" align="center">
       <%= follow_button(current_user.id, user.id) %>
     </div>
   </div>
-</div>
+<% end %>

@@ -4,7 +4,7 @@
   
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= source.to_s + book.id.to_s %>">
-      Lưu 
+      Save 
     </button>
     
     <!-- Modal Starting-->
@@ -15,19 +15,19 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Thêm sách <strong><%= book.title %></strong> vào tủ sách của bạn</h4>
+            <h4 class="modal-title" id="myModalLabel">Add a copy <strong><%= book.title %></strong> to your bookshelf.</h4>
           </div>
           <%= form_for @book_item = BookItem.new do |f| %>
             <div class="modal-body">
               <div class="form-inline row ">
                 <label class="col-md-3 col-form-label text-xs-right">
-                  Tủ sách 
+                  Bookshelf 
                 </label>
                 <%= f.select :shelf_id, options_from_collection_for_select(current_user.shelves.all, "id", "name", @book_item.shelf_id), {}, {class: " form-control col-md-4"}%>
               </div>
               <div class="form-inline row ">
                 <label class="col-md-3 col-form-label text-xs-right">
-                  Số lượng 
+                  Quantity 
                 </label>
                 <%= f.number_field :quantity, :value => 1, min: 0, class: "form-control col-md-4", input_html: { min: '0' } %>
               </div>
@@ -40,8 +40,8 @@
               <%= f.hidden_field :goodreads_id, value: book.id %>
             <% end %>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-              <%= f.submit "Thêm sách", class: "btn btn-primary" %>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <%= f.submit "Save", class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>

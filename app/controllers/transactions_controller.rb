@@ -6,18 +6,18 @@ class TransactionsController < ApplicationController
     # When created, it is at status of "Requested"
     @transaction.transaction_status_id = 1
     if @transaction.save!
-      flash[:success] = "Yeu cau cua ban da duoc tao."
+      flash[:success] = "Request has been sent."
       
       # Optional: send mail to borrower and lender.
     else
-      flash[:error] = "Yeu cau chua thanh cong."
+      flash[:error] = "Mission impossible."
     end
   end
 
   def update
     @transaction = Transaction.find(params[:id])
     @transaction.update(transaction_params)
-    flash[:success] = "Yeu cau cua ban da duoc cap nhat."
+    flash[:success] = "Request updated."
   end
 
   def destroy

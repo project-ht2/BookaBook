@@ -1,26 +1,9 @@
 <div id="show_transaction_<%= transaction.id %>">
-  <div class="row panel" style="background-color: #F5F7FA">
-    <div class="col-xs-2">
-      <%= image_tag(image_url_replacement(transaction.book_item.book), class: "#{@book_cover}") %>
+  <div class="row panel clearfix" style="background-color: #F5F7FA">
+    <div class="small-book-left-sidebar">
+      <%= render partial: 'books/book_cover', object: transaction.book_item.book, as: :book %>
     </div>
-    <div class="col-xs-3">
-      <h4><%= transaction.book_item.book.title %></h4>
-      <p>
-        Trạng thái: <strong><%= transaction.transaction_status.name %></strong><br/>
-        <% if current_user_is_borrower(transaction) %>
-          Người cho mượn: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
-        <% end %>
-        <% if current_user_is_lender(transaction) %>
-          Người mượn: <strong><%= User.find(transaction.borrower_id).name %></strong>
-        <% end %>
-      </p>
-      
-      <p>
-        Hiện có: <strong><%= transaction.book_item.available_count %></strong> cuốn<br/>
-        Yêu cầu: <strong><%= transaction.quantity %></strong>
-      </p> 
-    </div>
-    <div class="col-xs-7">
+    <div class="cart-right-pannel">
       <%= form_for transaction, remote: true do |f| %></%>
         <div class="btn-group">
           <% if current_user_is_borrower(transaction) %>
@@ -36,11 +19,28 @@
         <!--Status la 5. Da nhan sach, thi Link to Transaction review hoac la Xoa transaction(optional)-->
         <% if transaction.transaction_status_id == 5 %>
         <div class="btn-group">
-          <%= link_to "Xoá Yêu Cầu", transaction, { data: { confirm: "Bạn muốn huỷ yêu cầu mượn sách '#{transaction.book_item.book.title}'?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+          <%= link_to "Cancel request", transaction, { data: { confirm: "Cancel request of '#{transaction.book_item.book.title}'?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
           <button class="btn btn-primary">Viết Nhận Xét</button>
         </div>
         <% end %>
       <% end %>
+    </div>
+    <div class="cart-center-pannel">
+      <h4><%= transaction.book_item.book.title %></h4>
+      <p>
+        Status: <strong><%= transaction.transaction_status.name %></strong><br/>
+        <% if current_user_is_borrower(transaction) %>
+          From: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
+        <% end %>
+        <% if current_user_is_lender(transaction) %>
+          To: <strong><%= User.find(transaction.borrower_id).name %></strong>
+        <% end %>
+      </p>
+      
+      <p>
+        Availabe: <strong><%= transaction.book_item.available_count %></strong><br/>
+        Request: <strong><%= transaction.quantity %></strong>
+      </p> 
     </div>
   </div>
 </div>

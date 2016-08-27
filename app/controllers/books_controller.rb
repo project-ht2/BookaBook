@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     @book.author_id = Author.find_or_create_by(name: book_params[:author_name]).id
 
     if @book.save
-      flash[:success] = "Một sách mới đã được tạo."
+      flash[:success] = "New book created."
       redirect_to books_path
     else
       flash[:error] = @book.errors.full_messages.to_sentence
@@ -40,10 +40,10 @@ class BooksController < ApplicationController
     @book.image_url = book_params[:image_url]
     
     if @book.save!
-      flash[:success] = "Một sách đã cập nhật."
+      flash[:success] = "Book updated."
       redirect_to @book
     else
-      flash[:error] = "Oh, không cập nhật được sách"
+      flash[:error] = "Mission impossible"
       flash[:error] = @book.errors.full_messages.to_sentence
       redirect_to :back 
     end 
@@ -52,7 +52,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy 
-    flash[:success] = "Một sách đã xoá."
+    flash[:success] = "The book's gone."
     redirect_to books_path
   end 
     
@@ -79,6 +79,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_reviews = @book.book_reviews
+    @book_items = BookItem.where(book_id: @book.id)
   end
  
   def show_goodreads

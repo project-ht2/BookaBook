@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :book_items
   resources :shelves
   
+  resources :messages, only: [:create, :destroy]
+  
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations' }
   
   # Route to search for book

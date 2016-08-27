@@ -77,7 +77,11 @@ $footer-logo-color:                  $white !default;
     &-copyright {
       color: $footer-menu-item-color;
     }
-    
+    // font awesome
+    .fa {
+      float: left;
+      padding: 6px;
+    }
     .footer-module-title {
       font-size: 14px;
       line-height: 12px;

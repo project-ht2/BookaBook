@@ -3,9 +3,9 @@
     <div class="col-md-6 offset-md-3">
       <%= form_tag({controller: "books", action: "search"}, method: :get, class: "input-group") do %>
         <div class="input-group">
-          <%= text_field_tag(:q, nil, placeholder: "Tên sách hoặc tác giả...", class: "form-control") %>
+          <%= text_field_tag(:q, nil, placeholder: "Book title or author...", class: "form-control") %>
           <span class="input-group-btn">
-            <%= submit_tag("Tìm kiếm", :name => nil, class: "btn btn-primary") %>    
+            <%= submit_tag("Search", :name => nil, class: "btn btn-primary") %>    
           </span>
         </div>
       <% end %>

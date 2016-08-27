@@ -1,7 +1,7 @@
 $(document).on 'turbolinks:load', ->
   $this = undefined
-  $('.masonry-container').imagesLoaded ->
-    $('.masonry-container').masonry
+  $('#masonry-container').imagesLoaded ->
+    $('#masonry-container').masonry
       itemSelector: '.small-book-block'
       isFitWidth: true
   $('a[data-toggle=tab]').each ->

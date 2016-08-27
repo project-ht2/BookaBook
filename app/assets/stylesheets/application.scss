@@ -4,6 +4,7 @@
 @import "users";
 @import "toastr";
 @import "books";
+@import "carts";
 @import "book_reviews";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -91,8 +92,3 @@ body {
 }
 /*form envelope end*/
 
-// font awesome
-.fa {
-  float: left;
-  padding: 6px;
-}

@@ -2,10 +2,13 @@
   <!-- Nav tabs -->
   <ul class="nav nav-pills nav-justified panel" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#borrower" role="tab">Yêu cầu từ bạn</a>
+      <a class="nav-link active" data-toggle="tab" href="#borrower" role="tab">Request sent</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#lender" role="tab">Yêu cầu tới bạn</a>
+      <a class="nav-link" data-toggle="tab" href="#lender" role="tab">Requests received</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#messages", role="tab">Message</a>
     </li>
   </ul>
 
@@ -14,7 +17,7 @@
     <div class="tab-pane active" id="borrower" role="tabpanel">
       <% if @borrower_transactions.count == 0 %>
       <div class="panel">
-        <p>Bạn chưa mượn cuốn sách nào cả.</p>
+        <p>No request sent.</p>
       </div>
       <% else %>
       <% @borrower_transactions.each do |transaction| %>
@@ -25,12 +28,44 @@
     <div class="tab-pane" id="lender" role="tabpanel">
       <% if @lender_transactions.count == 0 %>
       <div class="panel">
-        <p>Không có yêu cầu nào gửi tới bạn.</p>
+        <p>No request received.</p>
       </div>
       <% else %>
       <% @lender_transactions.each do |transaction| %>
         <%= render partial: "transactions/transaction", locals: { transaction: transaction } %>
       <% end %>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="messages" role="tabpanel">
+      <% if @current_user_messages.count == 0 %>
+      <div class="panel">
+        <p>No message.</p>
+      </div>
+      <% else %>
+      <div class="row panel">
+        <div class="tab-content col-md-9 push-md-3">
+          <% user_list = [] %>
+          <% User.all.each do |u| %>
+            <% messages = load_conversation(u.id, current_user.id) %>
+            <% if messages.count > 0 %>
+              <% user_list.append(u) %>
+              <ul class="tab-pane" id="user_<%= u.id %>" role="tabpanel">
+                <% messages.each do |message| %>
+                  <%= render partial: "messages/message", locals: {message: message} %>
+                <% end %>
+                <%= render partial: "messages/form", locals: {sender: current_user, receiver: u} %>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+        <ul class="nav nav-pills nav-stacked col-md-3 pull-md-9" role="tablist">
+          <% user_list.each do |u| %>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" role="tab" href="#user_<%=u.id %>"><%= u.name %></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
       <% end %>
     </div>
   </div>

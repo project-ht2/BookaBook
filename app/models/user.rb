@@ -33,10 +33,21 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationship
   has_many :followings, through: :following_relationship
   
+  has_many :messages, class_name: 'Message'
+  
   scope :all_except, -> (user) { where.not(id: user) }
   
   def avatar
     image_url || "background/musroom.jpg"
+  end
+  
+  def self.search(search)
+    if search
+      search_downcase = search.mb_chars.downcase.to_s
+      where(["name_downcase iLIKE ? OR lower(email) ILIKE ?", "%#{search_downcase}%", "%#{search_downcase}%"])
+    else
+      all
+    end
   end
   
   def self.from_omniauth(auth)
@@ -56,10 +67,14 @@ class User < ApplicationRecord
     end
   end
   
+  before_save do
+    self.name_downcase = self.name.mb_chars.downcase.to_s
+  end
+  
   after_create do
 		Shelf.create({
-		  name: 'Mặc định',
-		  description: 'Mặc định',
+		  name: 'Default',
+		  description: 'Default',
 		  user: self
 		})
   end
