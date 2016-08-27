@@ -10,7 +10,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h6 class="modal-title" id="myModalLabel">Mượn sách <strong><%= book_item.book.title %></strong></h6>
+          <h6 class="modal-title" id="myModalLabel">Borrow <strong><%= book_item.book.title %></strong></h6>
         </div>
         <div class="modal-body">
           <div class="panel" id="show_book_item_<%= book_item.id %>">  
@@ -18,18 +18,18 @@
               <p id="notice"><%= notice %></p>
               
               <p>
-                <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> có <strong><%= book_item.available_count %></strong> sách để cho mượn.
+                <strong><%= link_to "#{book_item.shelf.user.name}", user_path(book_item.shelf.user)%></strong> has <strong><%= pluralize(book_item.available_count, "copy") %></strong> of this book.
                 <!--If signed_in then they can start create request to borrow book from other people-->
                 <!--Owner cannot borrow book from themshelves-->
                 <% if signed_in? && !(book_item.shelf.user == current_user) %>
                   <%= form_for transaction = Transaction.new(book_item_id: book_item.id), remote: true do |f| %>
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">Số lượng</span>
+                      <span class="input-group-addon" id="basic-addon1">Quantity</span>
                       <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book_item.available_count %>
                       <div class="input-group-btn">
                         <%= f.hidden_field :book_item_id, value: book_item.id %>
                         <%= f.hidden_field :borrower_id, value: current_user.id %>
-                        <%= f.submit "Gửi yêu cầu", class: "btn btn-primary" %>
+                        <%= f.submit "Send request", class: "btn btn-primary" %>
                       </div>
                     </div>
                   <% end %>

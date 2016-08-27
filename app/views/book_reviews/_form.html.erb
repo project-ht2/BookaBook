@@ -1,6 +1,6 @@
 <% source = nil unless defined?(source) && source == "goodreads" %>
 <div class="review-writer">
-    <h5>Viết cảm nhận sách:</h5>
+    <h5>Review:</h5>
 
     <%= form_for(@book_review = BookReview.new) do |f| %>
 			<%= f.label :rating %><div id="rating-form"></div>
@@ -15,8 +15,8 @@
 			<% else %>
 				<%= f.hidden_field :book_id, value: @book.id %>
 			<% end %>
-    	<br>	    
-      <%= f.submit 'Gửi', :class => 'btn btn-primary' %>
+    	<br>
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
     <% end %>
 	</div>
 </div>

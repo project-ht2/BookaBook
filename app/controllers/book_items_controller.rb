@@ -62,9 +62,9 @@ class BookItemsController < ApplicationController
       @book_item.quantity = book_item_params[:quantity]
       
       if @book_item.save!
-        flash[:success] = "Đã thêm một sách vào kệ sách."
+        flash[:success] = "You got a book."
       else
-        flash[:error] = "Không thể thêm sách vào kệ sách."
+        flash[:error] = "Something wrong."
         flash[:error] = @book_item.errors.full_messages.to_sentence
       end
     else 
@@ -72,9 +72,9 @@ class BookItemsController < ApplicationController
       @book_items = BookItem.where("shelf_id = ? AND book_id = ?", book_item_params[:shelf_id], book_id) if book_id.present?
       if @book_items.present?
         @book_items.destroy_all 
-        flash[:warning] = "Đã xóa sách."
+        flash[:warning] = "Book removed."
       else
-        flash[:warning] = "Không thể thêm sách vào kệ sách."
+        flash[:warning] = "Mission impossible."
       end
     end
     redirect_to :back
@@ -89,7 +89,7 @@ class BookItemsController < ApplicationController
   
   def book_item_owner
     unless current_user.id ==  @book_item.shelf.user_id
-      flash[:notice] = 'Access denied as you are not owner of this Book Item'
+      flash[:notice] = 'Access denied as you are not the owner of this Book Item'
       redirect_to :back
     end
   end

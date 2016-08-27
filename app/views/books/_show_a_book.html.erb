@@ -13,7 +13,7 @@
         <% unless defined?(source) && source == "goodreads" %>
         
           <div class="users-have-this-book" align="center">
-            <h4>Những thành viên chia sẻ sách này</h4>
+            <h4>Shared by</h4>
             <%= render partial: 'book_items/book_item_request', collection: @book_items, as: :book_item %>
           </div>
         <% end %>

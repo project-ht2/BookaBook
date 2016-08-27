@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # Create Categories
-['Sách chính trị', 'Sách khoa học', 'Sách kinh doanh', 'Sách giáo dục', 'Sách thiếu nhi', 'Truyện', 'Thể loại khác'].each do |c|
+['Politics', 'Science', 'Business', 'Academic', 'Children book', 'Fiction', 'Others'].each do |c|
   Category.create(name: c)
 end
 
@@ -39,9 +39,9 @@ end
 # 5 Đã trả sách
 # 6 Huỷ
 TransactionStatus.delete_all
-TransactionStatus.create! id: 1, name: "Đang yêu cầu"
-TransactionStatus.create! id: 2, name: "Đồng ý"
-TransactionStatus.create! id: 3, name: "Đã nhận sách"
-TransactionStatus.create! id: 4, name: "Trả sách"
-TransactionStatus.create! id: 5, name: "Đã trả sách"
-TransactionStatus.create! id: 6, name: "Huỷ"
+TransactionStatus.create! id: 1, name: "Requesting"
+TransactionStatus.create! id: 2, name: "Accepted"
+TransactionStatus.create! id: 3, name: "Received"
+TransactionStatus.create! id: 4, name: "Sending back"
+TransactionStatus.create! id: 5, name: "Returned"
+TransactionStatus.create! id: 6, name: "Cancel"
