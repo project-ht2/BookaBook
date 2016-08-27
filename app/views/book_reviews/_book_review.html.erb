@@ -1,7 +1,7 @@
 <% if !book_review.user_id.nil? %>
 	<div class="review-box effect">
 		<section class="notepaper">
-      <label>Đánh giá:</label><div class="review-rating" data-score="<%= book_review.rating %>"></div>
+      <label>Rating: </label><div class="review-rating" data-score="<%= book_review.rating %>"></div>
 		  <figure class="quote">
 		    <blockquote class="curly-quotes">
 		      <%= book_review.content %>

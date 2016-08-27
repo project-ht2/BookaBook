@@ -1,5 +1,5 @@
 <div class="container main-content">
-  <h3>Tất cả sách (<%= @books.count %>)</h3>
+  <h3>All books (<%= @books.count %>)</h3>
   <div class="books-list">
     <% @books.in_groups_of(3) do |g| %>
       <div class="row">
@@ -10,5 +10,5 @@
     <% end %>
   </div>
   <hr>
-  <%= link_to 'Thêm Sách', new_book_path, class: "btn btn-default" %>
+  <%= link_to 'New book', new_book_path, class: "btn btn-default" %>
 </div>

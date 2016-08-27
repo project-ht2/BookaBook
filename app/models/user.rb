@@ -73,8 +73,8 @@ class User < ApplicationRecord
   
   after_create do
 		Shelf.create({
-		  name: 'Mặc định',
-		  description: 'Mặc định',
+		  name: 'Default',
+		  description: 'Default',
 		  user: self
 		})
   end

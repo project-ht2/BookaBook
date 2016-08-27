@@ -19,7 +19,7 @@
         <!--Status la 5. Da nhan sach, thi Link to Transaction review hoac la Xoa transaction(optional)-->
         <% if transaction.transaction_status_id == 5 %>
         <div class="btn-group">
-          <%= link_to "Xoá Yêu Cầu", transaction, { data: { confirm: "Bạn muốn huỷ yêu cầu mượn sách '#{transaction.book_item.book.title}'?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+          <%= link_to "Cancel request", transaction, { data: { confirm: "Cancel request of '#{transaction.book_item.book.title}'?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
           <button class="btn btn-primary">Viết Nhận Xét</button>
         </div>
         <% end %>
@@ -28,18 +28,18 @@
     <div class="cart-center-pannel">
       <h4><%= transaction.book_item.book.title %></h4>
       <p>
-        Trạng thái: <strong><%= transaction.transaction_status.name %></strong><br/>
+        Status: <strong><%= transaction.transaction_status.name %></strong><br/>
         <% if current_user_is_borrower(transaction) %>
-          Người cho mượn: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
+          From: <strong><%= transaction.book_item.shelf.user.name %></strong><br/>
         <% end %>
         <% if current_user_is_lender(transaction) %>
-          Người mượn: <strong><%= User.find(transaction.borrower_id).name %></strong>
+          To: <strong><%= User.find(transaction.borrower_id).name %></strong>
         <% end %>
       </p>
       
       <p>
-        Hiện có: <strong><%= transaction.book_item.available_count %></strong> cuốn<br/>
-        Yêu cầu: <strong><%= transaction.quantity %></strong>
+        Availabe: <strong><%= transaction.book_item.available_count %></strong><br/>
+        Request: <strong><%= transaction.quantity %></strong>
       </p> 
     </div>
   </div>

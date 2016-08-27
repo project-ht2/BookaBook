@@ -2,9 +2,9 @@
   <%= f.hidden_field :sender_id, value: sender.id %>
   <%= f.hidden_field :receiver_id, value: receiver.id %>
   <div class="input-group">
-  <%= f.text_field :body, placeholder: "Tới #{receiver.name}...", class: "form-control" %>
+  <%= f.text_field :body, placeholder: "To #{receiver.name}...", class: "form-control" %>
   <span class="input-group-btn">
-    <%= f.submit "Gửi tin", class: "btn btn-primary" %>
+    <%= f.submit "Send", class: "btn btn-primary" %>
   </span>
   </div>
 <% end %>

@@ -3,9 +3,9 @@
     <div class="col-md-6 offset-md-3">
       <%= form_tag({controller: "users", action: "index"}, method: :get, class: "input-group") do %>
         <div class="input-group">
-          <%= text_field_tag(:q_user, nil, placeholder: "Tên thành viên...", class: "form-control") %>
+          <%= text_field_tag(:q_user, nil, placeholder: "Name or email...", class: "form-control") %>
           <span class="input-group-btn">
-            <%= submit_tag("Tìm", :name => nil, class: "btn btn-primary") %>    
+            <%= submit_tag("Find", :name => nil, class: "btn btn-primary") %>    
           </span>
         </div>
       <% end %>

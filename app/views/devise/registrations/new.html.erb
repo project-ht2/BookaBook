@@ -14,7 +14,7 @@
     		<ul>
     			<li class="unit price-primary active ">
     				<div class="price-title">
-    					<strong>TẠO TÀI KHOẢN</strong>
+    					<strong>CREATE NEW ACCOUNT</strong>
     				</div>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <div class="price-body">
@@ -35,7 +35,7 @@
                 </p>
             	</div>
               <div class="price-foot">
-                <%= f.submit "Đăng ký", class: "btn btn-primary" %><br/>
+                <%= f.submit "Create", class: "btn btn-primary" %><br/>
     					  <%= render "devise/shared/links" %>
               </div>
             <% end %>

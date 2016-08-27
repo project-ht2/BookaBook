@@ -1,5 +1,5 @@
 <% if !book.nil? %>
   <% if user_signed_in? %>
-    <%= link_to "Sửa", edit_book_path(book.id), class: "btn btn-primary btn-sm" %>
+    <%= link_to "Edit", edit_book_path(book.id), class: "btn btn-primary btn-sm" %>
   <% end %>
 <% end %>

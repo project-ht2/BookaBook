@@ -4,9 +4,9 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     
     if @message.save!
-      flash[:success] = "Một tín nhắn đã gửi."
+      flash[:success] = "Message sent."
     else
-      flash[:error] = "Lỗi khi gửi tin."
+      flash[:error] = "Can't send message."
     end
     
     redirect_to :back
@@ -16,9 +16,9 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     
     if @message.destroy
-      flash[:success] = "Tin nhắn đã được xoá."
+      flash[:success] = "Message removed."
     else
-      flash[:error] = "Lỗi khi xoá tin."
+      flash[:error] = "Can not remove message."
     end
     
     redirect_to :back
