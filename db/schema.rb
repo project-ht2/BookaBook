@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824040510) do
+ActiveRecord::Schema.define(version: 20160827184718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,8 +90,9 @@ ActiveRecord::Schema.define(version: 20160824040510) do
     t.integer  "target_id"
     t.integer  "rating"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "transaction_id"
   end
 
   create_table "transaction_statuses", force: :cascade do |t|

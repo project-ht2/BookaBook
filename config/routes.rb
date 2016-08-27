@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'transaction_reviews/create'
+
   post 'user_relationship/create'
   post 'user_relationship/destroy'
 
