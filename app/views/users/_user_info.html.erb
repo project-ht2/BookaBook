@@ -1,0 +1,27 @@
+<% if user.provider.nil? %>
+	<% social_link = nil %>
+<% else %>
+	<% social_link = "https://fb.com/#{user.uid}" %>
+<% end %>
+<div class="user-info clearfix">
+	<div class="user-name clearfix">
+		<h4><%= link_to user.name || user.email, user_path(user.id) %></h4>
+	</div>
+	<div class="avatar-block clearfix">
+		<%= link_to image_tag(user.avatar(150), class: "img-rounded big-avatar"), social_link || user %>
+	</div>
+	<hr>
+	<div class="contact-block clearfix" align="center">
+		<% if !user.provider.nil? %>
+			<a href="https://fb.com/<%= user.uid %>" class="fa fa-facebook-square fa-2x" title="Facebook"></a>
+		<% end %>
+		<a href="mailto:<%= user.email %>" class="fa fa-envelope-o fa-2x" title="Email"></a>
+		<%= render partial: "messages/create", locals: {sender: current_user, receiver: user} if signed_in? && current_user != user %>
+	</div>
+	<% if signed_in? && current_user != user %>
+		<div class="follow_button clearfix" align="center">
+			<%= follow_button(current_user.id, user.id) if current_user.id != user.id %>
+		</div>
+	<% end %>
+	<hr>
+</div>

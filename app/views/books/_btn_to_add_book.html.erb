@@ -1,6 +1,6 @@
 <% source = nil unless defined?(source) && source == "goodreads" %>
 <% if !book.nil? %>
-  <% if user_signed_in? && current_user != @user %>
+  <% if signed_in? && current_user != @user %>
   
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-sm" align="center" data-toggle="modal" data-target="#modal_<%= source.to_s + book.id.to_s %>">
@@ -15,7 +15,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Add a copy <strong><%= book.title %></strong> to your bookshelf.</h4>
+            <h4 class="modal-title" id="myModalLabel">Add a copy of <strong><%= book.title %></strong> to your bookshelf.</h4>
           </div>
           <%= form_for @book_item = BookItem.new do |f| %>
             <div class="modal-body">
@@ -29,7 +29,7 @@
                 <label class="col-md-3 col-form-label text-xs-right">
                   Quantity 
                 </label>
-                <%= f.number_field :quantity, :value => 1, min: 0, class: "form-control col-md-4", input_html: { min: '0' } %>
+                <%= f.number_field :quantity, :value => 1, min: 0, class: "form-control col-md-4", input_html: { min: "0" } %>
               </div>
             </div>
             <!--Assign book ID-->

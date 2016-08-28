@@ -2,13 +2,13 @@
   <div class="tab-content">
     <div class="tab-pane fade in active" id="all">
     	<div id="masonry-container" class="masonry-container transitions-enabled infinite-scroll clearfix">
-      	<%= render partial: 'book_items/book_item', collection: @user.book_items, as: :book_item %>
+      	<%= render partial: "book_items/book_item", collection: @user.book_items, as: :book_item %>
       </div>
     </div>
 		<% @user.shelves.each do |shelf| %>
 			<div class="tab-pane fade" id="shelf_<%= shelf.id %>">
 				<div id="masonry-container" class="masonry-container transitions-enabled infinite-scroll clearfix">
-					<%= render partial: 'book_items/book_item', collection: shelf.book_items, as: :book_item %>
+					<%= render partial: "book_items/book_item", collection: shelf.book_items, as: :book_item %>
 				</div>
 			</div>
 		<% end %>

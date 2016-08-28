@@ -1,0 +1,2 @@
+<% height = 60 unless defined?(height) %>
+<%= link_to image_tag(user.avatar(height), class: "img-rounded medium-avatar", :alt => user.name || user.email), user %>
