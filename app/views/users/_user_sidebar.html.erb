@@ -1,5 +1,6 @@
 <div class="user-sidebar clearfix">
 	<%= render partial: "users/user_info", object: @user, as: :user %>
+	<%= render partial: "messages/create_modal", locals: {sender: current_user, receiver: @user} if signed_in? && current_user != @user %>
 	<div class="user-shelf-btn-block">
 		<ul class="nav nav-pills nav-stacked ">
 			<li class="nav-item <%= "active" if current_page?(user_path)%>">
