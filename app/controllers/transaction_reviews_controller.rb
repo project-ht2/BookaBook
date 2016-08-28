@@ -1,7 +1,15 @@
 class TransactionReviewsController < ApplicationController
   def create
     build_review
-    @review.save
+
+    respond_to do |format|
+      if @review.save
+        format.js {}
+        format.json {render json: @review, status: :created, location: @review }
+      else
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

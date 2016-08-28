@@ -34,6 +34,8 @@ class User < ApplicationRecord
   has_many :followings, through: :following_relationship
   
   has_many :messages, class_name: 'Message'
+  has_many :transactions_reviews, foreign_key: 'reviewer_id', class_name: 'TransactionReview'
+  has_many :received_transaction_reviews, foreign_key: 'target_id', class_name: 'TransactionReview'
   
   scope :all_except, -> (user) { where.not(id: user) }
   
@@ -77,5 +79,11 @@ class User < ApplicationRecord
 		  description: 'Default',
 		  user: self
 		})
+  end
+
+  def already_review?(transaction_id)
+    self.transactions_reviews.any? do |review|
+      review.transaction_id = transaction_id
+    end
   end
 end

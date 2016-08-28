@@ -8,7 +8,7 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Review your transaction</h4>
       </div>
-      <%= form_for TransactionReview.new do |f| %>
+      <%= form_for(TransactionReview.new, remote:true) do |f| %>
           <div class="modal-body">
             <div class="form-inline row ">
               <label class="col-md-3 col-form-label text-xs-right">
