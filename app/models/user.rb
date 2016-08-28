@@ -22,7 +22,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
-         
+
   has_many :shelves, class_name: "Shelf"
   has_many :book_items, :through => :shelves
   has_many :book_reviews
@@ -32,19 +32,25 @@ class User < ApplicationRecord
   has_many :follower_relationship, foreign_key: "following_id", class_name: "UserRelationship"
   has_many :followers, through: :follower_relationship
   has_many :followings, through: :following_relationship
-  
+
   has_many :messages, class_name: "Message"
-  
+  has_many :transactions_reviews, foreign_key: 'reviewer_id', class_name: 'TransactionReview'
+  has_many :received_transaction_reviews, foreign_key: 'target_id', class_name: 'TransactionReview'
+
   scope :all_except, -> (user) { where.not(id: user) }
-  
+
   def avatar(height)
     if height
-      image_url.sub("?type=large","?height=#{height}") || "background/musroom.jpg"
+      if image_url
+        image_url.sub("?type=large","?height=#{height}") || "background/musroom.jpg"
+      else
+        "background/musroom.jpg"
+      end
     else
       image_url || "background/musroom.jpg"
     end
   end
-  
+
   def self.search(search)
     if search
       search_downcase = search.mb_chars.downcase.to_s
@@ -53,7 +59,7 @@ class User < ApplicationRecord
       all
     end
   end
-  
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -62,7 +68,7 @@ class User < ApplicationRecord
       user.name = auth.info.name   # assuming the user model has a name
     end
   end
-  
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -70,16 +76,22 @@ class User < ApplicationRecord
       end
     end
   end
-  
+
   before_save do
     self.name_downcase = self.name.mb_chars.downcase.to_s
   end
-  
+
   after_create do
-		Shelf.create({
-		  name: "Default",
-		  description: "Default",
-		  user: self
-		})
+    Shelf.create({
+                     name: "Default",
+                     description: "Default",
+                     user: self
+                 })
+  end
+
+  def already_review?(transaction_id)
+    self.transactions_reviews.any? do |review|
+      review.transaction_id = transaction_id
+    end
   end
 end
