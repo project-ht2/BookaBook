@@ -33,6 +33,11 @@ class Transaction < ApplicationRecord
       return {}
     end
   end
+
+  def lender
+    self.book_item.shelf.user
+  end
+
   private
     
     def quantity_not_greater_than_available_count
