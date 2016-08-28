@@ -23,7 +23,7 @@
               <%= f.text_area :content, class: 'form-control' %>
             </div>
           </div>
-          <%= f.hidden_field :rating, class: 'form-control' %>
+          <%= f.hidden_field :rating, id: 'book_review_rating', class: 'form-control' %>
           <%= f.hidden_field :transaction_id, value: transaction.id %>
           <% if current_user_is_borrower(transaction) %>
               <%= f.hidden_field :reviewer_id, value: current_user.id %>
