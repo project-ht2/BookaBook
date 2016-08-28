@@ -23,24 +23,26 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
          
-  has_many :shelves, class_name: 'Shelf'
+  has_many :shelves, class_name: "Shelf"
   has_many :book_items, :through => :shelves
   has_many :book_reviews
-  has_many :transactions, class_name: 'Transaction'
+  has_many :transactions, class_name: "Transaction"
 
-  has_many :following_relationship, foreign_key: 'follower_id', class_name: 'UserRelationship'
-  has_many :follower_relationship, foreign_key: 'following_id', class_name: 'UserRelationship'
+  has_many :following_relationship, foreign_key: "follower_id", class_name: "UserRelationship"
+  has_many :follower_relationship, foreign_key: "following_id", class_name: "UserRelationship"
   has_many :followers, through: :follower_relationship
   has_many :followings, through: :following_relationship
   
-  has_many :messages, class_name: 'Message'
-  has_many :transactions_reviews, foreign_key: 'reviewer_id', class_name: 'TransactionReview'
-  has_many :received_transaction_reviews, foreign_key: 'target_id', class_name: 'TransactionReview'
+  has_many :messages, class_name: "Message"
   
   scope :all_except, -> (user) { where.not(id: user) }
   
-  def avatar
-    image_url || "background/musroom.jpg"
+  def avatar(height)
+    if height
+      image_url.sub("?type=large","?height=#{height}") || "background/musroom.jpg"
+    else
+      image_url || "background/musroom.jpg"
+    end
   end
   
   def self.search(search)
@@ -75,15 +77,9 @@ class User < ApplicationRecord
   
   after_create do
 		Shelf.create({
-		  name: 'Default',
-		  description: 'Default',
+		  name: "Default",
+		  description: "Default",
 		  user: self
 		})
-  end
-
-  def already_review?(transaction_id)
-    self.transactions_reviews.any? do |review|
-      review.transaction_id = transaction_id
-    end
   end
 end

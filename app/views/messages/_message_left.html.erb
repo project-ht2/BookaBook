@@ -2,7 +2,7 @@
 <li class="media">
   <div class="media-left">
     <a href="<%= user_path(id: message.sender.id) %>">
-      <%= image_tag(message.sender.avatar, class: "media-object img-rounded avatar") %>
+      <%= image_tag(message.sender.avatar(40), class: "media-object img-rounded small-avatar") %>
     </a>
   </div>
   <div class="media-body">

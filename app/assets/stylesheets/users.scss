@@ -11,9 +11,17 @@
 	margin-top: 15px;
 }
 
-.avatar {
+.small-avatar {
   width: 40px;
   height: 40px;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.medium-avatar {
+  width: 80px;
+  height: 80px;
   overflow: hidden;
   background-position: center center;
   background-repeat: no-repeat;
