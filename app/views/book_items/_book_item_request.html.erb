@@ -1,6 +1,6 @@
 <% if !book_item.nil? %>
   <!-- Button trigger modal -->
-  <a data-target="#modal_book_item_<%= book_item.id.to_s %>" data-toggle="modal"><%= image_tag(book_item.shelf.user.avatar, class: "img-rounded avatar", :alt => book_item.shelf.user.name || book_item.shelf.user.email) %></a>
+  <a data-target="#modal_book_item_<%= book_item.id.to_s %>" data-toggle="modal"><%= image_tag(book_item.shelf.user.avatar(60), class: "img-rounded avatar", :alt => book_item.shelf.user.name || book_item.shelf.user.email) %></a>
   
   <!-- Modal Starting-->
   <div class="modal fade" id="modal_book_item_<%= book_item.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">

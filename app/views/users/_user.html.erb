@@ -1,7 +1,7 @@
-<% if user_signed_in? && current_user != @user %>
+<% if signed_in? && current_user != @user %>
   <div class="user-block">
     <div class="avatar-block" text-align="center">
-      <%= link_to image_tag(user.avatar, class: "img-rounded big-avatar"), user %>
+      <%= link_to image_tag(user.avatar(150), class: "img-rounded big-avatar"), user %>
       <h4 class="user-name"><%= link_to user.name || user.email, user %></h4>
     </div>
     <div class="book-btn" align="center">
