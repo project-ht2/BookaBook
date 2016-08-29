@@ -16,7 +16,7 @@
 			<a href="https://fb.com/<%= user.uid %>" class="fa fa-facebook-square fa-2x" title="Facebook"></a>
 		<% end %>
 		<a href="mailto:<%= user.email %>" class="fa fa-envelope-o fa-2x" title="Email"></a>
-		<%= render partial: "messages/create", locals: {sender: current_user, receiver: user} if signed_in? && current_user != user %>
+		<%= render partial: "messages/create_btn", locals: {sender: current_user, receiver: user} if signed_in? && current_user != user %>
 	</div>
 	<% if signed_in? && current_user != user %>
 		<div class="follow_button clearfix" align="center">
