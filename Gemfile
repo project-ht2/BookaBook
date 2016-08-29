@@ -46,7 +46,8 @@ gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 
 # I like font-awesome
-gem 'font-awesome-sass', '~> 4.6', '>= 4.6.2'
+# gem 'font-awesome-sass', '~> 4.6', '>= 4.6.2'
+gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 
 # Add masonry layout
 gem 'masonry-rails'
