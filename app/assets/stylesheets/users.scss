@@ -27,6 +27,19 @@
   background-repeat: no-repeat;
 }
 
+.polaroid {
+  text-align: center;
+  a {
+    display: inline-block;
+  	padding: 10px 10px 15px 10px;
+  	background: #fff;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  a:after {
+  content: attr(title);
+}
+}
+
 .big-avatar {
   width: 150px;
   height: 150px;
@@ -34,7 +47,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   display: block;
-  margin: 0 auto;
+  margin: 0px auto 12px auto;
 }
 
 .user-name {
