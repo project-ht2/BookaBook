@@ -18,3 +18,4 @@
 # Ignore Byebug command history file.
 .byebug_history
 /.idea/*
+/lib/tasks/kill_postgres_connections.rake
