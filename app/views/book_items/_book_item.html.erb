@@ -2,7 +2,12 @@
   <div class="<%= @size %>-book-block panel panel-default">
     <%= render partial: 'books/book_small', object: book_item.book, as: :book %>
     <div class="book-item-btn" align="center">
-      - Quantity: <%= book_item.quantity %> - <%= link_to 'Remove', book_item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" if @page_owner %>
+      - Available: <%= "#{book_item.available_count}/#{book_item.quantity}" %> - 
+      <% if @page_owner %>
+        <%= link_to 'Remove', book_item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" if @page_owner %>
+      <% else %>
+        <%= render partial: "book_items/book_item_request_btn", object: book_item, as: :book_item %>
+      <% end %>
     </div>
   </div>
 </div>
