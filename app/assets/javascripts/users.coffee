@@ -19,5 +19,5 @@ $(document).on 'turbolinks:load', ->
       if !$('.popover:hover').length
         $(_this).popover 'hide'
       return
-    ), 300
+    ), 200
     return
