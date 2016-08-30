@@ -37,6 +37,7 @@ $(document).on('turbolinks:load', function() {
   rv = bookReview();
   rv.initBookReview();
   rv.initReviewRatingList();
+    $('.rating-form').raty()
 
     transactionReview().onCreateAjax();
 });

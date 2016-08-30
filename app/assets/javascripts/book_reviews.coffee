@@ -11,5 +11,5 @@ window.bookReview = ->
           $(this).attr 'data-score'
         readOnly: true
       return
-
+      $('.rating-form').raty
   }

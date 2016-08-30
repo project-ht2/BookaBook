@@ -90,8 +90,10 @@ class User < ApplicationRecord
   end
 
   def already_review?(transaction_id)
-    self.transactions_reviews.any? do |review|
-      review.transaction_id = transaction_id
+    if self.transactions_reviews.find_by_transaction_id(transaction_id)
+      return true
+    else
+      return false
     end
   end
 end
