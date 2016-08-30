@@ -1,5 +1,4 @@
 <% height = 40 unless defined?(height) %>
-
 <span href="" data-toggle="popover" trigger="manual" data-placement="top" data-content='<%= render partial: "users/user_info", object: user, as: :user %>'>
   <%= image_tag(user.avatar(height), class: "img-rounded small-avatar") %>
 </span>
