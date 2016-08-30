@@ -20,6 +20,20 @@ class BookReviewsController < ApplicationController
 		@book_review.destroy
 		redirect_to @book
   end
+  
+  def upvote
+		@book_review = BookReview.find(params[:book_review_id])
+    @book_review.upvote_by current_user
+    
+    redirect_to :back
+  end
+  
+  def downvote
+		@book_review = BookReview.find(params[:book_review_id])
+    @book_review.downvote_by current_user
+    
+    redirect_to :back
+  end
 
 private
 
