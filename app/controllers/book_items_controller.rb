@@ -60,6 +60,7 @@ class BookItemsController < ApplicationController
       # Check if this book_item already in this shelf
       @book_item = BookItem.find_or_create_by(shelf_id: book_item_params[:shelf_id], book_id: @book.id)
       @book_item.quantity = book_item_params[:quantity]
+      @book_item.available_count = book_item_params[:quantity]
       
       if @book_item.save!
         flash[:success] = "You got a book."
