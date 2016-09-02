@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   get 'goodreads/:goodreads_id' => 'books#show_goodreads'
 
   resources :books
-  resources :book_reviews
+  resources :book_reviews do
+    put "like", to: "book_reviews#upvote"
+    put "dislike", to: "book_reviews#downvote"
+  end
+  
   resources :book_items
   resources :shelves
   

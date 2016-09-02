@@ -13,6 +13,7 @@ class BookReview < ApplicationRecord
   belongs_to :book
   belongs_to :user
   
+  acts_as_votable
   
   def find_reviewer_email
     @user = User.find(self.user_id)
