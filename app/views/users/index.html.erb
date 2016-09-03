@@ -1,5 +1,10 @@
 <%= render "user_header" %>
 <div class="container main-content">
   <h4>Members:</h4>
-    <%= render partial: "user", collection: @users %>
+  <% @users.each do |user| %>
+    <div class="user-block">
+      <%= render partial: "user_info", object: user, as: :user %>
+      <%= render partial: "messages/create_modal", object: user, as: :receiver, locals: {sender: current_user} if signed_in? %>
+    </div>
+  <% end %>
 </div>
