@@ -12,6 +12,8 @@
       <div class="review-rating" data-score="<%= book.rating %>"></div>
     <% end %>
     <hr>
-    <p class="book-description"><%= description_replacement(book).html_safe %></p>
+    <p class="book-description">
+      <%= description_replacement(book).html_safe %>
+    </p>
   </div>
 <% end %>

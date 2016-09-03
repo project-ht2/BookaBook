@@ -8,11 +8,8 @@
 				</blockquote>
 				<figcaption class="quote-by">— <%= book_review.user.name || book_review.user.email %></figcaption>
 			</figure>
-			<%= link_to(fa_icon("thumbs-up", class: "fa"), book_review_like_path(book_review), method: :put) %>
-			<span class="glyphicon glyphicon-heart"><%= book_review.get_upvotes.size %></span> | 
-			<%= link_to(fa_icon("thumbs-down", class: "fa"), book_review_like_path(book_review), method: :put) %>
-			<span class="glyphicon glyphicon-heart"><%= book_review.get_downvotes.size %></span>
-		  </button>
+			<%= link_to(fa_icon("thumbs-up", class: "fa"), book_review_like_path(book_review), method: :put) %><%= book_review.get_upvotes.size %> | 
+			<%= link_to(fa_icon("thumbs-down", class: "fa"), book_review_dislike_path(book_review), method: :put) %><%= book_review.get_downvotes.size %>
 		</section>
 	</div>
 	<br>
