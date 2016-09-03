@@ -1,4 +1,6 @@
 <div class="user-right-panel">
+	<h3>Your bookshelves</h3>
+	<hr/>
   <div class="tab-content">
     <div class="tab-pane fade in active" id="all">
     	<div id="masonry-container" class="masonry-container transitions-enabled infinite-scroll clearfix">
@@ -13,4 +15,10 @@
 			</div>
 		<% end %>
 	</div>
+	<h3>Your recent reviews</h3>
+	<hr/>
+	<%= render partial: 'book_reviews/book_review', collection: (@book_reviews = @user.book_reviews.last(5).reverse), as: :book_review %>
+	<h3>Your recent wishlist</h3>
+	<hr></hr>
+	
 </div>
