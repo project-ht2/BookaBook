@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :transactions, only: [:create, :update, :destroy]
   resources :books
   resources :user_categories
+  resources :user_groups
 
   get 'book_reviews/create'
   get 'goodreads/:goodreads_id' => 'books#show_goodreads'
