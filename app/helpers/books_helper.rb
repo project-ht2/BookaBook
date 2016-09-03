@@ -10,7 +10,7 @@ module BooksHelper
   def description_replacement(book)
     if book.nil? || book.description.nil?
       "..."
-    elsif @col_wide == 'col-md-4'
+    elsif @size == 'small'
       truncate(book.description, :length => 100, :separator => ' ', :escape => false)
     else
       book.description
