@@ -14,7 +14,11 @@
         
           <div class="users-have-this-book" align="center">
             <h4>Shared by</h4>
-            <%= render partial: "book_items/book_item_request", collection: @book_items, as: :book_item %>
+            <% if @book_items.count > 0 %>
+              <%= render partial: "book_items/book_item_request", collection: @book_items, as: :book_item %>
+            <% else %>
+              No one has this book to share
+            <% end %>
           </div>
         <% end %>
       </div>
