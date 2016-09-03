@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903044453) do
+ActiveRecord::Schema.define(version: 20160903142257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,10 +185,22 @@ ActiveRecord::Schema.define(version: 20160903044453) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "is_fulfilled"
+    t.index ["book_id"], name: "index_wishlists_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_wishlists_on_user_id", using: :btree
+  end
+
   add_foreign_key "book_items", "books"
   add_foreign_key "book_items", "shelves"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "transactions", "book_items"
   add_foreign_key "transactions", "transaction_statuses"
+  add_foreign_key "wishlists", "books"
+  add_foreign_key "wishlists", "users"
 end

@@ -2,20 +2,14 @@
 	<div class="review-box effect">
 		<section class="notepaper">
       <label>Rating: </label><div class="review-rating" data-score="<%= book_review.rating %>"></div>
-		  <figure class="quote">
-		    <blockquote class="curly-quotes">
-		      <%= book_review.content %>
-		    </blockquote>
-		    <figcaption class="quote-by">— <%= book_review.user.name || book_review.user.email %></figcaption>
-		  </figure>
-		  <button class="btn btn-default">
-		  	<i class="fa fa-icon-thumbs-up"></i><%= link_to "Upvote", book_review_like_path(book_review), method: :put%>
-			<span class="glyphicon glyphicon-heart"><%= book_review.get_upvotes.size %></span>
-		  </button>
-		  <button class="btn btn-default">
-		  	<i class="fa fa-icon-thumbs-down"></i><%= link_to "Downvote", book_review_dislike_path(book_review), method: :put%>
-			<span class="glyphicon glyphicon-heart"><%= book_review.get_downvotes.size %></span>
-		  </button>
+			<figure class="quote">
+				<blockquote class="curly-quotes">
+					<%= book_review.content %>
+				</blockquote>
+				<figcaption class="quote-by">— <%= book_review.user.name || book_review.user.email %></figcaption>
+			</figure>
+			<%= link_to(fa_icon("thumbs-up", class: "fa"), book_review_like_path(book_review), method: :put) %><%= book_review.get_upvotes.size %> | 
+			<%= link_to(fa_icon("thumbs-down", class: "fa"), book_review_dislike_path(book_review), method: :put) %><%= book_review.get_downvotes.size %>
 		</section>
 	</div>
 	<br>

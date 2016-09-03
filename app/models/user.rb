@@ -37,17 +37,19 @@ class User < ApplicationRecord
   has_many :transactions_reviews, foreign_key: 'reviewer_id', class_name: 'TransactionReview'
   has_many :received_transaction_reviews, foreign_key: 'target_id', class_name: 'TransactionReview'
 
+  has_many :wishlists, class_name: "Wishlist"
+
   scope :all_except, -> (user) { where.not(id: user) }
 
   def avatar(height)
     if height
       if image_url
-        image_url.sub("?type=large","?height=#{height}") || "background/musroom.jpg"
+        image_url.sub("?type=large","?height=#{height}") || "background/avatar.png"
       else
-        "background/musroom.jpg"
+        "background/avatar.png"
       end
     else
-      image_url || "background/musroom.jpg"
+      image_url || "background/avatar.png"
     end
   end
 

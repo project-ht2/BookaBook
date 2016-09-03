@@ -19,8 +19,10 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
   
   .clearfix {
     overflow: auto;
-    
-    .small-book-right-sidebar {
+  }
+}
+
+.small-book-right-sidebar {
       margin-left: 145px;
       
       .small-book-info {
@@ -38,8 +40,6 @@ $book-cover-shadow:         4px 3px 10px 4px rgba(0, 0, 0, .4) !default;
         }
       }
     }
-  }
-}
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }

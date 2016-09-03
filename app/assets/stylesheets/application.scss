@@ -29,6 +29,10 @@ body {
   padding-top: 50px;
 }
 
+.navbar {
+  padding: 0.5rem 0rem;
+}
+
 /*landing page*/
 .authentication-background {
   background-image: image-url('background/authentication.jpg');
@@ -83,7 +87,7 @@ body {
 /*form envelope start*/
 .form-envelope-outside {
   @include box-shadow($value: $envelope-shadow);
-  background-image: repeating-linear-gradient(135deg, #d85064 0, #d85064 50px, transparent 50px, transparent 80px, #4b578c 80px, #4b578c 130px, transparent 130px, transparent 160px);
+  background-image: repeating-linear-gradient(135deg,  $cherry-dark 0,  $cherry-dark 50px, $white 50px, $white 80px, $pacifica-dark 80px, $pacifica-dark 130px, $white 130px, $white 160px);
   padding: 15px;
 }
 .form-envelope-inside {
@@ -91,4 +95,3 @@ body {
   padding: 15px;
 }
 /*form envelope end*/
-
