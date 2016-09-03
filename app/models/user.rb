@@ -37,6 +37,8 @@ class User < ApplicationRecord
   has_many :transactions_reviews, foreign_key: 'reviewer_id', class_name: 'TransactionReview'
   has_many :received_transaction_reviews, foreign_key: 'target_id', class_name: 'TransactionReview'
 
+  has_many :wishlists, class_name: "Wishlist"
+
   scope :all_except, -> (user) { where.not(id: user) }
 
   def avatar(height)

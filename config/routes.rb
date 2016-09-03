@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations' }
   
+  # Route for wishlist
+  resources :wishlist, only: [:create, :destroy]
+  
   # Route to search for book
   get 'book/search' => 'books#search'
   

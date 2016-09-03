@@ -17,7 +17,11 @@
             <% if @book_items.count > 0 %>
               <%= render partial: "book_items/book_item_request", collection: @book_items, as: :book_item %>
             <% else %>
-              No one has this book to share
+              <% if (wl = current_user.wishlists.where(book_id: @book.id)).exists? %>
+                You sent a requested for everybody.<%= render partial: "wishlist/btn_to_del_wishlist", locals: {wishlist: wl[0]} %>
+              <% else %>
+                Want to request this book? <%= render partial: "wishlist/btn_to_add_wishlist", locals: {book: @book, user: current_user} %>
+              <% end %>
             <% end %>
           </div>
         <% end %>
