@@ -1,6 +1,6 @@
 <% if !book_item.nil? %>
   <!-- Button trigger modal -->
-  <a data-target="#modal_book_item_<%= book_item.id.to_s %>" data-toggle="modal"><%= render partial: "users/user_small_avatar", object: book_item.shelf.user, as: :user %></a>
+  <%= render partial: "users/user_small_avatar", object: book_item.shelf.user, as: :user, locals: {book_item: book_item} %>
   
   <!-- Modal Starting-->
   <div class="modal fade" id="modal_book_item_<%= book_item.id.to_s %>" tabindex="-1" role="dialog" aria-hidden="true">

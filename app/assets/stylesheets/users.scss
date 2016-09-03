@@ -60,8 +60,12 @@
   height: 100%;
 }
 
+.user-info {
+  // display: inline-block;
+}
+
 .user-block {
-  float: left;
+  display: inline-block;
   margin: 5px;
   width: 200px;
   padding-top: 5px;
