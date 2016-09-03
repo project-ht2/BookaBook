@@ -42,12 +42,12 @@ class User < ApplicationRecord
   def avatar(height)
     if height
       if image_url
-        image_url.sub("?type=large","?height=#{height}") || "background/musroom.jpg"
+        image_url.sub("?type=large","?height=#{height}") || "background/avatar.png"
       else
-        "background/musroom.jpg"
+        "background/avatar.png"
       end
     else
-      image_url || "background/musroom.jpg"
+      image_url || "background/avatar.png"
     end
   end
 
