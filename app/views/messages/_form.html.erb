@@ -2,7 +2,7 @@
   <%= f.hidden_field :sender_id, value: sender.id %>
   <%= f.hidden_field :receiver_id, value: receiver.id %>
   <div class="input-group">
-  <%= f.text_field :body, placeholder: "To #{receiver.name}...", class: "form-control" %>
+  <%= f.text_field :body, placeholder: "Type something...", class: "form-control" %>
   <span class="input-group-btn">
     <%= f.submit "Send", class: "btn btn-primary" %>
   </span>
