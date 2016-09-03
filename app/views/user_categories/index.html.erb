@@ -1,0 +1,10 @@
+<div class="container">
+<div class="row">
+  <% @categories.each do |category| %>
+    <div class="jumbotron text-center col-md-6 col-xs-12">
+      <h1 class="display-3"><%= category.name %></h1>
+      <%= link_to :explore, user_category_path(category), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+</div>
