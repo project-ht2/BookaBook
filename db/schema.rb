@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20160903142257) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "book_threads", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "book_id"
+    t.integer  "user_group_id"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.integer  "author_id"

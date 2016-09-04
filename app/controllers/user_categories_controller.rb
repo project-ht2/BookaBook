@@ -4,6 +4,6 @@ class UserCategoriesController < ApplicationController
   end
 
   def show
-    
+    @category = UserCategory.find(params[:id])
   end
 end
