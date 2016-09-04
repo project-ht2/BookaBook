@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'thread_posts/create'
+
   get 'transaction_reviews/create'
 
   post 'user_relationship/create'
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
   resources :books
   resources :user_categories
   resources :user_groups
+  resources :book_threads, only: [:show]
+  resources :thread_posts
 
   get 'book_reviews/create'
   get 'goodreads/:goodreads_id' => 'books#show_goodreads'
