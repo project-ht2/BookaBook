@@ -22,6 +22,10 @@
           </div>
           <div class="users-have-this-book" align="center">
             <h4>Wishlist</h4>
+            <% @book.wishlists.each do |wishlist| %>
+		          <%= render partial: "users/user_small_avatar_link", locals: {user: wishlist.user} %>
+		        <% end %>
+		        <br/>
             <% if (wl = current_user.wishlists.where(book_id: @book.id)).exists? %>
               You sent a requested for everybody.<%= render partial: "wishlist/btn_to_del_wishlist", locals: {wishlist: wl[0]} %>
             <% else %>
