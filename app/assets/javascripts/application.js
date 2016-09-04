@@ -40,4 +40,5 @@ $(document).on('turbolinks:load', function() {
     $('.rating-form').raty()
 
     transactionReview().onCreateAjax();
+    $("[data-toggle=tooltip]").tooltip();
 });
