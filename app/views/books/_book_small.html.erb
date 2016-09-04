@@ -6,6 +6,7 @@
         <div class="book-btn" align="center">
           <%= render partial: 'books/btn_to_add_book', object: book, as: :book, locals: {source: source} %>
         </div>
+        <%= render partial: 'wishlist/wishlist', locals: {book: book} %>
       </div>
       <div class="small-book-right-sidebar">
         <%= render partial: 'books/book_info', object: book, as: :book, locals: {source: source} %>
