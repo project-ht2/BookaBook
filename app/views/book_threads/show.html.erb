@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <% @thread.thread_posts.each do |post| %>
+        <div class="col-sm-8">
+          <div class="panel panel-white post panel-shadow">
+            <div class="post-heading">
+              <div class="pull-left image">
+                <!--<img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">-->
+                <img src="<%= post.user.avatar %>" class="img-circle avatar" alt="user profile image">
+              </div>
+              <div class="pull-left meta">
+                <div class="title h5">
+                  <a href="#"><b><%= post.user.name %></b></a>
+                </div>
+                <h6 class="text-muted time"><%= time_ago_in_words(post.created_at) %></h6>
+              </div>
+            </div>
+            <div class="post-description">
+              <!--<p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>-->
+              <p><%= post.content %></p>
+              <div class="stats">
+                <a href="#" class="btn btn-default stat-item">
+                  <i class="fa fa-thumbs-up icon"></i>2
+                </a>
+                <a href="#" class="btn btn-default stat-item">
+                  <i class="fa fa-thumbs-down icon"></i>12
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <h3>Add your comment</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="widget-area no-padding blank">
+        <div class="status-upload">
+          <%= form_for @post do |f| %>
+              <%= f.text_area :content, placeholder: 'What do you think?' %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :thread_id, value: @thread.id %>
+              <ul>
+                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+                <li><a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+              </ul>
+              <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Post</button>
+          <% end %>
+        </div><!-- Status Upload  -->
+      </div><!-- Widget Area -->
+    </div>
+  </div>
+</div>

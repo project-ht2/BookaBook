@@ -9,6 +9,7 @@
             <%= link_to image_tag(current_user.avatar(40), class: "img-rounded small-avatar"), current_user %>
             <%= link_to "Transaction", cart_path, class: "btn btn-link" %>
             <%= link_to "Members", users_path, class: "btn btn-link" %>
+            <%= link_to "Paths", user_categories_path, class: "btn btn-link" %>
             <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
         <% else %>
           <%= link_to "Create new account", new_user_registration_path, class: "btn btn-primary" %> 

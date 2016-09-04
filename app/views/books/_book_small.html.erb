@@ -1,14 +1,13 @@
-<% @size ||= "small" %>
 <% source = nil unless defined?(source) && source == "goodreads" %>
 <% if !book.nil? %>
     <div class="clearfix">
-      <div class="<%= @size %>-book-left-sidebar">
+      <div class="small-book-left-sidebar">
         <%= render partial: 'books/book_cover', object: book, as: :book, locals: {source: source} %>
         <div class="book-btn" align="center">
           <%= render partial: 'books/btn_to_add_book', object: book, as: :book, locals: {source: source} %>
         </div>
       </div>
-      <div class="<%= @size %>-book-right-sidebar">
+      <div class="small-book-right-sidebar">
         <%= render partial: 'books/book_info', object: book, as: :book, locals: {source: source} %>
       </div>
     </div>

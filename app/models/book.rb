@@ -17,6 +17,8 @@ class Book < ApplicationRecord
   has_many :book_reviews
   has_many :ratings, :through => :book_reviews, :source => :rating
 
+  has_many :wishlists, class_name: "Wishlist"
+  
   validates :title, presence: true
   validates :isbn, uniqueness: true, :allow_blank => true, :allow_nil => true
     

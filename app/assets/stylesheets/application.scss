@@ -9,8 +9,9 @@
 // @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "masonry/transitions";
+@import "book_threads";
 
-$envelope-shadow:                  0 1px 2px rgba(0, 0, 0, .2) !default;
+$envelope-shadow: 0 1px 2px rgba(0, 0, 0, .2) !default;
 
 html,
 
@@ -27,6 +28,10 @@ body {
 
 .above-navbar {
   padding-top: 50px;
+}
+
+.navbar {
+  padding: 0.5rem 0rem;
 }
 
 /*landing page*/
@@ -83,7 +88,7 @@ body {
 /*form envelope start*/
 .form-envelope-outside {
   @include box-shadow($value: $envelope-shadow);
-  background-image: repeating-linear-gradient(135deg, #d85064 0, #d85064 50px, transparent 50px, transparent 80px, #4b578c 80px, #4b578c 130px, transparent 130px, transparent 160px);
+  background-image: repeating-linear-gradient(135deg,  $cherry-dark 0,  $cherry-dark 50px, $white 50px, $white 80px, $pacifica-dark 80px, $pacifica-dark 130px, $white 130px, $white 160px);
   padding: 15px;
 }
 .form-envelope-inside {
@@ -91,4 +96,3 @@ body {
   padding: 15px;
 }
 /*form envelope end*/
-

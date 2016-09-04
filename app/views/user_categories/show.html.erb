@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+  <ul class="list-group col-xs-6">
+    <% @category.groups.each do |group| %>
+        <%= link_to(group) do %>
+          <li class="list-group-item"><%= group.name %></li>
+            <% end %>
+    <% end %>
+  </ul>
+  </div>
+</div>

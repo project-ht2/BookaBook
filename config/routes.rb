@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'thread_posts/create'
+
   get 'transaction_reviews/create'
 
   post 'user_relationship/create'
@@ -8,6 +10,10 @@ Rails.application.routes.draw do
   resource :cart, only: [:show]
   resources :transactions, only: [:create, :update, :destroy]
   resources :books
+  resources :user_categories
+  resources :user_groups
+  resources :book_threads, only: [:show]
+  resources :thread_posts
 
   get 'book_reviews/create'
   get 'goodreads/:goodreads_id' => 'books#show_goodreads'
@@ -24,6 +30,9 @@ Rails.application.routes.draw do
   resources :messages, only: [:create, :destroy]
   
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => 'registrations' }
+  
+  # Route for wishlist
+  resources :wishlist, only: [:create, :destroy]
   
   # Route to search for book
   get 'book/search' => 'books#search'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830155305) do
+ActiveRecord::Schema.define(version: 20160903142257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20160830155305) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "book_threads", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "book_id"
+    t.integer  "user_group_id"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.integer  "author_id"
@@ -67,6 +76,13 @@ ActiveRecord::Schema.define(version: 20160830155305) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "category_groups", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "group_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "receiver_id"
@@ -83,6 +99,14 @@ ActiveRecord::Schema.define(version: 20160830155305) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "thread_posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "thread_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "transaction_reviews", force: :cascade do |t|
@@ -110,6 +134,20 @@ ActiveRecord::Schema.define(version: 20160830155305) do
     t.datetime "updated_at",            null: false
     t.index ["book_item_id"], name: "index_transactions_on_book_item_id", using: :btree
     t.index ["transaction_status_id"], name: "index_transactions_on_transaction_status_id", using: :btree
+  end
+
+  create_table "user_categories", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "user_relationships", force: :cascade do |t|
@@ -155,10 +193,22 @@ ActiveRecord::Schema.define(version: 20160830155305) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "is_fulfilled"
+    t.index ["book_id"], name: "index_wishlists_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_wishlists_on_user_id", using: :btree
+  end
+
   add_foreign_key "book_items", "books"
   add_foreign_key "book_items", "shelves"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "transactions", "book_items"
   add_foreign_key "transactions", "transaction_statuses"
+  add_foreign_key "wishlists", "books"
+  add_foreign_key "wishlists", "users"
 end
