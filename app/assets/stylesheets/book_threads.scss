@@ -225,3 +225,17 @@ body .no-padding {
 .post .post-footer .comments-list .comment > .comments-list {
   margin-left: 50px;
 }
+
+.course {
+  border-bottom-left-radius: 100px;
+  border-top-left-radius: 100px;
+  margin-bottom: 1.25em;
+  min-height: 70px;
+  overflow: hidden;
+  padding-left: 130px;
+}
+
+.card--a {
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
