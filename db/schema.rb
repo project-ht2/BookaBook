@@ -101,6 +101,14 @@ ActiveRecord::Schema.define(version: 20160903142257) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "thread_posts", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "thread_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "transaction_reviews", force: :cascade do |t|
     t.integer  "reviewer_id"
     t.integer  "target_id"

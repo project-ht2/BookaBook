@@ -41,7 +41,7 @@ class User < ApplicationRecord
 
   scope :all_except, -> (user) { where.not(id: user) }
 
-  def avatar(height)
+  def avatar(height = nil)
     if height
       if image_url
         image_url.sub("?type=large","?height=#{height}") || "background/avatar.png"
