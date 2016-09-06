@@ -52,13 +52,15 @@ UserCategory.create!([
                      ])
 
 UserGroup.create!([
-                      {name: "HTML", description: "HTML is the languages you can use to build websites. In these courses, you’ll learn the basics of HTML , build your first website, and then review some of the current HTML5 best practices.", image_url: "http://fontmeme.com/images/HTML-5-Logo.jpg"},
+                      {name: "HTML", description: "HTML is the languages you can use to build websites. In these courses, you’ll learn the basics of HTML , build your first website.", image_url: "http://fontmeme.com/images/HTML-5-Logo.jpg"},
                       {name: "Ruby Fundamentals", description: "Ruby is an expressive, dynamic programming language. Ruby on Rails is an open source web framework for building custom web applications.", image_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ4EbWTTCIRXYm4FzqQ-1yFdpD-1itziN9tyEtOAMYpNweSnfhe_Q"},
-                      {name: "CSS", description: "Simple CSS can get you pretty far, but once you start getting serious about front-end development, you need to get exposed to more advanced topics, such as specificity, floating, animations, and responsive design", image_url: "http://www.syntaxxx.com/wp-content/uploads/2014/01/intro-to-css3-logo-300.png"},
-                      {name: "Angular 2", description: "Angular 2 is the next version of Google’s massively popular MV* framework for building complex applications in the browser (and beyond).", image_url: "http://javier.xyz/docs2epub/assets/book_angular2.jpg"}
+                      {name: "CSS", description: "Simple CSS can get you pretty far, but once you start getting serious about front-end development, you need to get exposed to more advanced topics.", image_url: "http://www.syntaxxx.com/wp-content/uploads/2014/01/intro-to-css3-logo-300.png"},
+                      {name: "Angular 2", description: "Angular 2 is the next version of Google’s massively popular MV* framework for building complex applications in the browser (and beyond).", image_url: "/assets/background/Angular2.jpg"}
                   ])
 
 CategoryGroup.create!([
-                          {category_id: UserCategory.where(name: 'developer').id, group_id: UserGroup.where(name: 'HTML').id},
-                          {category_id: UserCategory.where(name: 'developer').id, group_id: UserGroup.where(name: 'Ruby Fundamentals').id}
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'HTML').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'CSS').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'Ruby Fundamentals').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'Angular 2').first}
                       ])
