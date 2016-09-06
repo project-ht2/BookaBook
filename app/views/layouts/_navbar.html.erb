@@ -5,7 +5,7 @@
       
       <form class="form-inline pull-xs-right">
         <% if signed_in? %>
-            <li class="dropdown" style="width: 180px;">
+            <li class="dropdown" style="width: 180px;list-style: none;">
             <%= link_to "Hello #{current_user.name || current_user.email}", current_user, class: "navbar-link dropdown-toggle", :data => {:toggle => 'dropdown'} %>
             <%= link_to image_tag(current_user.avatar(40), class: "img-rounded small-avatar"), current_user %>
               <ul class="dropdown-menu" role="menu">
