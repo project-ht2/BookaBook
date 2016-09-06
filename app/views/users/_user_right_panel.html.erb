@@ -15,7 +15,7 @@
 		<% end %>
 	</div>
 	<hr/>
-	<h3>Recent transaction review to you</h3>
+	<h3>Reviews from others</h3>
 	<%= render partial: 'transaction_reviews/transaction_review', collection: @transaction_reviews = TransactionReview.where(target_id: @user.id), as: :transaction_review %>
 	<hr/>
 	<h3>Your recent reviews</h3>
