@@ -19,11 +19,10 @@
           <!--Status la 5. Da nhan sach, thi Link to Transaction review hoac la Xoa transaction(optional)-->
           <% if transaction.transaction_status_id == 5 %>
               <div class="btn-group">
-                <%= link_to "Cancel request", transaction, { data: { confirm: "Cancel request of '#{transaction.book_item.book.title}'?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
                 <% if current_user.already_review? transaction.id %>
                     <div id="already_review_btn_<%= transaction.id %>" class="btn btn-secondary">Already Review</div>
                 <% else %>
-                    <button id="transaction_review_btn_<%= transaction.id %>" class="btn btn-primary" data-toggle="modal" data-target="#modal_review_<%= transaction.id %>">Viết Nhận Xét</button>
+                    <button id="transaction_review_btn_<%= transaction.id %>" class="btn btn-primary" data-toggle="modal" data-target="#modal_review_<%= transaction.id %>">Review</button>
                     <div id="already_review_btn_<%= transaction.id %>" class="btn btn-secondary" style="display: none;">Already Review</div>
                 <% end %>
               </div>

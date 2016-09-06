@@ -46,17 +46,25 @@ TransactionStatus.create! id: 4, name: "Sending back"
 TransactionStatus.create! id: 5, name: "Returned"
 TransactionStatus.create! id: 6, name: "Cancel"
 
-UserCategory.create!([
-                         {name: "Developer", description: "Web developer category"},
-                         {name: "Designer", description: "Designer class"}
+UserCategory.create([
+                         {name: "Developer", description: "This is the path for Developer students."},
+                         {name: "Designer", description: "This is the path for Designer students."}
                      ])
 
-UserGroup.create!([
-                      {name: "html", description: "Group for learning HTML"},
-                      {name: "Ruby fundamentals", description: "All about Ruby language"}
+UserGroup.create([
+                      {name: "HTML", description: "HTML is the languages you can use to build websites. In these courses, you’ll learn the basics of HTML , build your first website.", image_url: "http://fontmeme.com/images/HTML-5-Logo.jpg"},
+                      {name: "Ruby Fundamentals", description: "Ruby is an expressive, dynamic programming language. Ruby on Rails is an open source web framework for building custom web applications.", image_url: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ4EbWTTCIRXYm4FzqQ-1yFdpD-1itziN9tyEtOAMYpNweSnfhe_Q"},
+                      {name: "CSS", description: "Simple CSS can get you pretty far, but once you start getting serious about front-end development, you need to get exposed to more advanced topics.", image_url: "http://www.syntaxxx.com/wp-content/uploads/2014/01/intro-to-css3-logo-300.png"},
+                      {name: "Angular 2", description: "Angular 2 is the next version of Google’s massively popular MV* framework for building complex applications in the browser (and beyond).", image_url: "/assets/background/Angular2.jpg"},
+                      {name: "Mark's book list", description: "23 books Mark Zuckerberg thinks everyone should read. Facebook CEO Mark Zuckerberg has a single mission: to connect people around the world.", image_url: "http://a4.files.biography.com/image/upload/c_fill,cs_srgb,dpr_1.0,g_face,h_300,q_80,w_300/MTIwNjA4NjMzNjg3ODAzNDA0.jpg"},
+                      {name: "UX Design", description: "User experience design (UX, UXD, UED or XD) is the process of enhancing user satisfaction by improving the usability, accessibility, and pleasure", image_url: "http://www.howdesign.com/wp-content/uploads/UX-Design-.png"}
                   ])
 
-CategoryGroup.create!([
-                          {category_id: UserCategory.where(name: 'developer').id, group_id: UserGroup.where(name: 'html').id},
-                          {category_id: UserCategory.where(name: 'developer').id, group_id: UserGroup.where(name: 'Ruby fundamentals').id}
+CategoryGroup.create([
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'HTML').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'CSS').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'Ruby Fundamentals').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: 'Angular 2').first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: "Mark's book list").first},
+                          {category: UserCategory.where(name: 'Developer').first, group: UserGroup.where(name: "UX Design").first}
                       ])

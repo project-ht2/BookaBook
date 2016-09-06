@@ -3,4 +3,5 @@ class UserGroup < ApplicationRecord
   has_many :categories, through: :category_groups
 
   has_many :book_threads
+  validates :name, uniqueness: true
 end
