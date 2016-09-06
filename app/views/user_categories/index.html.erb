@@ -1,10 +1,17 @@
-<div class="container">
-<div class="row">
-  <% @categories.each do |category| %>
-    <div class="jumbotron text-center col-md-6 col-xs-12">
-      <h1 class="display-3"><%= category.name %></h1>
-      <%= link_to :explore, user_category_path(category), class: 'btn btn-primary' %>
+<div class="row" style="position: relative;">
+  <h3 class="category-title">What side are you on?</h3>
+  <div class="col-xs-6" style="padding: 0px; position: relative;">
+    <div class="overlay">
+      <div class="jumbotron text-center developer-background">
+        <%= link_to 'Developer', user_category_path(@categories.first), class: 'cus-btn' %>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+    <div class="col-xs-6" style="padding: 0px; position: relative;">
+      <div class="overlay">
+      <div class="jumbotron text-center designer-background">
+        <%= link_to 'Designer', user_category_path(@categories.last), class: 'cus-btn' %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -296,3 +296,70 @@ body .no-padding {
   height: 300px;
   background-position-y: -181px;
 }
+
+.developer-background {
+  background-image: image-url('background/developer.jpg');
+  height: 400px;
+  background-size: cover;
+  background-position-x: -106px;;
+}
+
+.designer-background {
+  background-image: image-url('background/designer.jpg');
+  height: 400px;
+  background-size: cover;
+  background-position-x: -106px;;
+}
+
+.category-title {
+  position: absolute;
+  z-index: 10;
+  left: 38%;
+  top: -2%;
+  color: #ddd;
+  font-weight: 300;
+}
+
+.overlay {
+  position: relative;
+}
+
+.overlay:after {
+  content: '\A';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,0.6);
+  opacity: 1;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+}
+
+.overlay:hover:after {
+  opacity: 0;
+}
+
+.cus-btn {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding-left: 5em;
+  padding-right: 5em;
+  line-height: 2.5;
+  display: inline-block;
+  border-radius: 100px;
+  position: absolute;
+  left: 28%;
+  font-weight: 600;
+  top: 73%;
+  z-index: 100;
+}
+
+.cus-btn:hover {
+  background-color: rgba(255,255,255,0.2);
+  border-color: #fff;
+  color: #fff;
+}
