@@ -1,0 +1,13 @@
+<div class="clearfix">
+  <div class="small-book-left-sidebar">
+    <%= render partial: 'books/book_cover', object: Transaction.find(transaction_review.transaction_id).book_item.book, as: :book%>
+  </div>
+  <div class="small-book-right-sidebar">
+    <h5><%= link_to User.find(transaction_review.reviewer_id).name %></h5>
+    <div class="review-rating" data-score="<%= transaction_review.rating %>"></div>
+    <hr>
+    <p class="book-description">
+      <%= transaction_review.content %>
+    </p>
+  </div>
+</div>

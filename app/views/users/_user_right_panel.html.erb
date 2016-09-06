@@ -15,16 +15,18 @@
 		<% end %>
 	</div>
 	<hr/>
+	<h3>Recent transaction review to you</h3>
+	<%= render partial: 'transaction_reviews/transaction_review', collection: @transaction_reviews = TransactionReview.where(target_id: @user.id), as: :transaction_review %>
+	<hr/>
 	<h3>Your recent reviews</h3>
 	<%= render partial: 'book_reviews/book_review', collection: (@book_reviews = @user.book_reviews.last(5).reverse), as: :book_review %>
 	<hr></hr>
 	<h3>Your recent wishlist</h3>
-		<div class="container">
-			<% @user.wishlists.last(5).reverse.each do |wishlist| %>
-			<div class="col-md-6">
-		  		<%= render partial: 'books/book', object: wishlist.book, as: 'book' %>
-		  </div>
-		  <% end %>
-		  </div>
-  	</div>
+	<div class="container">
+		<% @user.wishlists.last(5).reverse.each do |wishlist| %>
+		<div class="col-md-6">
+	  		<%= render partial: 'books/book', object: wishlist.book, as: 'book' %>
+	  </div>
+	  <% end %>
+	 </div>
 </div>
