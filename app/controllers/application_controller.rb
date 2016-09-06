@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     @book_cover = 'big-book-cover'
     @size = 'big'
   end
+
+  def after_sign_in_path_for(resource_or_scope)
+    user_categories_path
+  end
 end
