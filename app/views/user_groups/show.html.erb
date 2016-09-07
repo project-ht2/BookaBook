@@ -1,3 +1,14 @@
+<div class="jumbotron group-background">
+</div>
+<div class="intro">
+  <h3 style="font-weight: 300;">Explore our recommended book list</h3>
+  <div class="row">
+    <div class="intro-detail">
+      Choose the book for dicussion.
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <% @group.book_threads.each do |thread| %>
@@ -6,7 +17,7 @@
             <img class="card-img-top" src="<%= thread.book.image_url %>" alt="Card image cap" style="max-width: 100%;">
             <div class="card-block">
               <h4 class="card-title"><%= thread.name %></h4>
-              <%= link_to 'Discuss', book_thread_path(thread), class: 'btn btn-primary' %>
+              <%= link_to 'Discuss', book_thread_path(thread), class: 'btn btn-primary btn-long' %>
             </div>
           </div>
         </div>
