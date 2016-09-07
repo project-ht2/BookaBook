@@ -1,5 +1,5 @@
 <div align="center">
-  <% if book.wishlist != nil && (number_wishlist = book.wishlists.count) > 0 %>
+  <% if book.wishlists != nil && (number_wishlist = book.wishlists.count) > 0 %>
     <h5><%= pluralize(number_wishlist, 'request') %> </h5>
   <% end %>
 </div>
