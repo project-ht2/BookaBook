@@ -16,12 +16,12 @@
 		<hr>
 	</div>
 	<div class="user-follower-block">
-		<h5>Followers</h5>
+		<h5 class="user-caption">Followers</h5>
 		<%= render partial: "user_small_avatar", collection: @user.followers, as: :user %>
 		<hr>
 	</div>
 	<div class="user-folling-block">
-		<h5>Followings</h5>
+		<h5 class="user-caption">Followings</h5>
 		<%= render partial: "user_small_avatar", collection: @user.followings, as: :user %>
 		<hr>
 	</div>

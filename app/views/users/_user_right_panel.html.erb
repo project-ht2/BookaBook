@@ -1,5 +1,5 @@
 <div class="user-right-panel">
-	<h3>Your bookshelves</h3>
+	<h4 class="user-caption">Bookshelves</h4>
   <div class="tab-content">
     <div class="tab-pane fade in active" id="all">
     	<div id="masonry-container" class="masonry-container transitions-enabled infinite-scroll clearfix">
@@ -15,13 +15,13 @@
 		<% end %>
 	</div>
 	<hr/>
-	<h3>Recent transaction review to you</h3>
+	<h4 class="user-caption">Recent transaction review to you</h4>
 	<%= render partial: 'transaction_reviews/transaction_review', collection: @transaction_reviews = TransactionReview.where(target_id: @user.id), as: :transaction_review %>
 	<hr/>
-	<h3>Your recent reviews</h3>
+	<h4 class="user-caption">Your recent reviews</h4>
 	<%= render partial: 'book_reviews/book_review', collection: (@book_reviews = @user.book_reviews.last(5).reverse), as: :book_review %>
 	<hr></hr>
-	<h3>Your recent wishlist</h3>
+	<h4 class="user-caption">Your recent wishlist</h4>
 	<div class="container">
 		<% @user.wishlists.last(5).reverse.each do |wishlist| %>
 		<div class="col-md-6">
