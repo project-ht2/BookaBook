@@ -17,7 +17,6 @@
                     </div>
                     <div class="pull-left meta">
                       <div class="title h5">
-                        <a href="#"><b><%= post.user.name %></b></a>
                         <%= link_to post.user.name, users_path(post.user) %>
                       </div>
                       <h6 class="text-muted time"><%= time_ago_in_words(post.created_at) %></h6>
